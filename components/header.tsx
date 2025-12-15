@@ -19,14 +19,6 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10">
-              <div className="absolute inset-0 bg-primary rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-opacity animate-pulse" />
-              <div className="relative w-10 h-10 bg-gradient-to-br from-primary via-secondary to-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30">
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-foreground">
-                  <path d="M12 2L15 9L22 10L17 15L19 22L12 18L5 22L7 15L2 10L9 9L12 2Z" fill="currentColor" />
-                </svg>
-              </div>
-            </div>
             <span className="text-2xl font-display font-bold text-foreground">
               Orion <span className="text-primary">MKT</span>
             </span>

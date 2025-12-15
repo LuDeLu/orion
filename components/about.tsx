@@ -8,7 +8,7 @@ const features = [
   "Atención personalizada 24/7",
   "Precios accesibles para startups",
   "Reportes claros y transparentes",
-  "Más de 100 proyectos exitosos",
+  "Más de 5 proyectos exitosos",
 ]
 
 export function About() {

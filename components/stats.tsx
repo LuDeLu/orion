@@ -1,9 +1,9 @@
 "use client"
 
 const stats = [
-  { value: "150+", label: "Proyectos completados" },
-  { value: "98%", label: "Clientes satisfechos" },
-  { value: "3x", label: "ROI promedio" },
+  { value: "5+", label: "Proyectos completados" },
+  { value: "100%", label: "Clientes satisfechos" },
+  { value: "2x", label: "ROI promedio" },
   { value: "24/7", label: "Soporte disponible" },
 ]
 

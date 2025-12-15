@@ -9,12 +9,14 @@ import { Footer } from "@/components/footer"
 import { ConstellationBackground } from "@/components/constellation-background"
 import { GridOverlay } from "@/components/grid-overlay"
 import { FloatingParticles } from "@/components/floating-particles"
+import { StarField } from "@/components/star-field"
 
 export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden">
       <FloatingParticles></FloatingParticles>
       <ConstellationBackground />
+      <StarField></StarField>
       <GridOverlay />
       <div className="grain-overlay" />
       <Header />
