@@ -1,0 +1,99 @@
+"use client"
+
+import Link from "next/link"
+import { Sparkles, Instagram, Linkedin, Twitter } from "lucide-react"
+
+const footerLinks = {
+  servicios: [
+    { label: "Branding", href: "#" },
+    { label: "Social Media", href: "#" },
+    { label: "Publicidad Digital", href: "#" },
+    { label: "Desarrollo Web", href: "#" },
+  ],
+  empresa: [
+    { label: "Nosotros", href: "#nosotros" },
+    { label: "Casos de éxito", href: "#casos" },
+    { label: "Blog", href: "#" },
+    { label: "Contacto", href: "#contacto" },
+  ],
+}
+
+const socialLinks = [
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+]
+
+export function Footer() {
+  return (
+    <footer className="relative border-t border-border py-16 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          <div className="lg:col-span-2">
+            <Link href="/" className="flex items-center gap-2 mb-4">
+              <Sparkles className="h-8 w-8 text-primary" />
+              <span className="text-xl font-bold text-foreground">
+                Orion <span className="text-primary">MKT</span>
+              </span>
+            </Link>
+            <p className="text-muted-foreground max-w-sm mb-6">
+              Impulsamos PyMEs y startups hacia el éxito digital con estrategias innovadoras y un equipo apasionado.
+            </p>
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                >
+                  <social.icon className="h-5 w-5" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Servicios</h4>
+            <ul className="space-y-3">
+              {footerLinks.servicios.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Empresa</h4>
+            <ul className="space-y-3">
+              {footerLinks.empresa.map((link) => (
+                <li key={link.label}>
+                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Orion MKT. Todos los derechos reservados.
+          </p>
+          <div className="flex gap-6 text-sm text-muted-foreground">
+            <Link href="#" className="hover:text-foreground transition-colors">
+              Privacidad
+            </Link>
+            <Link href="#" className="hover:text-foreground transition-colors">
+              Términos
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
