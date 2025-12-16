@@ -2,8 +2,9 @@
 
 import { Rocket, Target, BarChart3, Megaphone, Palette, Globe, X } from "lucide-react"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
+import { motion, useInView } from "framer-motion"
 
 const services = [
   {
@@ -100,30 +101,40 @@ const services = [
 
 export function Services() {
   const [selectedService, setSelectedService] = useState<(typeof services)[0] | null>(null)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section id="servicios" className="relative py-32 px-4">
+    <section ref={ref} id="servicios" className="relative py-32 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <span className="text-primary font-semibold text-sm uppercase tracking-widest">Servicios</span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20 max-w-4xl mx-auto"
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">Servicios</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
             Todo lo que necesitas
             <br />
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               en un solo lugar
             </span>
           </h2>
-          <p className="text-foreground/60 max-w-2xl mx-auto text-xl">
+          <p className="text-foreground/60 max-w-2xl mx-auto text-xl text-pretty">
             Soluciones integrales para impulsar tu presencia digital
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setSelectedService(service)}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 transition-all duration-500 cursor-pointer"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 transition-all duration-500 cursor-pointer hover-lift"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
@@ -142,7 +153,7 @@ export function Services() {
                 <p className="text-foreground/70 leading-relaxed">{service.description}</p>
                 <div className="mt-4 text-primary text-sm font-medium group-hover:underline">Ver más detalles →</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

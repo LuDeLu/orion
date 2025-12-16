@@ -37,7 +37,7 @@ export function BrandsCarousel() {
     <section className="relative py-32 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
-          <span className="text-secondary font-bold text-sm uppercase tracking-[0.2em] mb-4 inline-block">
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Clientes
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground tracking-tight">

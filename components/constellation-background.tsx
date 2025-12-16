@@ -29,12 +29,12 @@ export function ConstellationBackground() {
     }
 
     const createStars = () => {
-      const count = Math.floor((canvas.width * canvas.height) / 35000)
+      const count = Math.floor((canvas.width * canvas.height) / 8000)
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1 + 0.3,
-        a: Math.random() * 0.3 + 0.2,
+        r: Math.random() * 1.5 + 0.3,
+        a: Math.random() * 0.5 + 0.2,
         twinkle: Math.random() * 1000,
       }))
     }

@@ -3,19 +3,35 @@
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { motion } from "framer-motion"
+import { useInView } from "framer-motion"
+import { useRef } from "react"
 
 export function Hero() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.3 })
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-4">
+    <section ref={ref} className="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-4">
       <div className="scan-effect" />
 
       <div className="max-w-6xl mx-auto text-center relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm mb-8">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 backdrop-blur-sm mb-8"
+        >
           <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           <span className="text-sm text-foreground/80 font-medium">Marketing Digital para PyMEs & Startups</span>
-        </div>
+        </motion.div>
 
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-foreground mb-8 leading-[1.1] tracking-tight">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold text-foreground mb-8 leading-[1.1] tracking-tight text-balance"
+        >
           Hacemos que tu marca
           <br />
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
@@ -27,16 +43,26 @@ export function Hero() {
           <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
             redes
           </span>
-        </h1>
+        </motion.h1>
 
-        <p className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto mb-12 leading-relaxed">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xl md:text-2xl text-foreground/60 max-w-3xl mx-auto mb-12 leading-relaxed text-pretty"
+        >
           Estrategias que conectan, diseños que impactan, resultados que hablan por sí solos.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
+        >
           <Button
             size="lg"
-            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-foreground px-10 py-7 text-lg font-semibold group rounded-full relative overflow-hidden"
+            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-foreground px-10 py-7 text-lg font-semibold group rounded-full relative overflow-hidden hover-lift"
             asChild
           >
             <Link href="#contacto">
@@ -49,12 +75,12 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="border-primary/30 text-foreground hover:bg-primary/10 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm"
+            className="border-primary/30 text-foreground hover:bg-primary/10 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift"
             asChild
           >
             <Link href="#nosotros">Ver Portafolio</Link>
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

@@ -2,6 +2,7 @@ import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
 import { About } from "@/components/about"
+import { Workflow } from "@/components/workflow"
 import { Stats } from "@/components/stats"
 import { BrandsCarousel } from "@/components/brands-carousel"
 import { ContactSection } from "@/components/contact"
@@ -10,6 +11,8 @@ import { ConstellationBackground } from "@/components/constellation-background"
 import { GridOverlay } from "@/components/grid-overlay"
 import { FloatingParticles } from "@/components/floating-particles"
 import { StarField } from "@/components/star-field"
+import { WhatsAppButton } from "@/components/whatsapp-button"
+import { ScrollToTop } from "@/components/scroll-to-top"
 
 export default function Home() {
   return (
@@ -23,9 +26,11 @@ export default function Home() {
       <Hero />
       <Services />
       <About />
-      <Stats />
+      <Workflow />
       <BrandsCarousel />
       <ContactSection />
+      <WhatsAppButton></WhatsAppButton>
+      <ScrollToTop></ScrollToTop>
       <Footer />
     </main>
   )
