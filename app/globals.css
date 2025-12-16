@@ -4,30 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #2c2447;
+  /* Paleta de colores corporativa según especificación del usuario */
+  --background: #1a1425;
   --foreground: #f0f0eb;
-  --card: #362d54;
+  --card: #2c2447;
   --card-foreground: #f0f0eb;
-  --popover: #362d54;
+  --popover: #2c2447;
   --popover-foreground: #f0f0eb;
   --primary: #e0642f;
   --primary-foreground: #f0f0eb;
-  --secondary: #f7d785;
-  --secondary-foreground: #2c2447;
-  --muted: #3d3560;
-  --muted-foreground: #b8b8b0;
+  --secondary: #2c2447;
+  --secondary-foreground: #f0f0eb;
+  --muted: #3d3458;
+  --muted-foreground: #c4c3bd;
   --accent: #f7d785;
   --accent-foreground: #2c2447;
   --destructive: #dc2626;
   --destructive-foreground: #f0f0eb;
-  --border: #4a4175;
-  --input: #4a4175;
+  --border: #3d3458;
+  --input: #3d3458;
   --ring: #e0642f;
   --chart-1: #e0642f;
-  --chart-2: #f7d785;
-  --chart-3: #f0f0eb;
-  --chart-4: #4a4175;
-  --chart-5: #362d54;
+  --chart-2: #2c2447;
+  --chart-3: #f7d785;
+  --chart-4: #3d3458;
+  --chart-5: #1a1425;
   --radius: 0.5rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -127,9 +128,14 @@
   .font-display {
     font-family: var(--font-display);
   }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-/* Añadiendo efectos futuristas y animaciones mejoradas */
+/* Efectos de animación más sutiles y elegantes */
 @keyframes subtle-float {
   0%,
   100% {
@@ -151,15 +157,16 @@
   }
 }
 
+/* Glow más sutil para look corporativo */
 @keyframes glow-pulse {
   0%,
   100% {
-    opacity: 0.5;
-    filter: blur(20px);
+    opacity: 0.08;
+    filter: blur(12px);
   }
   50% {
-    opacity: 0.8;
-    filter: blur(30px);
+    opacity: 0.12;
+    filter: blur(15px);
   }
 }
 
@@ -172,10 +179,26 @@
   }
 }
 
+/* Animación de estrellas extremadamente lenta para efecto sutil */
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.star {
+  animation: star-twinkle 12s ease-in-out infinite;
+}
+
 .subtle-float {
   animation: subtle-float 4s ease-in-out infinite;
 }
 
+/* Grain overlay reducido para look más limpio */
 .grain-overlay {
   position: fixed;
   top: 0;
@@ -183,12 +206,12 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.03;
+  opacity: 0.008;
   z-index: 1;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
 }
 
-/* Efectos futuristas de glow */
+/* Efectos de glow corporativos con colores de marca */
 .futuristic-glow {
   position: relative;
 }
@@ -197,15 +220,15 @@
   content: "";
   position: absolute;
   inset: -2px;
-  background: linear-gradient(45deg, #e0642f, #f7d785, #e0642f);
+  background: linear-gradient(45deg, #e0642f, #f7d785, #2c2447);
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.3s;
-  animation: glow-pulse 3s ease-in-out infinite;
+  animation: glow-pulse 6s ease-in-out infinite;
 }
 
 .futuristic-glow:hover::before {
-  opacity: 0.5;
+  opacity: 0.15;
 }
 
 /* Gradient radial utility */
@@ -213,7 +236,7 @@
   background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
-/* Escaneo futurista sutil */
+/* Efecto de scan muy sutil con colores de marca */
 @keyframes scan {
   0% {
     background-position: 0 -100vh;
@@ -231,8 +254,8 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  background: linear-gradient(to bottom, transparent 0%, rgba(224, 100, 47, 0.03) 50%, transparent 100%);
+  background: linear-gradient(to bottom, transparent 0%, rgba(224, 100, 47, 0.008) 50%, transparent 100%);
   background-size: 100% 200vh;
-  animation: scan 8s linear infinite;
+  animation: scan 15s linear infinite;
   z-index: 2;
 }

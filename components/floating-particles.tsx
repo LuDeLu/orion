@@ -35,16 +35,16 @@ export function FloatingParticles() {
 
     const initParticles = () => {
       particles = []
-      const particleCount = Math.floor((canvas.width * canvas.height) / 30000)
+      const particleCount = Math.floor((canvas.width * canvas.height) / 35000)
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 3 + 1,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
+          size: Math.random() * 2.5 + 0.8,
+          speedX: (Math.random() - 0.5) * 0.15,
+          speedY: (Math.random() - 0.5) * 0.15,
+          opacity: Math.random() * 0.3 + 0.1,
           color: colors[Math.floor(Math.random() * colors.length)],
         })
       }
@@ -60,11 +60,10 @@ export function FloatingParticles() {
         if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1
         if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1
 
-        // Glow effect
-        const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.size * 3)
+        const gradient = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.size * 2)
         gradient.addColorStop(
           0,
-          `${particle.color}${Math.floor(particle.opacity * 80)
+          `${particle.color}${Math.floor(particle.opacity * 40)
             .toString(16)
             .padStart(2, "0")}`,
         )
@@ -72,7 +71,7 @@ export function FloatingParticles() {
 
         ctx.fillStyle = gradient
         ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size * 3, 0, Math.PI * 2)
+        ctx.arc(particle.x, particle.y, particle.size * 2, 0, Math.PI * 2)
         ctx.fill()
 
         // Core
@@ -97,5 +96,5 @@ export function FloatingParticles() {
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none z-[1]" />
+  return <canvas ref={canvasRef} className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10" />
 }

@@ -29,12 +29,12 @@ export function ConstellationBackground() {
     }
 
     const createStars = () => {
-      const count = Math.floor((canvas.width * canvas.height) / 28000)
+      const count = Math.floor((canvas.width * canvas.height) / 35000)
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        r: Math.random() * 1.2 + 0.4,
-        a: Math.random() * 0.5 + 0.4,
+        r: Math.random() * 1 + 0.3,
+        a: Math.random() * 0.3 + 0.2,
         twinkle: Math.random() * 1000,
       }))
     }
@@ -49,8 +49,8 @@ export function ConstellationBackground() {
           const dy = stars[i].y - stars[j].y
           const d = Math.sqrt(dx * dx + dy * dy)
 
-          if (d < 160) {
-            ctx.strokeStyle = `rgba(247,215,133,${(1 - d / 160) * 0.12})`
+          if (d < 150) {
+            ctx.strokeStyle = `rgba(247,215,133,${(1 - d / 150) * 0.06})`
             ctx.lineWidth = 0.5
             ctx.beginPath()
             ctx.moveTo(stars[i].x, stars[i].y)
@@ -62,18 +62,18 @@ export function ConstellationBackground() {
 
       // Stars
       stars.forEach((s) => {
-        const pulse = Math.sin(Date.now() * 0.001 + s.twinkle) * 0.15 + 0.85
+        const pulse = Math.sin(Date.now() * 0.0003 + s.twinkle) * 0.1 + 0.9
 
-        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 6)
-        glow.addColorStop(0, `rgba(247,215,133,${s.a * pulse})`)
+        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4)
+        glow.addColorStop(0, `rgba(247,215,133,${s.a * pulse * 0.4})`)
         glow.addColorStop(1, "rgba(247,215,133,0)")
 
         ctx.fillStyle = glow
         ctx.beginPath()
-        ctx.arc(s.x, s.y, s.r * 6, 0, Math.PI * 2)
+        ctx.arc(s.x, s.y, s.r * 4, 0, Math.PI * 2)
         ctx.fill()
 
-        ctx.fillStyle = `rgba(245,245,240,${s.a})`
+        ctx.fillStyle = `rgba(240,240,235,${s.a})`
         ctx.beginPath()
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
         ctx.fill()
@@ -92,11 +92,5 @@ export function ConstellationBackground() {
     }
   }, [])
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0"
-      style={{ opacity: 0.35 }}
-    />
-  )
+  return <canvas ref={canvasRef} className="fixed inset-0 pointer-events-none -z-20" style={{ opacity: 0.3 }} />
 }

@@ -14,13 +14,17 @@ const navLinks = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleLinkClick = () => {
+    setIsOpen(false)
+  }
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/40">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/40">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <span className="text-2xl font-display font-bold text-foreground">
-              Orion <span className="text-primary">MKT</span>
+            <span className="text-2xl font-display font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              Orion MKT
             </span>
           </Link>
 
@@ -29,7 +33,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground/70 hover:text-foreground transition-colors font-medium"
+                className="text-foreground/70 hover:text-primary transition-colors font-medium"
               >
                 {link.label}
               </Link>
@@ -37,8 +41,18 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold rounded-full px-6">
-              Empezar Proyecto
+            <Button
+              variant="outline"
+              className="border-primary/30 text-foreground hover:bg-primary/10 font-semibold rounded-full px-6 bg-transparent"
+              asChild
+            >
+              <Link href="#nosotros">Ver Portafolio</Link>
+            </Button>
+            <Button
+              className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold rounded-full px-6"
+              asChild
+            >
+              <Link href="#contacto">Iniciar Proyecto</Link>
             </Button>
           </div>
 
@@ -55,14 +69,26 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-foreground/70 hover:text-foreground transition-colors py-2 font-medium"
-                onClick={() => setIsOpen(false)}
+                className="text-foreground/70 hover:text-primary transition-colors py-2 font-medium"
+                onClick={handleLinkClick}
               >
                 {link.label}
               </Link>
             ))}
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-2 rounded-full font-semibold">
-              Empezar Proyecto
+            <Button
+              variant="outline"
+              className="border-primary/30 text-foreground hover:bg-primary/10 w-full mt-2 rounded-full font-semibold bg-transparent"
+              asChild
+              onClick={handleLinkClick}
+            >
+              <Link href="#nosotros">Ver Portafolio</Link>
+            </Button>
+            <Button
+              className="bg-gradient-to-r from-primary to-secondary text-white w-full rounded-full font-semibold"
+              asChild
+              onClick={handleLinkClick}
+            >
+              <Link href="#contacto">Iniciar Proyecto</Link>
             </Button>
           </nav>
         </div>

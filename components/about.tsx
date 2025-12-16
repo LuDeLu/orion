@@ -1,6 +1,6 @@
 "use client"
 
-import { CheckCircle2, Sparkles } from "lucide-react"
+import { CheckCircle2 } from "lucide-react"
 
 const features = [
   "Equipo multidisciplinario de expertos",
@@ -19,7 +19,7 @@ export function About() {
           <div>
             <span className="text-primary font-medium text-sm uppercase tracking-wider">Nosotros</span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6 text-balance">
-              Una agencia pensada para los que <span className="text-secondary">empiezan en grande</span>
+              Una agencia pensada para los que <span className="text-primary">empiezan en grande</span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
               En Orion MKT entendemos que cada PyME y startup tiene sueños ambiciosos. Somos el puente entre donde estás
@@ -65,10 +65,10 @@ export function About() {
             </div>
 
             {/* Floating badges */}
-            <div className="absolute -top-4 -right-4 bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium">
+            <div className="absolute -top-4 -right-4 bg-primary text-foreground px-4 py-2 rounded-full text-sm font-medium">
               100% Remoto
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-secondary text-secondary-foreground px-4 py-2 rounded-full text-sm font-medium">
+            <div className="absolute -bottom-4 -left-4 bg-secondary text-foreground px-4 py-2 rounded-full text-sm font-medium">
               Toda Argentina
             </div>
           </div>
