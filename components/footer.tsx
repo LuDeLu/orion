@@ -5,10 +5,10 @@ import { Sparkles, Instagram, Linkedin, Twitter } from "lucide-react"
 
 const footerLinks = {
   servicios: [
-    { label: "Branding", href: "#" },
-    { label: "Social Media", href: "#" },
-    { label: "Publicidad Digital", href: "#" },
-    { label: "Desarrollo Web", href: "#" },
+    { label: "Branding", href: "#", service: "Branding" },
+    { label: "Social Media", href: "#", service: "Social Media" },
+    { label: "Publicidad Digital", href: "#", service: "Publicidad Digital" },
+    { label: "Desarrollo Web", href: "#", service: "Desarrollo Web" },
   ],
   empresa: [
     { label: "Nosotros", href: "#nosotros" },
@@ -25,6 +25,11 @@ const socialLinks = [
 ]
 
 export function Footer() {
+  const handleServiceClick = (serviceName: string) => {
+    const message = encodeURIComponent(`Hola! Me interesa consultar sobre ${serviceName}`)
+    window.open(`https://wa.me/5491163665344?text=${message}`, "_blank")
+  }
+
   return (
     <footer className="relative border-t border-border py-16 px-4">
       <div className="max-w-7xl mx-auto">
@@ -58,9 +63,12 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.servicios.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <button
+                    onClick={() => handleServiceClick(link.service)}
+                    className="text-muted-foreground hover:text-foreground transition-colors text-left"
+                  >
                     {link.label}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>

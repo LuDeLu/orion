@@ -10,6 +10,16 @@ interface Star {
   twinkle: number
 }
 
+interface ShootingStar {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  length: number
+  opacity: number
+  active: boolean
+}
+
 export function ConstellationBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -20,7 +30,9 @@ export function ConstellationBackground() {
     if (!ctx) return
 
     let stars: Star[] = []
+    let shootingStars: ShootingStar[] = []
     let raf: number
+    let lastShootingStarTime = 0
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -37,6 +49,20 @@ export function ConstellationBackground() {
         a: Math.random() * 0.5 + 0.2,
         twinkle: Math.random() * 1000,
       }))
+    }
+
+    const createShootingStar = () => {
+      const startFromTop = Math.random() > 0.5
+      const star: ShootingStar = {
+        x: startFromTop ? Math.random() * canvas.width : canvas.width * 0.8 + Math.random() * canvas.width * 0.2,
+        y: startFromTop ? Math.random() * canvas.height * 0.3 : Math.random() * canvas.height * 0.5,
+        vx: -3 - Math.random() * 2,
+        vy: 2 + Math.random() * 2,
+        length: 40 + Math.random() * 30,
+        opacity: 1,
+        active: true,
+      }
+      shootingStars.push(star)
     }
 
     const draw = () => {
@@ -78,6 +104,47 @@ export function ConstellationBackground() {
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
         ctx.fill()
       })
+
+      shootingStars = shootingStars.filter((star) => {
+        if (!star.active) return false
+
+        star.x += star.vx
+        star.y += star.vy
+        star.opacity -= 0.01
+
+        if (star.opacity <= 0 || star.x < -100 || star.y > canvas.height + 100) {
+          star.active = false
+          return false
+        }
+
+        // Gradiente para el rastro
+        const gradient = ctx.createLinearGradient(star.x, star.y, star.x - star.vx * 5, star.y - star.vy * 5)
+        gradient.addColorStop(0, `rgba(247, 215, 133, ${star.opacity * 0.8})`)
+        gradient.addColorStop(0.5, `rgba(247, 215, 133, ${star.opacity * 0.4})`)
+        gradient.addColorStop(1, "rgba(247, 215, 133, 0)")
+
+        ctx.strokeStyle = gradient
+        ctx.lineWidth = 2
+        ctx.lineCap = "round"
+        ctx.beginPath()
+        ctx.moveTo(star.x, star.y)
+        ctx.lineTo(star.x - star.vx * 8, star.y - star.vy * 8)
+        ctx.stroke()
+
+        // Punto brillante al frente
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+        ctx.beginPath()
+        ctx.arc(star.x, star.y, 2, 0, Math.PI * 2)
+        ctx.fill()
+
+        return true
+      })
+
+      const now = Date.now()
+      if (now - lastShootingStarTime > 8000 + Math.random() * 7000) {
+        createShootingStar()
+        lastShootingStarTime = now
+      }
 
       raf = requestAnimationFrame(draw)
     }

@@ -145,7 +145,7 @@ export function Workflow() {
             <div key={index} className="relative">
               {/* Connector Line */}
               {index < workflowSteps.length - 1 && (
-                <div className="absolute left-8 top-[80px] bottom-[-24px] w-0.5 bg-gradient-to-b from-primary/30 via-accent/30 to-primary/30" />
+                <div className="absolute left-8 top-[80px] bottom-[-24px] bg-gradient-to-b from-primary/30 via-accent/30 to-primary/30 mx-6 px-0 w-0.5 h-auto my-1 mb-1 mt-7 py-16" />
               )}
 
               <div

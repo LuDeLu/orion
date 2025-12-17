@@ -113,7 +113,9 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20 max-w-4xl mx-auto"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">Servicios</span>
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
+            Servicios
+          </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
             Todo lo que necesitas
             <br />
@@ -160,14 +162,14 @@ export function Services() {
 
       {selectedService && (
         <div
-          className="fixed inset-0 bg-background/90 backdrop-blur-xl z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-background/90 backdrop-blur-xl z-50 flex items-center justify-center p-4 overflow-y-auto"
           onClick={() => setSelectedService(null)}
         >
           <div
-            className="bg-card border border-border rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="bg-card border border-border rounded-2xl max-w-4xl w-full my-8 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[16/9] overflow-hidden">
+            <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
               <Image
                 src={selectedService.image || "/placeholder.svg"}
                 alt={selectedService.title}
@@ -183,24 +185,28 @@ export function Services() {
               </button>
             </div>
 
-            <div className="p-8">
+            <div className="p-6 md:p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center flex-shrink-0">
                   <selectedService.icon className="h-8 w-8 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-3xl font-display font-bold text-foreground">{selectedService.title}</h3>
+                  <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
+                    {selectedService.title}
+                  </h3>
                   <p className="text-foreground/60 mt-1">{selectedService.description}</p>
                 </div>
               </div>
 
-              <p className="text-foreground/80 text-lg leading-relaxed mb-8">{selectedService.fullDescription}</p>
+              <p className="text-foreground/80 text-base md:text-lg leading-relaxed mb-8">
+                {selectedService.fullDescription}
+              </p>
 
               <h4 className="text-xl font-display font-bold text-foreground mb-4">¿Qué incluye?</h4>
               <ul className="grid gap-3 mb-8">
                 {selectedService.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-foreground/80">
-                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent" />
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent flex-shrink-0" />
                     {feature}
                   </li>
                 ))}
