@@ -3,7 +3,6 @@ import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
 import { About } from "@/components/about"
 import { Workflow } from "@/components/workflow"
-import { Stats } from "@/components/stats"
 import { BrandsCarousel } from "@/components/brands-carousel"
 import { ContactSection } from "@/components/contact"
 import { Footer } from "@/components/footer"
@@ -13,6 +12,7 @@ import { FloatingParticles } from "@/components/floating-particles"
 import { StarField } from "@/components/star-field"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { Suspense } from "react"
 
 export default function Home() {
   return (
@@ -24,7 +24,9 @@ export default function Home() {
       <div className="grain-overlay" />
       <Header />
       <Hero />
-      <Services />
+      <Suspense fallback={<div className="py-32" />}>
+        <Services />
+      </Suspense>
       <About />
       <Workflow />
       <BrandsCarousel />
