@@ -2,7 +2,8 @@
 
 import { Rocket, Target, BarChart3, Megaphone, Palette, Globe, X } from "lucide-react"
 import Image from "next/image"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
+import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { motion, useInView } from "framer-motion"
 
@@ -101,8 +102,31 @@ const services = [
 
 export function Services() {
   const [selectedService, setSelectedService] = useState<(typeof services)[0] | null>(null)
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
+
+  useEffect(() => {
+    const serviceParam = searchParams.get("servicio")
+    if (serviceParam) {
+      const service = services.find((s) => s.title.toLowerCase().replace(/\s+/g, "-") === serviceParam)
+      if (service) {
+        setSelectedService(service)
+      }
+    } else {
+      setSelectedService(null)
+    }
+  }, [searchParams])
+
+  const openModal = (service: (typeof services)[0]) => {
+    const serviceSlug = service.title.toLowerCase().replace(/\s+/g, "-")
+    router.push(`?servicio=${serviceSlug}`, { scroll: false })
+  }
+
+  const closeModal = () => {
+    router.back()
+  }
 
   return (
     <section ref={ref} id="servicios" className="relative py-32 px-4">
@@ -135,7 +159,7 @@ export function Services() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              onClick={() => setSelectedService(service)}
+              onClick={() => openModal(service)}
               className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 transition-all duration-500 cursor-pointer hover-lift"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
@@ -163,7 +187,7 @@ export function Services() {
       {selectedService && (
         <div
           className="fixed inset-0 bg-background/90 backdrop-blur-xl z-50 flex items-center justify-center p-4 overflow-y-auto"
-          onClick={() => setSelectedService(null)}
+          onClick={closeModal}
         >
           <div
             className="bg-card border border-border rounded-2xl max-w-4xl w-full my-8 overflow-hidden"
@@ -178,7 +202,7 @@ export function Services() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
               <button
-                onClick={() => setSelectedService(null)}
+                onClick={closeModal}
                 className="absolute top-4 right-4 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors"
               >
                 <X className="h-5 w-5" />
