@@ -241,7 +241,7 @@ export function Services() {
                 asChild
               >
                 <a
-                  href={`https://wa.me/5491163665344?text=Hola! Me interesa consultar sobre ${selectedService.title}`}
+                  href={`https://wa.me/5491156566083?text=Hola! Me interesa consultar sobre ${selectedService.title}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

@@ -17,7 +17,7 @@ export function WhatsAppButton() {
 
       {/* BOTÓN */}
       <motion.a
-        href="https://wa.me/5491163665344?text=Hola!%20Me%20interesa%20consultar%20sobre%20sus%20servicios%20de%20Orion"
+        href="https://wa.me/5491156566083?text=Hola!%20Me%20interesa%20consultar%20sobre%20sus%20servicios%20de%20Orion"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"

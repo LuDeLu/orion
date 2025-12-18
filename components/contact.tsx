@@ -13,8 +13,8 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Teléfono",
-    value: "+54 11 6366-5344",
-    href: "tel:+5491163665344",
+    value: "+54 11 5656-6083",
+    href: "tel:+5491156566083",
   },
   {
     icon: Mail,
@@ -69,7 +69,7 @@ export function ContactSection() {
 *Mensaje:*
 ${formData.mensaje || "Sin mensaje adicional"}`
 
-    const whatsappUrl = `https://wa.me/5491163665344?text=${encodeURIComponent(mensaje)}`
+    const whatsappUrl = `https://wa.me/5491156566083?text=${encodeURIComponent(mensaje)}`
     window.open(whatsappUrl, "_blank")
   }
 
@@ -227,7 +227,7 @@ ${formData.mensaje || "Sin mensaje adicional"}`
                   asChild
                 >
                   <a
-                    href="https://wa.me/5491163665344?text=Hola! Quiero consultar sobre sus servicios"
+                    href="https://wa.me/5491156566083?text=Hola! Quiero consultar sobre sus servicios"
                     target="_blank"
                     rel="noopener noreferrer"
                   >

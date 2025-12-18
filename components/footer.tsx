@@ -27,7 +27,7 @@ const socialLinks = [
 export function Footer() {
   const handleServiceClick = (serviceName: string) => {
     const message = encodeURIComponent(`Hola! Me interesa consultar sobre ${serviceName}`)
-    window.open(`https://wa.me/5491163665344?text=${message}`, "_blank")
+    window.open(`https://wa.me/5491156566083?text=${message}`, "_blank")
   }
 
   return (
