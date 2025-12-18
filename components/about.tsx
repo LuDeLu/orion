@@ -1,6 +1,6 @@
 "use client"
 
-import { CheckCircle2, Sparkles, Users, Trophy, TrendingUp, Star } from "lucide-react"
+import { CheckCircle2, Users, Trophy, TrendingUp, Star, Calendar } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
@@ -14,7 +14,8 @@ const features = [
 ]
 
 const stats = [
-  { icon: Users, value: "5+", label: "Proyectos Exitosos" },
+  { icon: Calendar, value: "3+", label: "Años de experiencia" },
+  { icon: Users, value: "10+", label: "Clientes activos" },
   { icon: Trophy, value: "100%", label: "Satisfacción" },
   { icon: TrendingUp, value: "3x", label: "ROI Promedio" },
 ]
@@ -25,7 +26,6 @@ export function About() {
 
   return (
     <section ref={ref} id="nosotros" className="relative py-24 px-4 overflow-hidden">
-
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -37,17 +37,20 @@ export function About() {
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e0642f]/10 to-[#f7d785]/10 border border-[#e0642f]/20 rounded-full px-4 py-1.5 mb-6">
               <span className="text-sm font-bold text-[#e0642f]">Nosotros</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6 text-balance">
-              Una agencia pensada para los que <span className="text-primary">empiezan en grande</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
+            Agencia de Marketing Digital especializada en{" "}
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            PyMEs y Startups
+            </span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              En Orion MKT entendemos que cada PyME y startup tiene sueños ambiciosos. Somos el puente entre donde estás
-              y donde quieres llegar, combinando la frescura de ideas innovadoras con la solidez de estrategias
-              probadas.
+              Orion MKT es una agencia de marketing digital con base en Argentina que trabaja con PyMEs y startups de
+              todo el país. Entendemos que cada negocio tiene sueños ambiciosos, por eso combinamos estrategias
+              innovadoras con resultados medibles.
             </p>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-pretty">
-              Como la constelación de Orión, cada miembro de nuestro equipo brilla con luz propia, pero juntos formamos
-              algo extraordinario.
+              Nuestro equipo de expertos en branding, redes sociales, publicidad digital y desarrollo web trabaja para
+              que tu marca destaque en el mundo digital. Con modalidad flexible y presencia en toda Argentina.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -65,7 +68,7 @@ export function About() {
               ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}

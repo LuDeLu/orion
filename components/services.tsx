@@ -141,14 +141,14 @@ export function Services() {
             Servicios
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
-            Todo lo que necesitas
-            <br />
+            Servicios de Marketing Digital{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              en un solo lugar
+              para tu negocio
             </span>
           </h2>
           <p className="text-foreground/60 max-w-2xl mx-auto text-xl text-pretty">
-            Soluciones integrales para impulsar tu presencia digital
+            Soluciones integrales de branding, redes sociales, publicidad digital y diseño web que generan resultados
+            medibles para tu PyME o Startup
           </p>
         </motion.div>
 
@@ -165,7 +165,7 @@ export function Services() {
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
                   src={service.image || "/placeholder.svg"}
-                  alt={service.title}
+                  alt={`${service.title} - Orion MKT`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />

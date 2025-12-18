@@ -87,11 +87,11 @@ ${formData.mensaje || "Sin mensaje adicional"}`
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e0642f]/10 to-[#f7d785]/10 border border-[#e0642f]/20 rounded-full px-4 py-1.5 mb-6">
               <span className="text-sm font-bold text-[#e0642f]">Contacto</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F0F0EB] mb-4 text-balance">
-              Transformá tu{" "}
-              <span className="bg-gradient-to-r from-[#e0642f] to-[#f7d785] bg-clip-text text-transparent">
-                marca digital
-              </span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
+            Transformá tu{" "}
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            marca digital
+            </span>
             </h2>
             <p className="text-[#F0F0EB]/70 text-lg mb-8 leading-relaxed">
               Completá el formulario y te contactamos en menos de 24 horas con una propuesta personalizada para impulsar

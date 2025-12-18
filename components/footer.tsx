@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Sparkles, Instagram, Linkedin, Twitter } from "lucide-react"
+import { Sparkles, Instagram, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react"
 
 const footerLinks = {
   servicios: [
@@ -42,8 +42,27 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-muted-foreground max-w-sm mb-6">
-              Impulsamos PyMEs y startups hacia el éxito digital con estrategias innovadoras y un equipo apasionado.
+              Agencia de marketing digital especializada en PyMEs y startups. Impulsamos tu negocio con estrategias
+              innovadoras y resultados medibles.
             </p>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary shrink-0" />
+                <span className="text-sm">Argentina - Operamos en todo el país y LATAM</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Phone className="h-4 w-4 text-primary shrink-0" />
+                <a href="https://wa.me/5491156566083" className="text-sm hover:text-foreground transition-colors">
+                  +54 9 11 5656-6083
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <Mail className="h-4 w-4 text-primary shrink-0" />
+                <a href="mailto:hola@orionmkt.com" className="text-sm hover:text-foreground transition-colors">
+                  hola@orionmkt.com
+                </a>
+              </div>
+            </div>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
@@ -90,7 +109,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Orion MKT. Todos los derechos reservados.
+            © {new Date().getFullYear()} Orion MKT - Agencia de Marketing Digital. Todos los derechos reservados.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="#" className="hover:text-foreground transition-colors">

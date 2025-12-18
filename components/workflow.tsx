@@ -66,12 +66,12 @@ export function Workflow() {
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Cómo Trabajamos
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6 text-balance">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
             Simple, claro y{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              sin sorpresas
+            sin sorpresas
             </span>
-          </h2>
+            </h2>             
           <p className="text-foreground/60 text-xl text-pretty">Un proceso transparente de principio a fin</p>
         </motion.div>
 

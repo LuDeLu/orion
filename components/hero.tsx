@@ -38,7 +38,6 @@ export function Hero() {
             brille
           </span>{" "}
           tan fuerte como una
-          <br />
           constelación en las{" "}
           <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
             redes
@@ -51,7 +50,8 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg md:text-xl lg:text-2xl text-foreground/60 max-w-3xl mx-auto mb-12 leading-relaxed text-pretty px-2"
         >
-          Estrategias que conectan, diseños que impactan, resultados que hablan por sí solos.
+          Estrategias de marketing digital con ROI medible para PyMEs y Startups en Argentina. Branding, pauta digital,
+          redes sociales y diseño web que generan resultados reales.
         </motion.p>
 
         <motion.div
@@ -67,7 +67,7 @@ export function Hero() {
           >
             <Link href="#contacto">
               <span className="relative z-10 flex items-center justify-center">
-                Iniciar Proyecto
+                Quiero crecer mi negocio
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>
@@ -78,7 +78,7 @@ export function Hero() {
             className="border-primary/30 text-foreground hover:bg-primary/10 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
             asChild
           >
-            <Link href="#nosotros">Ver Portafolio</Link>
+            <Link href="#casos">Ver Casos de Éxito</Link>
           </Button>
         </motion.div>
       </div>

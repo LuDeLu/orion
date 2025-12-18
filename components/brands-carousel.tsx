@@ -40,11 +40,12 @@ export function BrandsCarousel() {
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Clientes
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground tracking-tight">
-            Empresas que confían
-            <br />
-            <span className="text-primary">en nuestra experiencia</span>
-          </h2>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
+            Empresas que confían{" "}
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            en nuestra experiencia
+            </span>
+            </h2>            
           <p className="text-foreground/60 max-w-2xl mx-auto text-lg md:text-xl mt-6 leading-relaxed">
             Hemos trabajado con más de 150 marcas en diversos sectores, desde startups en etapa temprana hasta empresas
             establecidas en crecimiento
