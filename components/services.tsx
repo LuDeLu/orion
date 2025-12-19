@@ -105,7 +105,7 @@ export function Services() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.05 })
 
   useEffect(() => {
     const serviceParam = searchParams.get("servicio")
