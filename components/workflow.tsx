@@ -1,6 +1,6 @@
 "use client"
 
-import { MessageSquare, ClipboardCheck, Settings, HeadphonesIcon, Search, ClipboardList, Rocket, TrendingUp } from "lucide-react"
+import { Search, ClipboardList, Rocket, TrendingUp } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 
@@ -8,26 +8,30 @@ const workflowSteps = [
   {
     number: "01",
     icon: Search,
-    title: "Descubrimiento",
-    description: "Escuchamos tu idea, analizamos tu negocio y entendemos tus objetivos. Definimos el público y los desafíos para avanzar.",
-  },  
+    title: "Descubrimiento y Análisis",
+    description:
+      "Escuchamos tu idea de negocio, analizamos tu mercado objetivo y entendemos tus objetivos comerciales. Definimos el público ideal y los desafíos específicos de tu PyME o Startup para avanzar con la estrategia correcta.",
+  },
   {
     number: "02",
     icon: ClipboardList,
-    title: "Estrategia",
-    description: "Estudiamos tu mercado, competencia y audiencia para detectar oportunidades y definir el enfoque más efectivo.",
+    title: "Estrategia de Marketing Digital",
+    description:
+      "Estudiamos tu mercado, competencia y audiencia para detectar oportunidades en branding, redes sociales y publicidad digital. Definimos el enfoque más efectivo con KPIs medibles y plan de acción detallado.",
   },
   {
     number: "03",
     icon: Rocket,
-    title: "Ejecución",
-    description: "Implementamos la estrategia con foco en rendimiento, optimizando cada acción para mejores resultados.",
+    title: "Ejecución y Optimización",
+    description:
+      "Implementamos la estrategia de marketing digital con foco en rendimiento y resultados. Lanzamos campañas de Facebook Ads, Instagram Ads, contenido para redes sociales y diseño web, optimizando cada acción constantemente.",
   },
   {
     number: "04",
     icon: TrendingUp,
-    title: "Medición & Escalado",
-    description: "Medimos resultados, ajustamos la estrategia y escalamos lo que funciona para impulsar el crecimiento.",
+    title: "Medición, Análisis y Escalado",
+    description:
+      "Medimos resultados con reportes transparentes, analizamos métricas de ROI, ajustamos la estrategia en tiempo real y escalamos lo que funciona para impulsar el crecimiento sostenible de tu negocio digital.",
   },
 ]
 
@@ -54,9 +58,8 @@ export function Workflow() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-32 px-4 overflow-hidden">
+    <section ref={sectionRef} className="relative py-32 px-4 overflow-hidden" aria-labelledby="workflow-heading">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -66,13 +69,18 @@ export function Workflow() {
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Cómo Trabajamos
           </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
-            Simple, claro y{" "}
+          <h2
+            id="workflow-heading"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+          >
+            Proceso de Marketing Digital: Simple, claro y{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            sin sorpresas
+              sin sorpresas
             </span>
-            </h2>             
-          <p className="text-foreground/60 text-xl text-pretty">Un proceso transparente de principio a fin</p>
+          </h2>
+          <p className="text-foreground/60 text-xl text-pretty">
+            Un proceso transparente y eficiente de principio a fin para garantizar el éxito de tu proyecto digital
+          </p>
         </motion.div>
 
         {/* Workflow Steps - Desktop */}

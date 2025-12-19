@@ -25,7 +25,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section ref={ref} id="nosotros" className="relative py-24 px-4 overflow-hidden">
+    <section ref={ref} id="nosotros" className="relative py-24 px-4 overflow-hidden" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -37,20 +37,25 @@ export function About() {
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e0642f]/10 to-[#f7d785]/10 border border-[#e0642f]/20 rounded-full px-4 py-1.5 mb-6">
               <span className="text-sm font-bold text-[#e0642f]">Nosotros</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
-            Agencia de Marketing Digital especializada en{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            PyMEs y Startups
-            </span>
+            <h2
+              id="about-heading"
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+            >
+              Agencia de Marketing Digital especializada en{" "}
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                PyMEs y Startups
+              </span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              Orion MKT es una agencia de marketing digital con base en Argentina que trabaja con PyMEs y startups de
-              todo el país. Entendemos que cada negocio tiene sueños ambiciosos, por eso combinamos estrategias
-              innovadoras con resultados medibles.
+              Orion MKT es una agencia de marketing digital con base en Buenos Aires, Argentina, que trabaja con PyMEs y
+              startups de todo el país. Entendemos que cada negocio tiene sueños ambiciosos, por eso combinamos
+              estrategias de branding, social media marketing, performance ads y diseño web con resultados medibles y
+              ROI garantizado.
             </p>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-pretty">
-              Nuestro equipo de expertos en branding, redes sociales, publicidad digital y desarrollo web trabaja para
-              que tu marca destaque en el mundo digital. Con modalidad flexible y presencia en toda Argentina.
+              Nuestro equipo de expertos en community management, publicidad digital (Facebook Ads, Instagram Ads,
+              Google Ads), desarrollo web y estrategia de contenidos trabaja para que tu marca destaque en el mundo
+              digital. Modalidad flexible, presupuestos accesibles y presencia en toda Argentina.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">

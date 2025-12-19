@@ -32,16 +32,11 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold text-foreground mb-8 leading-[1.1] tracking-tight text-balance px-2"
         >
-          Hacemos que tu marca
-          <br />
+          Agencia de Marketing Digital en Argentina que hace{" "}
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-            brille
+            brillar tu marca
           </span>{" "}
-          tan fuerte como una
-          constelación en las{" "}
-          <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-            redes
-          </span>
+          en las redes sociales
         </motion.h1>
 
         <motion.p
@@ -50,8 +45,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg md:text-xl lg:text-2xl text-foreground/60 max-w-3xl mx-auto mb-12 leading-relaxed text-pretty px-2"
         >
-          Estrategias de marketing digital con ROI medible para PyMEs y Startups en Argentina. Branding, pauta digital,
-          redes sociales y diseño web que generan resultados reales.
+          Estrategias de marketing digital con ROI medible para PyMEs y Startups en Argentina. Branding profesional,
+          pauta digital (Facebook Ads, Instagram Ads, Google Ads), gestión de redes sociales, diseño web responsivo y
+          estrategias que generan resultados reales y crecimiento garantizado.
         </motion.p>
 
         <motion.div

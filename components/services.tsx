@@ -105,6 +105,7 @@ export function Services() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const ref = useRef(null)
+  // This ensures the animation triggers as soon as the component enters the viewport
   const isInView = useInView(ref, { once: true, amount: 0.05 })
 
   useEffect(() => {
