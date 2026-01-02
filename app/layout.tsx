@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   description:
     "🚀 Agencia de marketing digital #1 en Argentina especializada en PyMEs y Startups. Branding profesional, redes sociales, publicidad digital, diseño web responsivo, SEO y estrategias de crecimiento con ROI medible. Transformamos negocios digitalmente con resultados garantizados. Consultoría gratuita.",
-  metadataBase: new URL("https://orionmkt.com"),
+  metadataBase: new URL("https://orionmkt.com.ar"),
   alternates: {
     canonical: "/",
     languages: {
@@ -141,7 +141,7 @@ export const metadata: Metadata = {
     "cuanto cuesta marketing digital",
     "presupuesto marketing digital pymes",
   ],
-  authors: [{ name: "Orion MKT - Agencia Digital", url: "https://orionmkt.com" }],
+  authors: [{ name: "Orion MKT - Agencia Digital", url: "https://orionmkt.com.ar" }],
   creator: "Orion MKT",
   publisher: "Orion MKT",
   category: "Marketing Digital",
@@ -155,7 +155,7 @@ export const metadata: Metadata = {
     title: "Orion MKT | Agencia de Marketing Digital #1 para PyMEs & Startups en Argentina 2025",
     description:
       "🚀 Impulsamos PyMEs y Startups hacia el éxito con estrategias de marketing digital innovadoras, medibles y efectivas. ROI garantizado. Consultoría gratuita. Tu negocio, nuestro universo.",
-    url: "https://orionmkt.com",
+    url: "https://orionmkt.com.ar",
     siteName: "Orion MKT - Agencia de Marketing Digital",
     locale: "es_AR",
     type: "website",

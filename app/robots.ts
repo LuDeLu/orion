@@ -29,7 +29,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/"],
       },
     ],
-    sitemap: "https://orionmkt.com/sitemap.xml",
-    host: "https://orionmkt.com",
+    sitemap: "https://orionmkt.com.ar/sitemap.xml",
+    host: "https://orionmkt.com.ar",
   }
 }
