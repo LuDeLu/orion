@@ -36,8 +36,8 @@ export function StructuredData() {
       contactOption: "TollFree",
     },
     sameAs: [
-      "https://instagram.com/orionmkt",
-      "https://linkedin.com/company/orionmkt",
+      "https://www.instagram.com/orionmkt.ar",
+      "https://www.linkedin.com/company/orionmkt-ar/",
       "https://twitter.com/orionmkt",
       "https://facebook.com/orionmkt",
     ],

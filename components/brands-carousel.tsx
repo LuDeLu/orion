@@ -75,7 +75,7 @@ export function BrandsCarousel() {
         <div className="grid md:grid-cols-3 gap-8 mt-24">
           {[
             {
-              quote: "Orion MKT triplicó nuestras conversiones en 6 meses. Su enfoque basado en datos es excepcional.",
+              quote: "Orion Marketing triplicó nuestras conversiones en 6 meses. Su enfoque basado en datos es excepcional.",
               author: "María González",
               role: "CEO, TechStartup",
               rating: 5,

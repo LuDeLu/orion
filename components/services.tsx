@@ -166,7 +166,7 @@ export function Services() {
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
                   src={service.image || "/placeholder.svg"}
-                  alt={`${service.title} - Orion MKT`}
+                  alt={`${service.title} - Orion Marketing`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />

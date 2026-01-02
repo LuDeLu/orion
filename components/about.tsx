@@ -47,7 +47,7 @@ export function About() {
               </span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              Orion MKT es una agencia de marketing digital con base en Buenos Aires, Argentina, que trabaja con PyMEs y
+              Orion Marketing es una agencia de marketing digital con base en Buenos Aires, Argentina, que trabaja con PyMEs y
               startups de todo el país. Entendemos que cada negocio tiene sueños ambiciosos, por eso combinamos
               estrategias de branding, social media marketing, performance ads y diseño web con resultados medibles y
               ROI garantizado.

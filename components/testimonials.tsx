@@ -7,7 +7,7 @@ const testimonials = [
     name: "María González",
     role: "CEO, TechStart",
     content:
-      "Orion MKT transformó nuestra presencia digital. En 6 meses triplicamos nuestros leads y el equipo siempre estuvo disponible para resolver cualquier duda.",
+      "Orion Marketing transformó nuestra presencia digital. En 6 meses triplicamos nuestros leads y el equipo siempre estuvo disponible para resolver cualquier duda.",
     rating: 5,
   },
   {

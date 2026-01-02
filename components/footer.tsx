@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Instagram, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react"
+import { Instagram, Linkedin, Twitter, MapPin, Phone, Mail, Facebook } from "lucide-react"
 
 const footerLinks = {
   servicios: [
@@ -19,10 +19,11 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
+  { icon: Instagram, href: "https://www.instagram.com/orionmkt.ar", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/orionmkt-ar", label: "LinkedIn" },
+  { icon: Facebook, href: "#", label: "Facebook" },
 ]
+
 
 export function Footer() {
   const handleServiceClick = (serviceName: string) => {
@@ -68,6 +69,7 @@ export function Footer() {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
                   aria-label={social.label}
                   className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
                 >
@@ -109,7 +111,7 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Orion MKT - Agencia de Marketing Digital. Todos los derechos reservados.
+            © {new Date().getFullYear()} Orion Marketing - Agencia de Marketing Digital. Todos los derechos reservados.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="#" className="hover:text-foreground transition-colors">
