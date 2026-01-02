@@ -23,6 +23,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
+            <img src="/logo.png" alt="Orion MKT" className="h-12 w-12 object-contain" />
             <span className="text-2xl font-display font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Orion MKT
             </span>

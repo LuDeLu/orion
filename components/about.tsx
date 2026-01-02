@@ -147,16 +147,15 @@ export function About() {
               </div>
 
               <div className="relative z-10 h-full min-h-[400px] flex flex-col items-center justify-center text-center">
-                <motion.p
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.6 }}
-                  className="text-muted-foreground text-lg"
+                  className="flex flex-col items-center gap-4"
                 >
-                  Transformando negocios digitalmente
-                  <br />
-                  <span className="text-sm text-muted-foreground/60">(Aquí iría el logo)</span>
-                </motion.p>
+                  <img src="/logo.png" alt="Orion MKT" className="h-32 w-32 object-contain" />
+                  <p className="text-muted-foreground text-lg">Transformando negocios digitalmente</p>
+                </motion.div>
               </div>
             </div>
 
