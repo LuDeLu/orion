@@ -20,38 +20,52 @@ const _spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Orion MKT | Agencia de Marketing Digital en Argentina | PyMEs & Startups 2025",
-    template: "%s | Orion MKT - Agencia de Marketing Digital Líder en Argentina",
+    default: "Orion Marketing | Agencia de Marketing Digital Argentina | Orion MKT",
+    template: "%s | Orion Marketing - Agencia de Marketing Digital Argentina",
   },
   description:
-    "🚀 Agencia de marketing digital #1 en Argentina especializada en PyMEs y Startups. Branding profesional, redes sociales, publicidad digital, diseño web responsivo, SEO y estrategias de crecimiento con ROI medible. Transformamos negocios digitalmente con resultados garantizados. Consultoría gratuita.",
+    "Orion Marketing es la agencia de marketing digital líder en Argentina. Especialistas en branding, redes sociales, Google Ads, Facebook Ads, diseño web y estrategias digitales para PyMEs y Startups. Orion MKT - Tu negocio, nuestro universo. Consultoría gratuita.",
   metadataBase: new URL("https://orionmkt.com.ar"),
   alternates: {
-    canonical: "/",
+    canonical: "https://orionmkt.com.ar",
     languages: {
-      "es-AR": "/",
-      "es-UY": "/",
-      "es-CL": "/",
-      "es-MX": "/",
-      es: "/",
+      "es-AR": "https://orionmkt.com.ar",
+      "es-UY": "https://orionmkt.com.ar",
+      "es-CL": "https://orionmkt.com.ar",
+      "es-MX": "https://orionmkt.com.ar",
+      es: "https://orionmkt.com.ar",
     },
   },
   generator: "Next.js",
-  applicationName: "Orion MKT",
+  applicationName: "Orion Marketing",
   referrer: "origin-when-cross-origin",
   keywords: [
+    "orion marketing",
+    "orion mkt",
+    "orionmkt",
+    "orion marketing digital",
+    "orion marketing argentina",
+    "agencia orion",
+    "orion agencia marketing",
+    "orion marketing buenos aires",
+    "orionmkt.com.ar",
+    "orion mkt argentina",
+
     // Core keywords - Argentina
     "agencia marketing digital argentina",
     "agencia marketing digital buenos aires",
     "agencia marketing digital caba",
     "marketing digital argentina",
     "publicidad digital argentina",
+    "agencia de marketing argentina",
+    "mejor agencia marketing argentina",
 
     // Business types
     "marketing para pymes argentina",
     "marketing para startups argentina",
     "agencia marketing pymes",
     "consultora marketing digital",
+    "marketing emprendedores",
 
     // Services - Social Media
     "community manager argentina",
@@ -62,15 +76,18 @@ export const metadata: Metadata = {
     "marketing facebook argentina",
     "publicidad instagram",
     "ads redes sociales",
+    "manejo de redes sociales",
 
     // Services - Advertising
     "google ads argentina",
     "facebook ads argentina",
-    "instagram ads",
+    "instagram ads argentina",
     "tiktok ads argentina",
     "pauta digital argentina",
-    "publicidad online",
+    "publicidad online argentina",
     "campañas publicitarias digitales",
+    "meta ads argentina",
+    "publicidad google",
 
     // Services - Branding
     "branding startups argentina",
@@ -78,6 +95,8 @@ export const metadata: Metadata = {
     "rebranding empresas",
     "estrategia marca",
     "logo diseño profesional",
+    "identidad corporativa",
+    "branding digital",
 
     // Services - Web
     "diseño web argentina",
@@ -87,14 +106,16 @@ export const metadata: Metadata = {
     "sitio web empresas",
     "tienda online argentina",
     "ecommerce argentina",
+    "paginas web argentina",
 
     // SEO & Digital Strategy
     "SEO argentina",
     "posicionamiento web argentina",
-    "posicionamiento google",
+    "posicionamiento google argentina",
     "optimización SEO",
     "estrategia digital pymes",
-    "consultoria seo",
+    "consultoria seo argentina",
+    "posicionamiento seo",
 
     // Performance & Analytics
     "performance marketing argentina",
@@ -102,35 +123,38 @@ export const metadata: Metadata = {
     "analítica web",
     "conversion rate optimization",
     "growth marketing argentina",
-    "growth hacking",
+    "growth hacking argentina",
 
     // Marketing Types
     "inbound marketing argentina",
     "marketing de contenidos",
-    "content marketing",
+    "content marketing argentina",
     "email marketing argentina",
     "automatización marketing",
     "marketing automation",
     "influencer marketing argentina",
+    "marketing 360",
 
     // Local - Buenos Aires
     "agencia marketing palermo",
     "agencia marketing belgrano",
     "agencia marketing recoleta",
     "marketing digital capital federal",
+    "agencia digital buenos aires",
 
     // Local - Other Argentina
     "agencia marketing digital cordoba",
     "agencia marketing digital rosario",
     "agencia marketing digital mendoza",
     "agencia marketing digital la plata",
+    "marketing digital interior argentina",
 
     // Industry specific
     "marketing digital ecommerce",
     "marketing digital restaurantes",
     "marketing digital inmobiliarias",
     "marketing digital tecnología",
-    "marketing digital servicios",
+    "marketing digital servicios profesionales",
 
     // Long-tail conversions
     "mejor agencia marketing digital argentina",
@@ -140,50 +164,59 @@ export const metadata: Metadata = {
     "como elegir agencia marketing",
     "cuanto cuesta marketing digital",
     "presupuesto marketing digital pymes",
+    "agencia marketing digital confiable",
+    "agencia marketing recomendada",
   ],
-  authors: [{ name: "Orion MKT - Agencia Digital", url: "https://orionmkt.com.ar" }],
-  creator: "Orion MKT",
-  publisher: "Orion MKT",
+  authors: [
+    { name: "Orion Marketing", url: "https://orionmkt.com.ar" },
+    { name: "Orion MKT", url: "https://orionmkt.com.ar" },
+  ],
+  creator: "Orion Marketing",
+  publisher: "Orion Marketing",
   category: "Marketing Digital",
-  classification: "Business Services",
+  classification: "Business Services, Marketing Agency, Digital Marketing",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: "Orion MKT | Agencia de Marketing Digital #1 para PyMEs & Startups en Argentina 2025",
+    title: "Orion Marketing | Agencia de Marketing Digital #1 en Argentina",
     description:
-      "🚀 Impulsamos PyMEs y Startups hacia el éxito con estrategias de marketing digital innovadoras, medibles y efectivas. ROI garantizado. Consultoría gratuita. Tu negocio, nuestro universo.",
+      "Orion Marketing - La agencia de marketing digital líder para PyMEs y Startups en Argentina. Branding, Social Media, Google Ads, Facebook Ads, Diseño Web. ROI garantizado. Consultoría gratuita. Tu negocio, nuestro universo.",
     url: "https://orionmkt.com.ar",
-    siteName: "Orion MKT - Agencia de Marketing Digital",
+    siteName: "Orion Marketing - Orion MKT",
     locale: "es_AR",
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "https://orionmkt.com.ar/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orion MKT - Agencia de Marketing Digital para PyMEs y Startups en Argentina",
+        alt: "Orion Marketing - Agencia de Marketing Digital Argentina - Orion MKT",
         type: "image/png",
       },
       {
-        url: "/logo.png",
-        width: 1080,
-        height: 1080,
-        alt: "Orion MKT - Marketing Digital Argentina",
+        url: "https://orionmkt.com.ar/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Orion Marketing Logo - Orion MKT Argentina",
         type: "image/png",
       },
     ],
+    countryName: "Argentina",
   },
   twitter: {
     card: "summary_large_image",
     site: "@orionmkt",
     creator: "@orionmkt",
-    title: "Orion MKT | Agencia de Marketing Digital Argentina",
+    title: "Orion Marketing | Agencia de Marketing Digital Argentina",
     description:
-      "🚀 Impulsamos PyMEs y Startups hacia el éxito con estrategias de marketing digital innovadoras. ROI garantizado. Consultoría gratuita.",
-    images: ["/logo.png"],
+      "Orion Marketing - Agencia líder en marketing digital para PyMEs y Startups. Branding, Social Media, Ads, Web. ROI garantizado. Consultoría gratuita.",
+    images: {
+      url: "https://orionmkt.com.ar/og-image.png",
+      alt: "Orion Marketing - Agencia de Marketing Digital Argentina",
+    },
   },
   robots: {
     index: true,
@@ -198,28 +231,58 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: {
+    google: "tu-codigo-de-verificacion-google",
+    yandex: "tu-codigo-yandex",
+  },
   appleWebApp: {
     capable: true,
-    title: "Orion MKT",
+    title: "Orion Marketing",
     statusBarStyle: "black-translucent",
   },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/logo.png", type: "image/png", sizes: "512x512" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: "/favicon.ico",
   },
+  manifest: "/manifest.json",
   other: {
-    "application-name": "Orion MKT",
+    "application-name": "Orion Marketing",
     "mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-title": "Orion MKT",
-    "geo.region": "AR",
-    "geo.placename": "Buenos Aires",
+    "apple-mobile-web-app-title": "Orion Marketing",
+    "msapplication-TileColor": "#2c2447",
+    "msapplication-config": "/browserconfig.xml",
+    "theme-color": "#2c2447",
+    // Geo tags para SEO local
+    "geo.region": "AR-C",
+    "geo.placename": "Buenos Aires, Argentina",
+    "geo.position": "-34.6037;-58.3816",
+    ICBM: "-34.6037, -58.3816",
+    // Open Graph adicional
+    "og:locale:alternate": "es_ES",
     "og:locality": "Buenos Aires",
-    "og:region": "AR",
+    "og:region": "Buenos Aires",
     "og:country-name": "Argentina",
+    "og:email": "info@orionmkt.com.ar",
+    "og:phone_number": "+54 9 11 5656-6083",
+    // Business info
+    "business:contact_data:street_address": "Buenos Aires",
+    "business:contact_data:locality": "Buenos Aires",
+    "business:contact_data:region": "Buenos Aires",
+    "business:contact_data:postal_code": "1000",
+    "business:contact_data:country_name": "Argentina",
+    // DC metadata
+    "DC.title": "Orion Marketing - Agencia de Marketing Digital Argentina",
+    "DC.creator": "Orion Marketing",
+    "DC.subject": "Marketing Digital, Publicidad, Branding, Social Media",
+    "DC.description": "Agencia de marketing digital líder en Argentina para PyMEs y Startups",
+    "DC.publisher": "Orion Marketing",
+    "DC.language": "es-AR",
+    "DC.coverage": "Argentina, Latinoamérica",
   },
 }
 
@@ -243,16 +306,23 @@ export default function RootLayout({
   return (
     <html lang="es-AR" prefix="og: https://ogp.me/ns#">
       <head>
-        {/* Preconnect to critical domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://www.google-analytics.com" />
 
-        {/* DNS Prefetch for better performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://vercel.live" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+
+        {/* Canonical URL explícita */}
+        <link rel="canonical" href="https://orionmkt.com.ar" />
+
+        {/* Alternate para idiomas */}
+        <link rel="alternate" hrefLang="es" href="https://orionmkt.com.ar" />
+        <link rel="alternate" hrefLang="es-AR" href="https://orionmkt.com.ar" />
+        <link rel="alternate" hrefLang="x-default" href="https://orionmkt.com.ar" />
 
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />

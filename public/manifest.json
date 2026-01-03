@@ -1,24 +1,33 @@
 {
-  "name": "Orion MKT - Agencia de Marketing Digital",
-  "short_name": "Orion MKT",
-  "description": "Agencia de marketing digital especializada en PyMEs y Startups en Argentina",
+  "name": "Orion Marketing - Agencia de Marketing Digital Argentina",
+  "short_name": "Orion Marketing",
+  "description": "Orion Marketing es la agencia de marketing digital líder en Argentina. Especialistas en branding, redes sociales, Google Ads, Facebook Ads, diseño web para PyMEs y Startups.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#2c2447",
+  "background_color": "#0a0a0f",
   "theme_color": "#2c2447",
   "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "categories": ["business", "marketing", "productivity"],
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "/logo.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "/apple-touch-icon.png",
@@ -26,6 +35,14 @@
       "type": "image/png"
     }
   ],
-  "categories": ["business", "marketing", "productivity"],
-  "lang": "es-AR"
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Orion Marketing - Página Principal"
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

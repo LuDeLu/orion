@@ -5,74 +5,96 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date()
 
   return [
+    // Página principal - máxima prioridad
     {
       url: baseUrl,
       lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 1,
+      changeFrequency: "daily",
+      priority: 1.0,
     },
+    // Secciones principales
     {
-      url: `${baseUrl}#servicios`,
+      url: `${baseUrl}/#servicios`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
-      url: `${baseUrl}#nosotros`,
+      url: `${baseUrl}/#nosotros`,
       lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.85,
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}#casos`,
+      url: `${baseUrl}/#casos`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}#proceso`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}#contacto`,
+      url: `${baseUrl}/#proceso`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}?servicio=branding`,
+      url: `${baseUrl}/#contacto`,
       lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.85,
     },
+    // Servicios individuales
     {
-      url: `${baseUrl}?servicio=estrategia-digital`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}?servicio=performance-ads`,
+      url: `${baseUrl}/?servicio=branding`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.85,
     },
     {
-      url: `${baseUrl}?servicio=social-media`,
+      url: `${baseUrl}/?servicio=estrategia-digital`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/?servicio=performance-ads`,
       lastModified: currentDate,
       changeFrequency: "weekly",
-      priority: 0.85,
+      priority: 0.9,
     },
     {
-      url: `${baseUrl}?servicio=diseño-creativo`,
+      url: `${baseUrl}/?servicio=social-media`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/?servicio=diseno-creativo`,
       lastModified: currentDate,
       changeFrequency: "monthly",
-      priority: 0.75,
+      priority: 0.8,
     },
     {
-      url: `${baseUrl}?servicio=desarrollo-web`,
+      url: `${baseUrl}/?servicio=desarrollo-web`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    // Keywords landing pages
+    {
+      url: `${baseUrl}/?q=agencia-marketing-digital-argentina`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/?q=marketing-pymes-argentina`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/?q=marketing-startups-argentina`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
