@@ -3,14 +3,11 @@
 import { useEffect, useRef } from "react"
 
 const brands = [
-  { name: "TechCorp", logo: "/tech-company-logo.jpg" },
-  { name: "StartupX", logo: "/startup-logo.png" },
-  { name: "Digital Inc", logo: "/digital-agency-logo.png" },
-  { name: "CloudBase", logo: "/cloud-service-logo.png" },
-  { name: "InnoLabs", logo: "/innovation-lab-logo.png" },
-  { name: "NextGen", logo: "/next-generation-logo.png" },
-  { name: "FutureNow", logo: "/future-tech-logo.png" },
-  { name: "PixelStudio", logo: "/design-studio-logo.png" },
+  { name: "RR sintetico", logo: "/logos/rrsintetico.png" },
+  { name: "SoulSecurity", logo: "/logos/Soulsecurity.png" },
+  { name: "Ganamos.net", logo: "/logos/ganamos.png" },
+  { name: "Monaco Cortinas", logo: "/logos/monacocortinas.png" },
+  { name: "Plotchain", logo: "/logos/plotchain.png" },
 ]
 
 export function BrandsCarousel() {
@@ -65,7 +62,7 @@ export function BrandsCarousel() {
                 <img
                   src={brand.logo || "/placeholder.svg"}
                   alt={brand.name}
-                  className="max-w-[70%] max-h-[50%] object-contain"
+                  className="w-full h-full object-contain"
                 />
               </div>
             ))}
