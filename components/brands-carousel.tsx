@@ -3,11 +3,11 @@
 import { useEffect, useRef } from "react"
 
 const brands = [
-  { name: "RR sintetico", logo: "/logos/rrsintetico.png" },
+  { name: "RR sintetico", logo: "/logos/Rrsintetico.png" },
   { name: "SoulSecurity", logo: "/logos/Soulsecurity.png" },
-  { name: "Ganamos.net", logo: "/logos/ganamos.png" },
-  { name: "Monaco Cortinas", logo: "/logos/monacocortinas.png" },
-  { name: "Plotchain", logo: "/logos/plotchain.png" },
+  { name: "Ganamos.net", logo: "/logos/Ganamos.png" },
+  { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png" },
+  { name: "Plotchain", logo: "/logos/Plotchain.png" },
 ]
 
 export function BrandsCarousel() {
