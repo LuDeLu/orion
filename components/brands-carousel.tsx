@@ -7,7 +7,6 @@ const brands = [
   { name: "SoulSecurity", logo: "/logos/Soulsecurity.png" },
   { name: "Ganamos.net", logo: "/logos/Ganamos.png" },
   { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png" },
-  { name: "Plotchain", logo: "/logos/Plotchain.png" },
 ]
 
 export function BrandsCarousel() {
