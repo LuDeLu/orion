@@ -267,7 +267,7 @@ export const metadata: Metadata = {
     "og:locality": "Buenos Aires",
     "og:region": "Buenos Aires",
     "og:country-name": "Argentina",
-    "og:email": "info@orionmkt.com.ar",
+    "og:email": "orionmkt.ar@gmail.com",
     "og:phone_number": "+54 9 11 5656-6083",
     // Business info
     "business:contact_data:street_address": "Buenos Aires",

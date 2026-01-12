@@ -19,8 +19,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@orionmkt.com.ar",
-    href: "mailto:info@orionmkt.com.ar",
+    value: "orionmkt.ar@gmail.com",
+    href: "mailto:orionmkt.ar@gmail.com",
   },
   {
     icon: Clock,

@@ -51,7 +51,7 @@ export function StructuredData() {
         "@type": "ContactPoint",
         telephone: "+54-9-11-5656-6083",
         contactType: "customer service",
-        email: "info@orionmkt.com.ar",
+        email: "orionmkt.ar@gmail.com",
         areaServed: ["AR", "UY", "CL", "MX", "CO", "PE"],
         availableLanguage: ["Spanish", "English"],
         hoursAvailable: {
@@ -65,7 +65,7 @@ export function StructuredData() {
         "@type": "ContactPoint",
         telephone: "+54-9-11-5656-6083",
         contactType: "sales",
-        email: "info@orionmkt.com.ar",
+        email: "orionmkt.ar@gmail.com",
         areaServed: "AR",
       },
     ],
@@ -318,7 +318,7 @@ export function StructuredData() {
     image: "https://orionmkt.com.ar/logo.png",
     url: "https://orionmkt.com.ar",
     telephone: "+54-9-11-5656-6083",
-    email: "info@orionmkt.com.ar",
+    email: "orionmkt.ar@gmail.com",
     priceRange: "$$",
     currenciesAccepted: "ARS, USD",
     paymentAccepted: "Cash, Credit Card, Debit Card, Bank Transfer, MercadoPago",
@@ -483,7 +483,7 @@ export function StructuredData() {
         name: "¿Cómo contacto a Orion Marketing?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Podés contactar a Orion Marketing a través de WhatsApp al +54 9 11 5656-6083, por email a info@orionmkt.com.ar, o completando el formulario de contacto en nuestra web orionmkt.com.ar. Ofrecemos consultoría gratuita inicial.",
+          text: "Podés contactar a Orion Marketing a través de WhatsApp al +54 9 11 5656-6083, por email a orionmkt.ar@gmail.com, o completando el formulario de contacto en nuestra web orionmkt.com.ar. Ofrecemos consultoría gratuita inicial.",
         },
       },
       {
