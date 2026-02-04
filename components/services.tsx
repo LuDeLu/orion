@@ -1,15 +1,19 @@
 "use client"
 
-import { Rocket, Target, BarChart3, Megaphone, Palette, Globe, X } from "lucide-react"
+import { X } from "lucide-react"
 import Image from "next/image"
 import { useState, useRef, useEffect } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { motion, useInView } from "framer-motion"
 
+const IconComponent = ({ src, alt }: { src: string; alt: string }) => (
+  <img src={src || "/placeholder.svg"} alt={alt} className="" />
+)
+
 const services = [
   {
-    icon: Rocket,
+    icon: "/icons/branding.ico",
     title: "Branding",
     description: "Identidad visual que captura la esencia de tu negocio.",
     image: "/modern-branding-design-workspace.jpg",
@@ -24,7 +28,7 @@ const services = [
     ],
   },
   {
-    icon: Target,
+    icon: "/icons/estrategia_digital.ico",
     title: "Estrategia Digital",
     description: "Planes basados en datos para alcanzar tus objetivos.",
     image: "/digital-strategy-analytics-dashboard.jpg",
@@ -39,7 +43,7 @@ const services = [
     ],
   },
   {
-    icon: BarChart3,
+    icon: "/icons/performance_ads.ico",
     title: "Performance Ads",
     description: "Campañas publicitarias con ROI medible y optimizado.",
     image: "/performance-marketing-graphs.jpg",
@@ -54,7 +58,7 @@ const services = [
     ],
   },
   {
-    icon: Megaphone,
+    icon: "/icons/social_media.ico",
     title: "Social Media",
     description: "Contenido que construye comunidades auténticas.",
     image: "/social-media-content.png",
@@ -69,7 +73,7 @@ const services = [
     ],
   },
   {
-    icon: Palette,
+    icon: "/icons/diseno_creativo.ico",
     title: "Diseño Creativo",
     description: "Visuales impactantes para destacar en el mundo digital.",
     image: "/creative-design-studio.png",
@@ -84,7 +88,7 @@ const services = [
     ],
   },
   {
-    icon: Globe,
+    icon: "/icons/desarrollo_web.ico",
     title: "Desarrollo Web",
     description: "Sitios que convierten visitantes en clientes.",
     image: "/modern-web-development.png",
@@ -174,7 +178,7 @@ export function Services() {
               </div>
               <div className="p-8 relative">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
-                  <service.icon className="h-6 w-6 text-primary" />
+                  <IconComponent src={service.icon} alt={service.title} />
                 </div>
                 <h3 className="text-2xl font-display font-bold text-foreground mb-3">{service.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{service.description}</p>
@@ -213,7 +217,7 @@ export function Services() {
             <div className="p-6 md:p-8">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center flex-shrink-0">
-                  <selectedService.icon className="h-8 w-8 text-primary" />
+                  <IconComponent src={selectedService.icon} alt={selectedService.title} />
                 </div>
                 <div>
                   <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
