@@ -18,13 +18,13 @@ const services = [
     description: "Identidad visual que captura la esencia de tu negocio.",
     image: "/modern-branding-design-workspace.jpg",
     fullDescription:
-      "Creamos identidades de marca completas que comunican los valores de tu negocio. Desde el logo hasta la guía de estilo, desarrollamos una imagen coherente y memorable que conecta con tu audiencia.",
+      "Desarrollamos sitios web modernos, rápidos y optimizados para conversión. Desde landing pages hasta e-commerce, creamos experiencias digitales que impulsan tu negocio.",
     features: [
-      "Diseño de logo y variantes",
-      "Paleta de colores corporativa",
-      "Tipografía y guía de estilo",
-      "Aplicaciones de marca",
-      "Manual de identidad visual",
+      "Sitios web full responsive",
+      "Landing pages.",
+      "Integración con herramientas de marketing.",
+      "Mantenimiento y soporte técnico.",
+      "SEO técnico inicial",
     ],
   },
   {
