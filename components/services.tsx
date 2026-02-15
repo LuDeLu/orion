@@ -18,13 +18,13 @@ const services = [
     description: "Identidad visual que captura la esencia de tu negocio.",
     image: "/modern-branding-design-workspace.jpg",
     fullDescription:
-      "Desarrollamos sitios web modernos, rápidos y optimizados para conversión. Desde landing pages hasta e-commerce, creamos experiencias digitales que impulsan tu negocio.",
+      "Creamos identidades de marca sólidas, coherentes y memorables. Desde el naming hasta la identidad visual, construimos marcas con estrategia, personalidad y sentido, pensadas para crecer y conectar con su audiencia.",
     features: [
-      "Sitios web full responsive",
-      "Landing pages.",
-      "Integración con herramientas de marketing.",
-      "Mantenimiento y soporte técnico.",
-      "SEO técnico inicial",
+      "Definición de identidad y posicionamiento de marca",
+      "Naming y construcción del concepto",
+      "Identidad visual (logo, paleta, tipografías)",
+      "Manual de marca y lineamientos de uso",
+      "Aplicaciones básicas y asesoramiento estratégico",
     ],
   },
   {
@@ -65,7 +65,7 @@ const services = [
     fullDescription:
       "Gestionamos tus redes sociales con contenido relevante y atractivo que genera engagement real. Construimos comunidades activas alrededor de tu marca y aumentamos tu presencia digital.",
     features: [
-      "Gestión de Instagram, Facebook, LinkedIn",
+      "Gestión de todo el ecosistema de digital de RR.SS",
       "Creación de contenido visual y copy",
       "Calendario editorial estratégico",
       "Community management",
@@ -83,8 +83,8 @@ const services = [
       "Diseño de posts y stories",
       "Piezas publicitarias digitales",
       "Infografías y presentaciones",
-      "Material para campañas",
-      "Adaptación a diferentes formatos",
+      "Merchandising para campañas y negocios.",
+      "Adaptación y reformulación en diferentes formatos",
     ],
   },
   {
@@ -95,11 +95,11 @@ const services = [
     fullDescription:
       "Desarrollamos sitios web modernos, rápidos y optimizados para conversión. Desde landing pages hasta e-commerce, creamos experiencias digitales que impulsan tu negocio.",
     features: [
-      "Sitios web responsive y modernos",
-      "Landing pages optimizadas",
-      "E-commerce y tiendas online",
-      "Integración con herramientas de marketing",
-      "Mantenimiento y soporte técnico",
+      "Diseño de contenidos que generen valor",
+      "Piezas ad hoc para pauta.",
+      "Infografías y presentaciones de marca",
+      "Material para campañas",
+      "Adaptación y reformulación de diferentes formatos",
     ],
   },
 ]
