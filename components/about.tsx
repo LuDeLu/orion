@@ -96,51 +96,81 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="relative rounded-3xl glass-card p-8 lg:p-12 overflow-hidden hover-lift">
-              <div className="absolute inset-0 opacity-30">
-                <svg viewBox="0 0 200 200" className="w-full h-full">
-                  {/* Stars */}
-                  {[
-                    { cx: 50, cy: 50, r: 3 },
-                    { cx: 150, cy: 40, r: 2 },
-                    { cx: 100, cy: 100, r: 4 },
-                    { cx: 40, cy: 150, r: 2 },
-                    { cx: 160, cy: 140, r: 3 },
-                    { cx: 80, cy: 180, r: 2 },
-                    { cx: 120, cy: 60, r: 2.5 },
-                    { cx: 70, cy: 120, r: 2 },
-                  ].map((star, i) => (
-                    <motion.circle
-                      key={i}
-                      cx={star.cx}
-                      cy={star.cy}
-                      r={star.r}
-                      fill={i % 2 === 0 ? "#f7d785" : "#e0642f"}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
-                    />
-                  ))}
-                  {/* Connection lines */}
-                  {[
-                    { x1: 50, y1: 50, x2: 100, y2: 100 },
-                    { x1: 150, y1: 40, x2: 100, y2: 100 },
-                    { x1: 100, y1: 100, x2: 40, y2: 150 },
-                    { x1: 100, y1: 100, x2: 160, y2: 140 },
-                    { x1: 120, y1: 60, x2: 100, y2: 100 },
-                    { x1: 100, y1: 100, x2: 70, y2: 120 },
-                  ].map((line, i) => (
+            <div className="relative rounded-3xl glass-card p-10 lg:p-16 overflow-hidden hover-lift">
+              <div className="absolute inset-0 opacity-50">
+                {/* Orion constellation — pixel-perfect from wikipedia.org/wiki/File:ConstellationOrion.svg (200×200 viewBox) */}
+                <svg viewBox="55 25 100 130" className="w-full h-full">
+                  {/* Lines drawn first so stars sit on top */}
+                  {(
+                    [
+                      // x1,         y1,          x2,          y2
+                      [86.864,  84.589,  104.187,  75.806], // Betelgeuse → Meissa area
+                      [104.187,  75.806,  112.899,  88.281], // → Bellatrix
+                      [112.899,  88.281,  106.977, 109.422], // Bellatrix → Alnilam
+                      [106.977, 109.422,  122.087, 139.035], // Alnilam → Rigel
+                      [122.087, 139.035,   93.287, 144.136], // Rigel → Saiph
+                      [ 93.287, 144.136,   99.338, 117.247], // Saiph → belt (Alnitak)
+                      [ 99.338, 117.247,   86.864,  84.589], // Alnitak → Betelgeuse
+                      // Left arm chain
+                      [ 86.864,  84.589,   80.719,  76.733],
+                      [ 80.719,  76.733,   72.873,  60.744],
+                      [ 72.873,  60.744,   76.626,  58.846],
+                      [ 76.626,  58.846,   80.191,  40.266],
+                      [ 72.873,  60.744,   71.016,  43.516], // branch
+                      // Right arm chain
+                      [112.899,  88.281,  143.391,  85.843],
+                      [138.756,  74.734,  142.552,  79.054],
+                      [142.552,  79.054,  143.391,  85.843],
+                      [143.391,  85.843,  142.307,  90.619],
+                      [142.307,  90.619,  139.821, 101.753],
+                      [139.821, 101.753,  136.110, 104.336],
+                    ] as [number, number, number, number][]
+                  ).map(([x1, y1, x2, y2], i) => (
                     <motion.line
                       key={i}
-                      x1={line.x1}
-                      y1={line.y1}
-                      x2={line.x2}
-                      y2={line.y2}
+                      x1={x1} y1={y1} x2={x2} y2={y2}
                       stroke="#f7d785"
-                      strokeWidth="0.5"
+                      strokeWidth="0.7"
+                      strokeLinecap="round"
                       initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-                      transition={{ duration: 0.8, delay: 1.5 + i * 0.1 }}
+                      animate={isInView ? { pathLength: 1, opacity: 0.75 } : {}}
+                      transition={{ duration: 0.7, delay: 1.2 + i * 0.07 }}
+                    />
+                  ))}
+                  {/* Stars — exact cx/cy/r from the Wikimedia SVG, recoloured to brand palette */}
+                  {(
+                    [
+                      // [id,              cx,       cy,       r,     fill]
+                      ["betelgeuse",   86.864,  84.589,  4.440, "#f7d785"], // α Ori — left shoulder
+                      ["bellatrix",   104.187,  75.806,  2.088, "#f7d785"], // γ Ori — right shoulder (head side)
+                      ["mintaka",     112.899,  88.281,  3.488, "#f7d785"], // δ Ori — belt right
+                      ["alnilam",     106.977, 109.422,  3.000, "#f7d785"], // ε Ori — belt centre
+                      ["rigel",       122.087, 139.035,  4.656, "#e0642f"], // β Ori — right foot (brightest)
+                      ["saiph",        93.287, 144.136,  3.144, "#e0642f"], // κ Ori — left foot
+                      ["alnitak",      99.338, 117.247,  3.408, "#f7d785"], // ζ Ori — belt left
+                      // Left arm
+                      ["pi5ori",       80.719,  76.733,  1.504, "#f7d785"],
+                      ["pi3ori",       72.873,  60.744,  1.240, "#f7d785"],
+                      ["pi4ori",       76.626,  58.846,  1.264, "#f7d785"],
+                      ["pi2ori",       80.191,  40.266,  1.088, "#f7d785"],
+                      ["pi1ori",       71.016,  43.516,  0.640, "#f7d785"],
+                      // Right arm
+                      ["chi2ori",     143.391,  85.843,  2.248, "#f7d785"],
+                      ["chi1ori",     138.756,  74.734,  1.088, "#f7d785"],
+                      ["mu_ori",      142.552,  79.054,  1.320, "#f7d785"],
+                      ["nu_ori",      142.307,  90.619,  1.856, "#f7d785"],
+                      ["xi_ori",      139.821, 101.753,  1.832, "#f7d785"],
+                      ["omicron_ori", 136.110, 104.336,  1.224, "#f7d785"],
+                    ] as [string, number, number, number, string][]
+                  ).map(([id, cx, cy, r, fill], i) => (
+                    <motion.circle
+                      key={id as string}
+                      cx={cx as number} cy={cy as number} r={r as number}
+                      fill={fill as string}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: 0.8 + i * 0.06 }}
+                      style={{ transformOrigin: `${cx}px ${cy}px` }}
                     />
                   ))}
                 </svg>
@@ -153,8 +183,6 @@ export function About() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                   className="flex flex-col items-center gap-4"
                 >
-                  <img src="/logo.png" alt="Orion MKT" className="h-32 w-32 object-contain" />
-                  <p className="text-muted-foreground text-lg">Transformando negocios digitalmente</p>
                 </motion.div>
               </div>
             </div>
