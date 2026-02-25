@@ -43,8 +43,8 @@ export function BrandsCarousel() {
             </span>
             </h2>            
           <p className="text-foreground/60 max-w-2xl mx-auto text-lg md:text-xl mt-6 leading-relaxed">
-            Hemos trabajado con más de 10 marcas en diversos sectores, desde startups en etapa temprana hasta empresas
-            establecidas en crecimiento
+            Trabajamos con diversas marcas, en distintos rubros y sectores. Desde startups en etapa temprana hasta empresas
+            establecidas
           </p>
         </div>
 

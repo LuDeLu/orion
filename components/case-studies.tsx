@@ -9,7 +9,7 @@ import Link from "next/link"
 const cases = [
   {
     industry: "E-commerce",
-    title: "Crecimiento en ventas con Performance Ads",
+    title: "Crecimiento en ventas online con Performance Ads",
     challenge:
       "Una tienda online local buscaba aumentar sus ventas y presencia digital en un mercado competitivo de e-commerce en Argentina.",
     solution:
