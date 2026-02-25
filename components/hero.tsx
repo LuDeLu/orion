@@ -60,10 +60,10 @@ export function Hero() {
           <Button
             size="lg"
             variant="outline"
-            className="border-primary/30 text-foreground hover:bg-primary/10 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
+            className="border-primary/30 text-foreground hover:bg-primary/60 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
             asChild
           >
-            <Link href="#casos">Ver Casos de Éxito</Link>
+            <Link href="#casos">Ver expertises</Link>
           </Button>
         </motion.div>
       </div>

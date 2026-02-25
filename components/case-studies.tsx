@@ -9,11 +9,11 @@ import Link from "next/link"
 const cases = [
   {
     industry: "E-commerce",
-    title: "Crecimiento en ventas del 250% con Performance Ads",
+    title: "Crecimiento en ventas con Performance Ads",
     challenge:
       "Una tienda online local buscaba aumentar sus ventas y presencia digital en un mercado competitivo de e-commerce en Argentina.",
     solution:
-      "Implementamos una estrategia integral de pauta digital con Facebook Ads e Instagram Ads, optimización de conversión en el sitio web y gestión profesional de redes sociales.",
+      "Implementamos una estrategia de pauta digital con MetaAds y GoogleAds, optimización de conversión en el sitio web y gestión de redes sociales.",
     results: [
       { icon: TrendingUp, metric: "250%", label: "Aumento en ventas" },
       { icon: Users, metric: "5x", label: "Más tráfico web" },
@@ -27,6 +27,19 @@ const cases = [
       "Una startup de servicios profesionales necesitaba construir su marca desde cero y generar confianza en el mercado argentino.",
     solution:
       "Desarrollamos identidad de marca completa con branding profesional, estrategia de contenido en LinkedIn y campaña de awareness con Google Ads.",
+    results: [
+      { icon: Users, metric: "3,000+", label: "Nuevos seguidores" },
+      { icon: Target, metric: "85%", label: "Engagement rate" },
+      { icon: TrendingUp, metric: "200%", label: "Leads calificados" },
+    ],
+  },
+   {
+    industry: "Diseño",
+    title: "Alineamos tus necesidades con imágenes de calidad",
+    challenge:
+      "Identidad de marca con poco enganche visual, lo que dificultaba la conexión con su audiencia y el crecimiento en redes sociales.",
+    solution:
+      "Creamos identidades visuales memorables que se queden en la mente de tus clientes, con una finalidad que se acerque a tus necesidades y target.",
     results: [
       { icon: Users, metric: "3,000+", label: "Nuevos seguidores" },
       { icon: Target, metric: "85%", label: "Engagement rate" },
@@ -49,7 +62,7 @@ export function CaseStudies() {
           className="text-center mb-16 max-w-3xl mx-auto"
         >
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
-            Casos de Éxito
+            Expertise
           </span>
           <h2
             id="cases-heading"
@@ -73,36 +86,30 @@ export function CaseStudies() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="glass-card rounded-2xl p-8 hover-lift"
+              className={`glass-card rounded-2xl p-8 hover-lift ${
+                cases.length % 2 === 1 && index === cases.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''
+              }`}
             >
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
                 {caseStudy.industry}
               </div>
               <h3 className="text-2xl font-display font-bold text-foreground mb-4">{caseStudy.title}</h3>
 
-              <div className="space-y-4 mb-6">
+              <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground/80 mb-2">El Desafío</h4>
-                  <p className="text-foreground/60 text-sm">{caseStudy.challenge}</p>
+                  <h4 className="text-lg font-semibold text-foreground/80 mb-2">El Desafío</h4>
+                  <p className="text-foreground/60 text-m">{caseStudy.challenge}</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-semibold text-foreground/80 mb-2">La Solución</h4>
-                  <p className="text-foreground/60 text-sm">{caseStudy.solution}</p>
+                  <h4 className="text-lg font-semibold text-foreground/80 mb-2">La Solución</h4>
+                  <p className="text-foreground/60 text-m">{caseStudy.solution}</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/50">
-                {caseStudy.results.map((result, idx) => (
-                  <div key={idx} className="text-center">
-                    <result.icon className="w-5 h-5 text-primary mx-auto mb-2" />
-                    <div className="text-xl font-bold text-foreground">{result.metric}</div>
-                    <div className="text-xs text-foreground/60 mt-1">{result.label}</div>
-                  </div>
-                ))}
-              </div>
             </motion.article>
           ))}
         </div>
+        
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

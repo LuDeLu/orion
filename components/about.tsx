@@ -14,10 +14,10 @@ const features = [
 ]
 
 const stats = [
-  { icon: Calendar, value: "3+", label: "Años de experiencia" },
-  { icon: Users, value: "10+", label: "Clientes activos" },
+  { icon: Calendar, value: "1", label: "Año de experiencia" },
+  { icon: Users, value: "5+", label: "Clientes activos" },
   { icon: Trophy, value: "100%", label: "Satisfacción" },
-  { icon: TrendingUp, value: "3x", label: "ROI Promedio" },
+  { icon: TrendingUp, value: "2x", label: "ROI Promedio" },
 ]
 
 export function About() {

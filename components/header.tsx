@@ -43,7 +43,6 @@ export function Header() {
               className="border-primary/30 text-foreground hover:bg-primary/10 font-semibold rounded-full px-6 bg-transparent"
               asChild
             >
-              <Link href="#nosotros">Ver Portafolio</Link>
             </Button>
             <Button
               className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold rounded-full px-6"

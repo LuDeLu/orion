@@ -43,7 +43,7 @@ export function BrandsCarousel() {
             </span>
             </h2>            
           <p className="text-foreground/60 max-w-2xl mx-auto text-lg md:text-xl mt-6 leading-relaxed">
-            Hemos trabajado con más de 150 marcas en diversos sectores, desde startups en etapa temprana hasta empresas
+            Hemos trabajado con más de 10 marcas en diversos sectores, desde startups en etapa temprana hasta empresas
             establecidas en crecimiento
           </p>
         </div>
@@ -71,22 +71,22 @@ export function BrandsCarousel() {
         <div className="grid md:grid-cols-3 gap-8 mt-24">
           {[
             {
-              quote: "Orion Marketing triplicó nuestras conversiones en 6 meses. Su enfoque basado en datos es excepcional.",
-              author: "María González",
-              role: "CEO, TechStartup",
+              quote: "Excelente y rapido trabajo de los chicos, bastante comodo todo, no hay nada de lo cual quejarse.",
+              author: "Diego Alacore",
+              role: "Dueño - Soul Security",
               rating: 5,
             },
             {
-              quote: "El equipo más profesional con el que hemos trabajado. Resultados reales desde el primer mes.",
-              author: "Carlos Martínez",
-              role: "Director Marketing, InnoLabs",
+              quote: "Super conforme con todo el servicio, la verdad me potencio mucho el crecimiento, recomendados!",
+              author: "Diego Rivis",
+              role: "Dueño - RR Sintetico",
               rating: 5,
             },
             {
               quote:
-                "Transformaron completamente nuestra presencia digital. Altamente recomendados para empresas en crecimiento.",
-              author: "Laura Fernández",
-              role: "Founder, CloudBase",
+                "Transformaron completamente nuestra presencia digital. Altamente recomendados para emprendimientos en crecimiento.",
+              author: "Equipo Ganamos.net",
+              role: "Marketing - Ganamos.net",
               rating: 5,
             },
           ].map((testimonial, index) => (
