@@ -134,7 +134,7 @@ export function Services() {
   }
 
   return (
-    <section ref={ref} id="servicios" className="relative py-32 px-4">
+    <section ref={ref} id="servicios" className="relative py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -195,7 +195,7 @@ export function Services() {
           onClick={closeModal}
         >
           <div
-            className="bg-card border border-border rounded-2xl max-w-4xl w-full my-8 overflow-hidden"
+            className="bg-card border border-border rounded-2xl max-w-3xl w-full overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">

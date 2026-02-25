@@ -29,7 +29,7 @@ export default function Home() {
         <Header />
         <Hero />
         <Suspense fallback={<div className="py-32" />}>
-          <Services />
+        <Services />
         </Suspense>
         <About />
         <CaseStudies />

@@ -25,7 +25,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section ref={ref} id="nosotros" className="relative py-24 px-4 overflow-hidden" aria-labelledby="about-heading">
+    <section ref={ref} id="nosotros" className="relative py-16 px-4 overflow-hidden" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div

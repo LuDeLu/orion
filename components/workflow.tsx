@@ -58,7 +58,7 @@ export function Workflow() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-32 px-4 overflow-hidden" aria-labelledby="workflow-heading">
+    <section ref={sectionRef} className="relative py-16 px-4 overflow-hidden" aria-labelledby="workflow-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -30,7 +30,7 @@ export function BrandsCarousel() {
   }, [])
 
   return (
-    <section className="relative py-32 px-4 overflow-hidden">
+    <section className="relative py-16 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-20">
           <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">

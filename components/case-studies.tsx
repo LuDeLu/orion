@@ -40,7 +40,7 @@ export function CaseStudies() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} id="casos" className="relative py-24 px-4" aria-labelledby="cases-heading">
+    <section ref={ref} id="casos" className="relative py-16 px-4" aria-labelledby="cases-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
