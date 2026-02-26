@@ -16,7 +16,7 @@ const services = [
     icon: "/icons/branding.ico",
     title: "Branding",
     description: "Identidad visual que captura la esencia de tu negocio.",
-    image: "/modern-branding-design-workspace.jpg",
+    image: "/services/branding.webp",
     fullDescription:
       "Creamos identidades de marca sólidas, coherentes y memorables. Desde el naming hasta la identidad visual, construimos marcas con estrategia, personalidad y sentido, pensadas para crecer y conectar con su audiencia.",
     features: [
@@ -31,7 +31,7 @@ const services = [
     icon: "/icons/estrategia_digital.ico",
     title: "Estrategia Digital",
     description: "Planes basados en datos para alcanzar tus objetivos.",
-    image: "/digital-strategy-analytics-dashboard.jpg",
+    image: "/services/estrategiadigital.webp",
     fullDescription:
       "Desarrollamos estrategias digitales personalizadas basadas en análisis de mercado y comportamiento del usuario. Planificamos cada acción para maximizar el ROI y alcanzar tus metas de negocio.",
     features: [
@@ -46,7 +46,7 @@ const services = [
     icon: "/icons/performance_ads.ico",
     title: "Performance Ads",
     description: "Campañas publicitarias con ROI medible y optimizado.",
-    image: "/performance-marketing-graphs.jpg",
+    image: "/services/performanceads.webp",
     fullDescription:
       "Gestionamos campañas publicitarias en Meta Ads, Google Ads y otras plataformas con enfoque en resultados medibles. Optimizamos constantemente para maximizar tu inversión publicitaria.",
     features: [
@@ -61,7 +61,7 @@ const services = [
     icon: "/icons/social_media.ico",
     title: "Social Media",
     description: "Contenido que construye comunidades auténticas.",
-    image: "/social-media-content.png",
+    image: "/services/socialmedia.webp",
     fullDescription:
       "Gestionamos tus redes sociales con contenido relevante y atractivo que genera engagement real. Construimos comunidades activas alrededor de tu marca y aumentamos tu presencia digital.",
     features: [
@@ -76,7 +76,7 @@ const services = [
     icon: "/icons/diseno_creativo.ico",
     title: "Diseño Creativo",
     description: "Visuales impactantes para destacar en el mundo digital.",
-    image: "/creative-design-studio.png",
+    image: "/services/diseñocreativo.webp",
     fullDescription:
       "Creamos piezas gráficas que captan la atención y comunican tu mensaje de forma efectiva. Desde posts para redes hasta material publicitario, cada diseño está pensado para tu audiencia.",
     features: [
@@ -91,7 +91,7 @@ const services = [
     icon: "/icons/desarrollo_web.ico",
     title: "Desarrollo Web",
     description: "Sitios que convierten visitantes en clientes.",
-    image: "/modern-web-development.png",
+    image: "/services/desarrolloweb.webp",
     fullDescription:
       "Desarrollamos sitios web modernos, rápidos y optimizados para conversión. Desde landing pages hasta e-commerce, creamos experiencias digitales que impulsan tu negocio.",
     features: [
@@ -174,7 +174,7 @@ export function Services() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
               </div>
               <div className="p-8 relative">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
