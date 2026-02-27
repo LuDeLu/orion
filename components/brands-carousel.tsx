@@ -1,12 +1,14 @@
 "use client"
 
+import { url } from "inspector"
 import { useEffect, useRef } from "react"
 
 const brands = [
-  { name: "RR sintetico", logo: "/logos/Rrsintetico.png" },
-  { name: "SoulSecurity", logo: "/logos/Soulsecurity.png" },
-  { name: "Ganamos.net", logo: "/logos/Ganamos.png" },
-  { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png" },
+  { name: "RR sintetico", logo: "/logos/Rrsintetico.png", url: "https://rrsintetico.com/" },
+  { name: "SoulSecurity", logo: "/logos/Soulsecurity.png", url: "https://soulsecurity.com.ar/" },
+  { name: "Ganamos.net", logo: "/logos/Ganamos.png", url: "https://ganamos023.info/" },
+  { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png", url: "https://www.monacocortinas.com.ar/" },
+  { name: "scheppens", logo: "/logos/Scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
 ]
 
 export function BrandsCarousel() {
@@ -53,18 +55,40 @@ export function BrandsCarousel() {
           <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
 
           <div ref={scrollRef} className="flex gap-16 overflow-hidden py-8" style={{ scrollBehavior: "auto" }}>
-            {[...brands, ...brands].map((brand, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-56 h-32 flex items-center justify-center bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
-              >
+            {[...brands, ...brands].map((brand, index) => {
+              const content = (
                 <img
                   src={brand.logo || "/placeholder.svg"}
                   alt={brand.name}
                   className="w-full h-full object-contain"
                 />
-              </div>
-            ))}
+              );
+
+              const containerClass = "flex-shrink-0 w-56 h-32 flex items-center justify-center bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10";
+
+              if (brand.url) {
+                return (
+                  <a
+                    key={index}
+                    href={brand.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={containerClass}
+                  >
+                    {content}
+                  </a>
+                );
+              }
+
+              return (
+                <div
+                  key={index}
+                  className={containerClass}
+                >
+                  {content}
+                </div>
+              );
+            })}
           </div>
         </div>
 
