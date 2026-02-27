@@ -190,13 +190,6 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://orionmkt.com.ar/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Orion Marketing - Agencia de Marketing Digital Argentina - Orion MKT",
-        type: "image/png",
-      },
-      {
         url: "https://orionmkt.com.ar/logo.png",
         width: 512,
         height: 512,
