@@ -95,11 +95,11 @@ const services = [
     fullDescription:
       "Desarrollamos sitios web modernos, rápidos y optimizados para conversión. Desde landing pages hasta e-commerce, creamos experiencias digitales que impulsan tu negocio.",
     features: [
-      "Diseño de contenidos que generen valor",
-      "Piezas ad hoc para pauta.",
-      "Infografías y presentaciones de marca",
-      "Material para campañas",
-      "Adaptación y reformulación de diferentes formatos",
+      "Sitios web full responsive",
+      "Landing pages",
+      "E-commerces y tiendas online",
+      "Integración con herramientas de marketing",
+      "Mantenimiento y soporte técnico",
     ],
   },
 ]
