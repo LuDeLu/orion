@@ -10,7 +10,7 @@ const brands = [
   { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png", url: "https://www.monacocortinas.com.ar/" },
   { name: "scheppens", logo: "/logos/Scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
 ]
-
+ 
 export function BrandsCarousel() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
