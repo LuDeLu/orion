@@ -8,7 +8,7 @@ const brands = [
   { name: "SoulSecurity", logo: "/logos/Soulsecurity.png", url: "https://soulsecurity.com.ar/" },
   { name: "Ganamos.net", logo: "/logos/Ganamos.png", url: "https://ganamos023.info/" },
   { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png", url: "https://www.monacocortinas.com.ar/" },
-  { name: "scheppens", logo: "/logos/Scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
+  { name: "scheppens", logo: "/logos/scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
 ]
  
 export function BrandsCarousel() {
