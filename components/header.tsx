@@ -39,12 +39,6 @@ export function Header() {
 
           <div className="hidden md:flex items-center gap-4">
             <Button
-              variant="outline"
-              className="border-primary/30 text-foreground hover:bg-primary/10 font-semibold rounded-full px-6 bg-transparent"
-              asChild
-            >
-            </Button>
-            <Button
               className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold rounded-full px-6"
               asChild
             >
@@ -59,9 +53,8 @@ export function Header() {
       </div>
 
       <div
-        className={`md:hidden bg-background/95 backdrop-blur-xl border-t border-border/40 overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden bg-background/95 backdrop-blur-xl border-t border-border/40 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <nav className="flex flex-col p-6 gap-4">
           {navLinks.map((link, index) => (

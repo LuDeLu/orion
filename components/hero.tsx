@@ -32,18 +32,16 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl lg:text-2xl text-foreground/60 max-w-3xl mx-auto mb-12 leading-relaxed text-pretty px-2 select-none"
+          className="text-lg md:text-xl lg:text-2xl text-foreground/60 max-w-2xl mx-auto mb-12 leading-relaxed text-pretty px-2 select-none"
         >
-          Estrategias de marketing digital con ROI medible para PyMEs y Startups en Argentina. Branding profesional,
-          pauta digital (Facebook Ads, Instagram Ads, Google Ads), gestión de redes sociales, diseño web responsivo y
-          estrategias que generan resultados reales y crecimiento garantizado.
+          Hacemos crecer tu negocio en el mundo digital con estrategias de marketing personalizadas que generan resultados reales, medibles y sostenibles.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 px-4 select-none"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 px-4 select-none"
         >
           <Button
             size="lg"
@@ -63,7 +61,7 @@ export function Hero() {
             className="border-primary/30 text-foreground hover:bg-primary/60 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
             asChild
           >
-            <Link href="#casos">Ver expertis</Link>
+            <Link href="#casos">Ver casos reales</Link>
           </Button>
         </motion.div>
       </div>

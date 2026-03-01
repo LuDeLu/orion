@@ -9,41 +9,41 @@ import Link from "next/link"
 const cases = [
   {
     industry: "E-commerce",
-    title: "Crecimiento en ventas online con Performance Ads",
+    title: "Más visibilidad y ventas para una tienda online local",
     challenge:
-      "Una tienda online local buscaba aumentar sus ventas y presencia digital en un mercado competitivo de e-commerce en Argentina.",
+      "Una tienda online local necesitaba aumentar su presencia digital y atraer clientes nuevos en un mercado cada vez más competitivo.",
     solution:
-      "Implementamos una estrategia de pauta digital con MetaAds y GoogleAds, optimización de conversión en el sitio web y gestión de redes sociales.",
+      "Estructuramos campañas de Meta Ads con segmentación precisa, ajustamos el perfil de Instagram y mejoramos la comunicación visual de los productos.",
     results: [
-      { icon: TrendingUp, metric: "250%", label: "Aumento en ventas" },
-      { icon: Users, metric: "5x", label: "Más tráfico web" },
-      { icon: Target, metric: "180%", label: "ROI en pauta" },
+      { icon: TrendingUp, metric: "+40%", label: "Ventas en 3 meses" },
+      { icon: Users, metric: "×2", label: "Alcance orgánico" },
+      { icon: Target, metric: "Menor CPL", label: "Costo por cliente" },
     ],
   },
   {
     industry: "Servicios",
-    title: "De startup a referente del sector con Marketing Digital",
+    title: "Construcción de marca desde cero para una startup",
     challenge:
-      "Una startup de servicios profesionales necesitaba construir su marca desde cero y generar confianza en el mercado argentino.",
+      "Una startup de servicios profesionales no tenía presencia digital definida ni identidad de marca que le generara confianza frente a sus clientes potenciales.",
     solution:
-      "Desarrollamos identidad de marca completa con branding profesional, estrategia de contenido en LinkedIn y campaña de awareness con Google Ads.",
+      "Desarrollamos su identidad visual, creamos sus perfiles en redes sociales y lanzamos una estrategia de contenido enfocada en posicionarse en su rubro.",
     results: [
-      { icon: Users, metric: "3,000+", label: "Nuevos seguidores" },
-      { icon: Target, metric: "85%", label: "Engagement rate" },
-      { icon: TrendingUp, metric: "200%", label: "Leads calificados" },
+      { icon: Users, metric: "+500", label: "Seguidores en 60 días" },
+      { icon: Target, metric: "Marca definida", label: "Identidad cohesiva" },
+      { icon: TrendingUp, metric: "Consultas", label: "Primeros leads reales" },
     ],
   },
-   {
-    industry: "Diseño",
-    title: "Alineamos tus necesidades con imágenes de calidad",
+  {
+    industry: "Diseño & Branding",
+    title: "Renovación visual para conectar mejor con la audiencia",
     challenge:
-      "Identidad de marca con poco enganche visual, lo que dificultaba la conexión con su audiencia y el crecimiento en redes sociales.",
+      "Una marca con tiempo en el mercado sentía que su imagen no la representaba y que le costaba diferenciarse visualmente de la competencia.",
     solution:
-      "Creamos identidades visuales memorables que se queden en la mente de tus clientes, con una finalidad que se acerque a tus necesidades y target.",
+      "Rediseñamos su identidad visual y adaptamos el lenguaje gráfico a sus redes sociales, logrando una comunicación más coherente y atractiva.",
     results: [
-      { icon: Users, metric: "3,000+", label: "Nuevos seguidores" },
-      { icon: Target, metric: "85%", label: "Engagement rate" },
-      { icon: TrendingUp, metric: "200%", label: "Leads calificados" },
+      { icon: Users, metric: "Engagement", label: "Mejor conexión con el público" },
+      { icon: Target, metric: "Imagen clara", label: "Diferenciación lograda" },
+      { icon: TrendingUp, metric: "Consistencia", label: "Comunicación unificada" },
     ],
   },
 ]
@@ -86,9 +86,8 @@ export function CaseStudies() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`glass-card rounded-2xl p-8 hover-lift ${
-                cases.length % 2 === 1 && index === cases.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''
-              }`}
+              className={`glass-card rounded-2xl p-8 hover-lift ${cases.length % 2 === 1 && index === cases.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''
+                }`}
             >
               <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
                 {caseStudy.industry}
@@ -106,10 +105,23 @@ export function CaseStudies() {
                 </div>
               </div>
 
+              <div className="border-t border-border/40 pt-5">
+                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-4">Resultados</p>
+                <div className="grid grid-cols-3 gap-3">
+                  {caseStudy.results.map((result, i) => (
+                    <div key={i} className="bg-primary/5 border border-primary/15 rounded-xl p-3 text-center">
+                      <result.icon className="w-4 h-4 text-primary mx-auto mb-1.5" />
+                      <div className="text-xl font-bold text-foreground">{result.metric}</div>
+                      <div className="text-xs text-foreground/50 leading-tight mt-0.5">{result.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </motion.article>
           ))}
         </div>
-        
+
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,16 +1,14 @@
 "use client"
 
-import { CheckCircle2, Users, Trophy, TrendingUp, Star, Calendar } from "lucide-react"
+import { CheckCircle2, Users, Trophy, TrendingUp, Star, Calendar, BarChart2, MessageSquare, Zap, Globe2 } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const features = [
-  "Equipo multidisciplinario de expertos",
-  "Metodologías ágiles y resultados rápidos",
-  "Atención personalizada 24/7",
+  "Metodologías ágiles y resultados reales",
+  "Atención personalizada e inmediata",
   "Precios accesibles para startups",
   "Reportes claros y transparentes",
-  "Más de 5 proyectos exitosos",
 ]
 
 const stats = [
@@ -34,8 +32,8 @@ export function About() {
             transition={{ duration: 0.6 }}
             className="max-w-xl mx-auto lg:mx-0"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#e0642f]/10 to-[#f7d785]/10 border border-[#e0642f]/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="text-sm font-bold text-[#e0642f]">Nosotros</span>
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-6">
+              Nosotros
             </div>
             <h2
               id="about-heading"
@@ -104,26 +102,26 @@ export function About() {
                   {(
                     [
                       // x1,         y1,          x2,          y2
-                      [86.864,  84.589,  104.187,  75.806], // Betelgeuse → Meissa area
-                      [104.187,  75.806,  112.899,  88.281], // → Bellatrix
-                      [112.899,  88.281,  106.977, 109.422], // Bellatrix → Alnilam
-                      [106.977, 109.422,  122.087, 139.035], // Alnilam → Rigel
-                      [122.087, 139.035,   93.287, 144.136], // Rigel → Saiph
-                      [ 93.287, 144.136,   99.338, 117.247], // Saiph → belt (Alnitak)
-                      [ 99.338, 117.247,   86.864,  84.589], // Alnitak → Betelgeuse
+                      [86.864, 84.589, 104.187, 75.806], // Betelgeuse → Meissa area
+                      [104.187, 75.806, 112.899, 88.281], // → Bellatrix
+                      [112.899, 88.281, 106.977, 109.422], // Bellatrix → Alnilam
+                      [106.977, 109.422, 122.087, 139.035], // Alnilam → Rigel
+                      [122.087, 139.035, 93.287, 144.136], // Rigel → Saiph
+                      [93.287, 144.136, 99.338, 117.247], // Saiph → belt (Alnitak)
+                      [99.338, 117.247, 86.864, 84.589], // Alnitak → Betelgeuse
                       // Left arm chain
-                      [ 86.864,  84.589,   80.719,  76.733],
-                      [ 80.719,  76.733,   72.873,  60.744],
-                      [ 72.873,  60.744,   76.626,  58.846],
-                      [ 76.626,  58.846,   80.191,  40.266],
-                      [ 72.873,  60.744,   71.016,  43.516], // branch
+                      [86.864, 84.589, 80.719, 76.733],
+                      [80.719, 76.733, 72.873, 60.744],
+                      [72.873, 60.744, 76.626, 58.846],
+                      [76.626, 58.846, 80.191, 40.266],
+                      [72.873, 60.744, 71.016, 43.516], // branch
                       // Right arm chain
-                      [112.899,  88.281,  143.391,  85.843],
-                      [138.756,  74.734,  142.552,  79.054],
-                      [142.552,  79.054,  143.391,  85.843],
-                      [143.391,  85.843,  142.307,  90.619],
-                      [142.307,  90.619,  139.821, 101.753],
-                      [139.821, 101.753,  136.110, 104.336],
+                      [112.899, 88.281, 143.391, 85.843],
+                      [138.756, 74.734, 142.552, 79.054],
+                      [142.552, 79.054, 143.391, 85.843],
+                      [143.391, 85.843, 142.307, 90.619],
+                      [142.307, 90.619, 139.821, 101.753],
+                      [139.821, 101.753, 136.110, 104.336],
                     ] as [number, number, number, number][]
                   ).map(([x1, y1, x2, y2], i) => (
                     <motion.line
@@ -141,26 +139,26 @@ export function About() {
                   {(
                     [
                       // [id,              cx,       cy,       r,     fill]
-                      ["betelgeuse",   86.864,  84.589,  4.440, "#f7d785"], // α Ori — left shoulder
-                      ["bellatrix",   104.187,  75.806,  2.088, "#f7d785"], // γ Ori — right shoulder (head side)
-                      ["mintaka",     112.899,  88.281,  3.488, "#f7d785"], // δ Ori — belt right
-                      ["alnilam",     106.977, 109.422,  3.000, "#f7d785"], // ε Ori — belt centre
-                      ["rigel",       122.087, 139.035,  4.656, "#e0642f"], // β Ori — right foot (brightest)
-                      ["saiph",        93.287, 144.136,  3.144, "#e0642f"], // κ Ori — left foot
-                      ["alnitak",      99.338, 117.247,  3.408, "#f7d785"], // ζ Ori — belt left
+                      ["betelgeuse", 86.864, 84.589, 4.440, "#f7d785"], // α Ori — left shoulder
+                      ["bellatrix", 104.187, 75.806, 2.088, "#f7d785"], // γ Ori — right shoulder (head side)
+                      ["mintaka", 112.899, 88.281, 3.488, "#f7d785"], // δ Ori — belt right
+                      ["alnilam", 106.977, 109.422, 3.000, "#f7d785"], // ε Ori — belt centre
+                      ["rigel", 122.087, 139.035, 4.656, "#e0642f"], // β Ori — right foot (brightest)
+                      ["saiph", 93.287, 144.136, 3.144, "#e0642f"], // κ Ori — left foot
+                      ["alnitak", 99.338, 117.247, 3.408, "#f7d785"], // ζ Ori — belt left
                       // Left arm
-                      ["pi5ori",       80.719,  76.733,  1.504, "#f7d785"],
-                      ["pi3ori",       72.873,  60.744,  1.240, "#f7d785"],
-                      ["pi4ori",       76.626,  58.846,  1.264, "#f7d785"],
-                      ["pi2ori",       80.191,  40.266,  1.088, "#f7d785"],
-                      ["pi1ori",       71.016,  43.516,  0.640, "#f7d785"],
+                      ["pi5ori", 80.719, 76.733, 1.504, "#f7d785"],
+                      ["pi3ori", 72.873, 60.744, 1.240, "#f7d785"],
+                      ["pi4ori", 76.626, 58.846, 1.264, "#f7d785"],
+                      ["pi2ori", 80.191, 40.266, 1.088, "#f7d785"],
+                      ["pi1ori", 71.016, 43.516, 0.640, "#f7d785"],
                       // Right arm
-                      ["chi2ori",     143.391,  85.843,  2.248, "#f7d785"],
-                      ["chi1ori",     138.756,  74.734,  1.088, "#f7d785"],
-                      ["mu_ori",      142.552,  79.054,  1.320, "#f7d785"],
-                      ["nu_ori",      142.307,  90.619,  1.856, "#f7d785"],
-                      ["xi_ori",      139.821, 101.753,  1.832, "#f7d785"],
-                      ["omicron_ori", 136.110, 104.336,  1.224, "#f7d785"],
+                      ["chi2ori", 143.391, 85.843, 2.248, "#f7d785"],
+                      ["chi1ori", 138.756, 74.734, 1.088, "#f7d785"],
+                      ["mu_ori", 142.552, 79.054, 1.320, "#f7d785"],
+                      ["nu_ori", 142.307, 90.619, 1.856, "#f7d785"],
+                      ["xi_ori", 139.821, 101.753, 1.832, "#f7d785"],
+                      ["omicron_ori", 136.110, 104.336, 1.224, "#f7d785"],
                     ] as [string, number, number, number, string][]
                   ).map(([id, cx, cy, r, fill], i) => (
                     <motion.circle
@@ -176,14 +174,74 @@ export function About() {
                 </svg>
               </div>
 
-              <div className="relative z-10 h-full min-h-[400px] flex flex-col items-center justify-center text-center">
+              <div className="relative z-10 h-full min-h-[400px] flex flex-col items-center justify-center gap-6 px-2 py-8">
+                {/* Logo badge central */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 }}
-                  className="flex flex-col items-center gap-4"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  className="flex flex-col items-center gap-2"
                 >
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-xl" />
+                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/40 to-accent/20 border border-primary/30 flex items-center justify-center shadow-lg shadow-primary/10">
+                      <img src="/logo.png" alt="Orion MKT" className="h-9 w-9 object-contain" />
+                    </div>
+                  </div>
+                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/40">Orion Marketing</span>
                 </motion.div>
+
+                {/* Divider */}
+                <motion.div
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 0.75 }}
+                  className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+                />
+
+                {/* 2×2 pillar grid */}
+                <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
+                  {[
+                    {
+                      icon: BarChart2,
+                      title: "Data-driven",
+                      desc: "Decisiones basadas en métricas reales",
+                      delay: 0.8,
+                    },
+                    {
+                      icon: MessageSquare,
+                      title: "Personalizado",
+                      desc: "Estrategia única para tu negocio",
+                      delay: 0.9,
+                    },
+                    {
+                      icon: Zap,
+                      title: "Ágil",
+                      desc: "Resultados en tiempos razonables",
+                      delay: 1.0,
+                    },
+                    {
+                      icon: Globe2,
+                      title: "100% digital",
+                      desc: "Presencia en toda Argentina",
+                      delay: 1.1,
+                    },
+                  ].map(({ icon: Icon, title, desc, delay }, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.45, delay }}
+                      className="flex flex-col gap-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.07] hover:border-primary/25 rounded-2xl p-4 transition-all duration-300 group"
+                    >
+                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/15 flex items-center justify-center group-hover:from-primary/30 transition-all duration-300">
+                        <Icon className="w-4 h-4 text-primary" />
+                      </div>
+                      <p className="text-sm font-bold text-foreground leading-tight">{title}</p>
+                      <p className="text-xs text-foreground/45 leading-snug">{desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
 

@@ -127,7 +127,7 @@ export function Workflow() {
               >
                 <div className="glass-card rounded-2xl p-8 hover-lift h-full flex flex-col">
                   {/* Icon Circle */}
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-6 mx-auto group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20 flex items-center justify-center mb-6 mx-auto group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300">
                     <step.icon className="h-8 w-8 text-primary" />
                   </div>
 
