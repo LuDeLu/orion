@@ -95,7 +95,7 @@ export function About() {
             className="relative"
           >
             <div className="relative rounded-3xl glass-card p-10 lg:p-16 overflow-hidden hover-lift">
-              <div className="absolute inset-0 opacity-50">
+              <div className="absolute inset-0 opacity-20">
                 {/* Orion constellation — pixel-perfect from wikipedia.org/wiki/File:ConstellationOrion.svg (200×200 viewBox) */}
                 <svg viewBox="55 25 100 130" className="w-full h-full">
                   {/* Lines drawn first so stars sit on top */}
@@ -127,7 +127,7 @@ export function About() {
                     <motion.line
                       key={i}
                       x1={x1} y1={y1} x2={x2} y2={y2}
-                      stroke="#f7d785"
+                      stroke="#9c72e0"
                       strokeWidth="0.7"
                       strokeLinecap="round"
                       initial={{ pathLength: 0, opacity: 0 }}
@@ -139,26 +139,26 @@ export function About() {
                   {(
                     [
                       // [id,              cx,       cy,       r,     fill]
-                      ["betelgeuse", 86.864, 84.589, 4.440, "#f7d785"], // α Ori — left shoulder
-                      ["bellatrix", 104.187, 75.806, 2.088, "#f7d785"], // γ Ori — right shoulder (head side)
-                      ["mintaka", 112.899, 88.281, 3.488, "#f7d785"], // δ Ori — belt right
-                      ["alnilam", 106.977, 109.422, 3.000, "#f7d785"], // ε Ori — belt centre
-                      ["rigel", 122.087, 139.035, 4.656, "#e0642f"], // β Ori — right foot (brightest)
-                      ["saiph", 93.287, 144.136, 3.144, "#e0642f"], // κ Ori — left foot
-                      ["alnitak", 99.338, 117.247, 3.408, "#f7d785"], // ζ Ori — belt left
+                      ["betelgeuse", 86.864, 84.589, 4.440, "#9c72e0"], // α Ori — left shoulder
+                      ["bellatrix", 104.187, 75.806, 2.088, "#9c72e0"], // γ Ori — right shoulder (head side)
+                      ["mintaka", 112.899, 88.281, 3.488, "#9c72e0"], // δ Ori — belt right
+                      ["alnilam", 106.977, 109.422, 3.000, "#9c72e0"], // ε Ori — belt centre
+                      ["rigel", 122.087, 139.035, 4.656, "#844be3"], // β Ori — right foot (brightest)
+                      ["saiph", 93.287, 144.136, 3.144, "#844be3"], // κ Ori — left foot
+                      ["alnitak", 99.338, 117.247, 3.408, "#9c72e0"], // ζ Ori — belt left
                       // Left arm
-                      ["pi5ori", 80.719, 76.733, 1.504, "#f7d785"],
-                      ["pi3ori", 72.873, 60.744, 1.240, "#f7d785"],
-                      ["pi4ori", 76.626, 58.846, 1.264, "#f7d785"],
-                      ["pi2ori", 80.191, 40.266, 1.088, "#f7d785"],
-                      ["pi1ori", 71.016, 43.516, 0.640, "#f7d785"],
+                      ["pi5ori", 80.719, 76.733, 1.504, "#9c72e0"],
+                      ["pi3ori", 72.873, 60.744, 1.240, "#9c72e0"],
+                      ["pi4ori", 76.626, 58.846, 1.264, "#9c72e0"],
+                      ["pi2ori", 80.191, 40.266, 1.088, "#9c72e0"],
+                      ["pi1ori", 71.016, 43.516, 0.640, "#9c72e0"],
                       // Right arm
-                      ["chi2ori", 143.391, 85.843, 2.248, "#f7d785"],
-                      ["chi1ori", 138.756, 74.734, 1.088, "#f7d785"],
-                      ["mu_ori", 142.552, 79.054, 1.320, "#f7d785"],
-                      ["nu_ori", 142.307, 90.619, 1.856, "#f7d785"],
-                      ["xi_ori", 139.821, 101.753, 1.832, "#f7d785"],
-                      ["omicron_ori", 136.110, 104.336, 1.224, "#f7d785"],
+                      ["chi2ori", 143.391, 85.843, 2.248, "#9c72e0"],
+                      ["chi1ori", 138.756, 74.734, 1.088, "#9c72e0"],
+                      ["mu_ori", 142.552, 79.054, 1.320, "#9c72e0"],
+                      ["nu_ori", 142.307, 90.619, 1.856, "#9c72e0"],
+                      ["xi_ori", 139.821, 101.753, 1.832, "#9c72e0"],
+                      ["omicron_ori", 136.110, 104.336, 1.224, "#9c72e0"],
                     ] as [string, number, number, number, string][]
                   ).map(([id, cx, cy, r, fill], i) => (
                     <motion.circle
@@ -232,7 +232,7 @@ export function About() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.45, delay }}
-                      className="flex flex-col gap-2 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.07] hover:border-primary/25 rounded-2xl p-4 transition-all duration-300 group"
+                      className="flex flex-col gap-2 bg-primary/[0.12] hover:bg-primary/[0.18] border border-primary/[0.20] hover:border-primary/40 rounded-2xl p-4 transition-all duration-300 group"
                     >
                       <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/15 flex items-center justify-center group-hover:from-primary/30 transition-all duration-300">
                         <Icon className="w-4 h-4 text-primary" />
