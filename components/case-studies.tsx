@@ -111,8 +111,8 @@ export function CaseStudies() {
                   {caseStudy.results.map((result, i) => (
                     <div key={i} className="bg-primary/5 border border-primary/15 rounded-xl p-3 text-center">
                       <result.icon className="w-4 h-4 text-primary mx-auto mb-1.5" />
-                      <div className="text-xl font-bold text-foreground">{result.metric}</div>
-                      <div className="text-xs text-foreground/50 leading-tight mt-0.5">{result.label}</div>
+                      <div className="hidden sm:block text-xl font-bold text-foreground">{result.metric}</div>
+                      <div className="text-[10px] sm:text-xs text-foreground/50 leading-tight mt-0.5 break-words hyphens-auto">{result.label}</div>
                     </div>
                   ))}
                 </div>
