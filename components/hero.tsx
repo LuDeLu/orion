@@ -61,7 +61,7 @@ export function Hero() {
             className="border-primary/30 text-foreground hover:bg-primary/60 px-10 py-7 text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
             asChild
           >
-            <Link href="#casos">Ver expertis</Link>
+            <Link href="#casos">Ver expertise</Link>
           </Button>
         </motion.div>
       </div>
