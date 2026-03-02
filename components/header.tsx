@@ -23,7 +23,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-3 group">
-            <img src="/logohorizontal.png" alt="Orion MKT" className="h-40 w-40 object-contain" />
+            <img src="/logo.png" alt="Orion MKT" className="h-12 w-12 object-contain" />
           </Link>
           <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
