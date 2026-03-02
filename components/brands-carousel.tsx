@@ -9,6 +9,7 @@ const brands = [
   { name: "Ganamos.net", logo: "/logos/Ganamos.png", url: "https://ganamos023.info/" },
   { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png", url: "https://www.monacocortinas.com.ar/" },
   { name: "scheppens", logo: "/logos/scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
+  { name: "Vittal", logo: "/logos/vittal.png", url: "https://www.vittal.com.ar/" },
 ]
 
 export function BrandsCarousel() {
