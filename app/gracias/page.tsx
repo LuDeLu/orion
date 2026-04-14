@@ -5,9 +5,20 @@ import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
 
+declare function gtag(...args: unknown[]): void
+
 export default function GraciasPage() {
   const [countdown, setCountdown] = useState(5)
   const router = useRouter()
+
+  useEffect(() => {
+    // Disparar conversión de Google Ads
+    if (typeof gtag !== "undefined") {
+      gtag("event", "conversion", {
+        send_to: "AW-18044639379/dF9RCLzRi5wcEJOxrZxD",
+      })
+    }
+  }, [])
 
   useEffect(() => {
     if (countdown === 0) {
