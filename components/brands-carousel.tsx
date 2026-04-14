@@ -7,7 +7,7 @@ const brands = [
   { name: "RR sintetico", logo: "/logos/Rrsintetico.png", url: "https://rrsintetico.com/" },
   { name: "SoulSecurity", logo: "/logos/Soulsecurity.png", url: "https://soulsecurity.com.ar/" },
   { name: "Monaco Cortinas", logo: "/logos/Monacocortinas.png", url: "https://www.monacocortinas.com.ar/" },
-  { name: "scheppens", logo: "/logos/scheppens.png", url: "https://www.instagram.com/schepens.srl/" },
+  { name: "scheppens", logo: "/logos/scheppens.png", url: "https://www.schepens.com.ar/" },
   { name: "Vittal", logo: "/logos/vittal.png", url: "https://www.vittal.com.ar/" },
   { name: "PlotChain", logo: "/logos/Plotchain.png", url: "http://plotchain.io/" },
 ]

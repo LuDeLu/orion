@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
+import { useRouter } from "next/navigation"
 import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -37,6 +38,8 @@ export function ContactSection() {
     tipoProyecto: "",
     mensaje: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const router = useRouter()
 
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
@@ -45,32 +48,25 @@ export function ContactSection() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsSubmitting(true)
 
-    const tipoProyectoTexto: Record<string, string> = {
-      branding: "Branding",
-      estrategia: "Estrategia Digital",
-      ads: "Performance Ads",
-      social: "Social Media",
-      diseno: "Diseño Creativo",
-      web: "Desarrollo Web",
+    const data = new FormData(e.currentTarget)
+    data.append("access_key", "8f25bc46-71cb-429f-9142-d74a22a02308")
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      })
+      const result = await response.json()
+      if (result.success) {
+        router.push("/gracias")
+      }
+    } finally {
+      setIsSubmitting(false)
     }
-
-    const mensaje = `¡Hola! Me contacto desde la web.
-
-*Datos de contacto:*
-• Nombre: ${formData.nombre}
-• Teléfono: ${formData.telefono}
-• Email: ${formData.email}
-
-*Tipo de proyecto:* ${tipoProyectoTexto[formData.tipoProyecto] || "No especificado"}
-
-*Mensaje:*
-${formData.mensaje || "Sin mensaje adicional"}`
-
-    const whatsappUrl = `https://wa.me/5491156566083?text=${encodeURIComponent(mensaje)}`
-    window.open(whatsappUrl, "_blank")
   }
 
   return (
@@ -174,10 +170,11 @@ ${formData.mensaje || "Sin mensaje adicional"}`
               <Button
                 type="submit"
                 size="lg"
-                className="w-full bg-gradient-to-r from-[#e0642f] to-[#f7d785] hover:opacity-90 text-[#2c2447] font-bold rounded-xl h-12 transition-all duration-300 hover:shadow-lg hover:shadow-[#e0642f]/20"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-[#e0642f] to-[#f7d785] hover:opacity-90 text-[#2c2447] font-bold rounded-xl h-12 transition-all duration-300 hover:shadow-lg hover:shadow-[#e0642f]/20 disabled:opacity-60"
               >
-                Enviar Consulta por WhatsApp
-                <Send className="ml-2 w-4 h-4" />
+                {isSubmitting ? "Enviando..." : "Enviar correo"}
+                {!isSubmitting && <Send className="ml-2 w-4 h-4" />}
               </Button>
             </form>
           </motion.div>
