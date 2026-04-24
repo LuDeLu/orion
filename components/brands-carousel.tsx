@@ -109,9 +109,9 @@ export function BrandsCarousel() {
             },
             {
               quote:
-                "Transformaron completamente nuestra presencia digital. Altamente recomendados para emprendimientos en crecimiento.",
-              author: "Equipo Ganamos.net",
-              role: "Marketing - Ganamos.net",
+                "Orion nos ayudó a ordenar nuestro mensaje y a enfocarnos en los clientes correctos. Desde entonces, la calidad de nuestros leads mejoró notablemente.",
+              author: "Lucina Schepens",
+              role: "Brand manager - Schepens",
               rating: 5,
             },
           ].map((testimonial, index) => (
