@@ -1,63 +1,81 @@
 "use client"
 
-import { Star, Quote } from "lucide-react"
+import { Quote, Star } from "lucide-react"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
 
 const testimonials = [
   {
-    name: "María González",
-    role: "CEO, TechStart",
-    content:
-      "Orion Marketing transformó nuestra presencia digital. En 6 meses triplicamos nuestros leads y el equipo siempre estuvo disponible para resolver cualquier duda.",
+    quote:
+      "Excelente y rápido trabajo de los chicos, bastante cómodo todo. No hay nada de lo cual quejarse.",
+    author: "Diego Alacore",
+    role: "Dueño · Soul Security",
     rating: 5,
   },
   {
-    name: "Carlos Mendoza",
-    role: "Fundador, EcoShop",
-    content:
-      "Como startup, necesitábamos una agencia que entendiera nuestro presupuesto y nuestros sueños. Orion fue ese partner perfecto.",
+    quote:
+      "Súper conforme con todo el servicio. La verdad me potenció mucho el crecimiento. Recomendados.",
+    author: "Diego Rivis",
+    role: "Dueño · RR Sintético",
     rating: 5,
   },
   {
-    name: "Ana Rodríguez",
-    role: "Directora Marketing, Innova Corp",
-    content:
-      "El equipo de Orion combina creatividad con datos de manera excepcional. Nuestras campañas nunca habían tenido tan buen rendimiento.",
+    quote:
+      "Orion nos ayudó a ordenar nuestro mensaje y a enfocarnos en los clientes correctos. Desde entonces, la calidad de nuestros leads mejoró notablemente.",
+    author: "Lucina Schepens",
+    role: "Brand Manager · Schepens",
     rating: 5,
   },
 ]
 
 export function Testimonials() {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+
   return (
-    <section id="casos" className="relative py-24 px-4">
+    <section ref={ref} className="relative py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Testimonios</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-4">
-            Lo que dicen de nosotros
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14 max-w-3xl mx-auto"
+        >
+          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
+            Testimonios
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
+            Lo que dicen quienes ya{" "}
+            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              trabajaron con nosotros
+            </span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Nuestros clientes son nuestra mejor carta de presentación.
+          <p className="text-foreground/60 text-lg md:text-xl text-pretty">
+            Cada cliente recibe una solución pensada para su realidad. Esto es lo que cuentan.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="p-6 rounded-2xl bg-card/50 backdrop-blur-sm border border-border relative">
-              <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/20" />
-
+        <div className="grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="relative bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl p-8 hover:border-primary/40 transition-all duration-300"
+            >
+              <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/15" />
               <div className="flex gap-1 mb-4">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 text-secondary fill-secondary" />
+                {Array.from({ length: t.rating }).map((_, idx) => (
+                  <Star key={idx} className="w-4 h-4 text-accent fill-accent" />
                 ))}
               </div>
-
-              <p className="text-foreground mb-6 leading-relaxed">&ldquo;{testimonial.content}&rdquo;</p>
-
+              <p className="text-foreground/80 leading-relaxed mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
               <div>
-                <div className="font-semibold text-foreground">{testimonial.name}</div>
-                <div className="text-sm text-muted-foreground">{testimonial.role}</div>
+                <div className="font-bold text-foreground">{t.author}</div>
+                <div className="text-sm text-foreground/55">{t.role}</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

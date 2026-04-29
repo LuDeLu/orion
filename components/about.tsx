@@ -5,9 +5,9 @@ import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
 const features = [
-  "Metodologías ágiles y resultados reales",
-  "Atención personalizada e inmediata",
-  "Precios accesibles para startups",
+  "Diagnóstico previo antes de proponer",
+  "Plan único, no plantillas reutilizadas",
+  "Equipo dedicado y atención directa",
   "Reportes claros y transparentes",
 ]
 
@@ -23,7 +23,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section ref={ref} id="nosotros" className="relative py-16 px-4 overflow-hidden" aria-labelledby="about-heading">
+    <section ref={ref} id="nosotros" className="relative py-20 px-4 overflow-hidden" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
@@ -39,21 +39,20 @@ export function About() {
               id="about-heading"
               className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
             >
-              Agencia de Marketing Digital especializada en{" "}
+              Una agencia que diseña{" "}
               <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                PyMEs y Startups
+                soluciones a medida
               </span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              Orion es una agencia de marketing digital con base en Buenos Aires, Argentina, que trabaja con PyMEs y
-              startups de todo el país. Entendemos que cada negocio tiene sueños ambiciosos, por eso combinamos
-              estrategias de branding, social media marketing, performance ads y diseño web con resultados medibles y
-              ROI garantizado.
+              Orion es una agencia con base en Buenos Aires que trabaja con PyMEs y startups de toda
+              Argentina. No creemos en planes genéricos: cada proyecto arranca con un diagnóstico
+              real del negocio, su mercado y su equipo.
             </p>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-pretty">
-              Nuestro equipo de expertos en community management, publicidad digital (Facebook Ads, Instagram Ads,
-              Google Ads), desarrollo web y estrategia de contenidos trabaja para que tu marca destaque en el mundo
-              digital. Modalidad flexible, presupuestos accesibles y presencia en toda Argentina.
+              Combinamos branding, marketing digital, diseño y desarrollo en una propuesta única
+              para cada cliente. Trabajamos cerca, ajustamos sobre la marcha y medimos lo que
+              importa. El objetivo no es ejecutar tareas, es resolver problemas concretos.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -203,27 +202,27 @@ export function About() {
                 <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
                   {[
                     {
-                      icon: BarChart2,
-                      title: "Data-driven",
-                      desc: "Decisiones basadas en métricas reales",
+                      icon: MessageSquare,
+                      title: "A medida",
+                      desc: "Cada propuesta nace del cliente",
                       delay: 0.8,
                     },
                     {
-                      icon: MessageSquare,
-                      title: "Personalizado",
-                      desc: "Estrategia única para tu negocio",
+                      icon: BarChart2,
+                      title: "Data-driven",
+                      desc: "Decisiones basadas en métricas reales",
                       delay: 0.9,
                     },
                     {
                       icon: Zap,
-                      title: "Ágil",
-                      desc: "Resultados en tiempos razonables",
+                      title: "Cercanos",
+                      desc: "Trato directo con los fundadores",
                       delay: 1.0,
                     },
                     {
                       icon: Globe2,
-                      title: "100% digital",
-                      desc: "Presencia en toda Argentina",
+                      title: "Integrales",
+                      desc: "Marketing, diseño y desarrollo en un solo equipo",
                       delay: 1.1,
                     },
                   ].map(({ icon: Icon, title, desc, delay }, i) => (
@@ -252,7 +251,7 @@ export function About() {
               className="absolute -top-4 -right-4 bg-primary text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg shadow-primary/20"
             >
               <Star className="w-4 h-4 inline mr-1" />
-              Modalidad de trabajo flexible
+              Propuestas a medida
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8, x: -20 }}

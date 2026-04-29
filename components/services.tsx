@@ -134,7 +134,7 @@ export function Services() {
   }
 
   return (
-    <section ref={ref} id="servicios" className="relative py-16 px-4">
+    <section ref={ref} id="servicios" className="relative py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -146,14 +146,14 @@ export function Services() {
             Servicios
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
-            Servicios de Marketing Digital{" "}
+            Disciplinas que combinamos{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              para tu negocio
+              según tu proyecto
             </span>
           </h2>
           <p className="text-foreground/60 max-w-2xl mx-auto text-xl text-pretty">
-            Soluciones integrales de branding, redes sociales, publicidad digital y diseño web que generan resultados
-            medibles para tu PyME o Startup
+            No todos los clientes necesitan lo mismo. Tomamos solo las áreas que tu negocio necesita y armamos
+            una propuesta integrada, sin servicios sueltos ni esfuerzos duplicados.
           </p>
         </motion.div>
 

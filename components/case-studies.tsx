@@ -53,7 +53,7 @@ export function CaseStudies() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} id="casos" className="relative py-16 px-4" aria-labelledby="cases-heading">
+    <section ref={ref} id="casos" className="relative py-20 px-4" aria-labelledby="cases-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,14 +68,13 @@ export function CaseStudies() {
             id="cases-heading"
             className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
           >
-            Resultados de Marketing Digital que{" "}
+            Soluciones reales para{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              hablan por sí solos
+              problemas concretos
             </span>
           </h2>
           <p className="text-foreground/60 text-xl text-pretty">
-            Conocé cómo ayudamos a PyMEs y Startups como la tuya a crecer en el mundo digital con estrategias de
-            marketing efectivas y medibles
+            Cada caso parte de un desafío distinto. Así diseñamos la respuesta — y los resultados que se obtuvieron.
           </p>
         </motion.div>
 
@@ -136,7 +135,7 @@ export function CaseStudies() {
           >
             <Link href="#contacto">
               <span className="flex items-center justify-center">
-                Quiero resultados como estos
+                Quiero mi propuesta a medida
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </span>
             </Link>

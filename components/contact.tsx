@@ -70,7 +70,7 @@ export function ContactSection() {
   }
 
   return (
-    <section ref={ref} id="contacto" className="relative py-16 overflow-hidden">
+    <section ref={ref} id="contacto" className="relative py-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-[#2c2447]/30 via-background to-[#2c2447]/20 -z-10" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">

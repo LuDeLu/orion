@@ -4,6 +4,8 @@ import { Services } from "@/components/services"
 import { About } from "@/components/about"
 import { Workflow } from "@/components/workflow"
 import { BrandsCarousel } from "@/components/brands-carousel"
+import { Team } from "@/components/team"
+import { Testimonials } from "@/components/testimonials"
 import { ContactSection } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { ConstellationBackground } from "@/components/constellation-background"
@@ -28,16 +30,18 @@ export default function Home() {
         <div className="grain-overlay" />
         <Header />
         <Hero />
-        <Suspense fallback={<div className="py-32" />}>
-        <Services />
-        </Suspense>
+        <BrandsCarousel />
         <About />
+        <Suspense fallback={<div className="py-32" />}>
+          <Services />
+        </Suspense>
+        <Team />
         <CaseStudies />
         <Workflow />
-        <BrandsCarousel />
+        <Testimonials />
         <ContactSection />
-        <WhatsAppButton></WhatsAppButton>
-        <ScrollToTop></ScrollToTop>
+        <WhatsAppButton />
+        <ScrollToTop />
         <Footer />
       </main>
     </>

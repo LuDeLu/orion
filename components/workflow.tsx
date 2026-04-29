@@ -58,7 +58,7 @@ export function Workflow() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-16 px-4 overflow-hidden" aria-labelledby="workflow-heading">
+    <section ref={sectionRef} className="relative py-20 px-4 overflow-hidden" aria-labelledby="workflow-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,13 +73,13 @@ export function Workflow() {
             id="workflow-heading"
             className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
           >
-            Proceso de Marketing Digital: Simple, claro y{" "}
+            De diagnóstico a resultados,{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              sin sorpresas
+              sin recetas genéricas
             </span>
           </h2>
           <p className="text-foreground/60 text-xl text-pretty">
-            Un proceso transparente y eficiente de principio a fin para garantizar el éxito de tu proyecto digital
+            Cada cliente arranca con un diagnóstico real y termina con un plan único. Este es el camino que recorremos juntos.
           </p>
         </motion.div>
 

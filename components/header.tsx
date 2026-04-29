@@ -6,8 +6,9 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
-  { href: "#servicios", label: "Servicios" },
   { href: "#nosotros", label: "Nosotros" },
+  { href: "#servicios", label: "Servicios" },
+  { href: "#equipo", label: "Equipo" },
   { href: "#contacto", label: "Contacto" },
 ]
 
@@ -42,7 +43,7 @@ export function Header() {
               className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-semibold rounded-full px-6"
               asChild
             >
-              <Link href="#contacto">Iniciar Proyecto</Link>
+              <Link href="#contacto">Pedir propuesta</Link>
             </Button>
           </div>
 
@@ -72,19 +73,11 @@ export function Header() {
             </Link>
           ))}
           <Button
-            variant="outline"
-            className="border-primary/30 text-foreground hover:bg-primary/10 w-full mt-2 rounded-full font-semibold bg-transparent"
+            className="bg-gradient-to-r from-primary to-secondary text-white w-full rounded-full font-semibold mt-2"
             asChild
             onClick={handleLinkClick}
           >
-            <Link href="#nosotros">Ver Portafolio</Link>
-          </Button>
-          <Button
-            className="bg-gradient-to-r from-primary to-secondary text-white w-full rounded-full font-semibold"
-            asChild
-            onClick={handleLinkClick}
-          >
-            <Link href="#contacto">Iniciar Proyecto</Link>
+            <Link href="#contacto">Pedir propuesta</Link>
           </Button>
         </nav>
       </div>
