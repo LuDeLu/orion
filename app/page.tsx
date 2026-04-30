@@ -32,10 +32,10 @@ export default function Home() {
         <Hero />
         <BrandsCarousel />
         <About />
+        <Team />
         <Suspense fallback={<div className="py-32" />}>
           <Services />
         </Suspense>
-        <Team />
         <CaseStudies />
         <Workflow />
         <Testimonials />

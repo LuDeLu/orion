@@ -13,6 +13,7 @@ import {
   Globe,
   Mail,
   ArrowUpRight,
+  Server,
 } from "lucide-react"
 
 type Member = {
@@ -47,11 +48,11 @@ const team: Member[] = [
   {
     id: "lucas",
     name: "Lucas Baez",
-    role: "Co-fundador",
+    role: "Fundador",
     area: "Desarrollo de software & web",
     initials: "LB",
     icon: Code2,
-    accent: {
+   accent: {
       avatarFrom: "from-primary/40",
       avatarTo: "to-accent/20",
       ring: "ring-primary/30",
@@ -59,7 +60,7 @@ const team: Member[] = [
       iconColor: "text-primary",
       chipBg: "bg-primary/10",
       chipBorder: "border-primary/25",
-    },
+    }, 
     short:
       "Traduce los objetivos comerciales en producto: sitios, landings y aplicaciones que convierten.",
     bio: [
@@ -84,7 +85,7 @@ const team: Member[] = [
   {
     id: "david",
     name: "David Cabella",
-    role: "Co-fundador",
+    role: "Fundador",
     area: "Marketing & estrategia",
     initials: "DC",
     icon: Megaphone,
@@ -121,19 +122,19 @@ const team: Member[] = [
   {
     id: "annie",
     name: "Annie Ojeda",
-    role: "Co-fundadora",
+    role: "Fundadora",
     area: "Diseño gráfico & dirección creativa",
     initials: "AO",
     icon: Palette,
     accent: {
-      avatarFrom: "from-secondary/40",
+      avatarFrom: "from-primary/40",
       avatarTo: "to-accent/20",
-      ring: "ring-secondary/40",
-      glow: "bg-secondary/20",
-      iconColor: "text-secondary",
-      chipBg: "bg-secondary/10",
-      chipBorder: "border-secondary/30",
-    },
+      ring: "ring-primary/30",
+      glow: "bg-primary/20",
+      iconColor: "text-primary",
+      chipBg: "bg-primary/10",
+      chipBorder: "border-primary/25",
+    },    
     short:
       "Define la identidad visual de cada cliente: branding, sistemas de marca y dirección creativa.",
     bio: [
@@ -153,6 +154,43 @@ const team: Member[] = [
       url: "https://www.artstation.com/annieth",
       title: "artstation.com/annieth",
       subtitle: "Portafolio de diseño & arte",
+    },
+  },
+  {
+    id: "nicolas",
+    name: "Nicolas Mazzotti",
+    role: "Co-fundador",
+    area: "IT & infraestructura",
+    initials: "NM",
+    icon: Server,
+    accent: {
+      avatarFrom: "from-accent/40",
+      avatarTo: "to-primary/20",
+      ring: "ring-accent/40",
+      glow: "bg-accent/20",
+      iconColor: "text-accent",
+      chipBg: "bg-accent/10",
+      chipBorder: "border-accent/30",
+    },
+    short:
+      "Encargado general del área IT: infraestructura, sistemas y operaciones técnicas.",
+    bio: [
+      "Co-fundador de Orion y responsable de toda el área de IT. Lidera la infraestructura, los sistemas internos y las operaciones técnicas que sostienen el día a día de la agencia y de cada proyecto.",
+      "Su rol asegura que todo lo que diseñamos y desarrollamos se entregue sobre una base estable, segura y escalable: hosting, dominios, integraciones, automatizaciones y soporte continuo.",
+    ],
+    skills: [
+      "Infraestructura & hosting",
+      "Administración de sistemas",
+      "DevOps & automatización",
+      "Seguridad & backups",
+      "Soporte técnico",
+      "Operaciones IT",
+    ],
+    showcase: {
+      type: "linkedin",
+      url: "#",
+      title: "Perfil profesional",
+      subtitle: "Próximamente",
     },
   },
 ]
@@ -446,11 +484,11 @@ export function Team() {
             </span>
           </h2>
           <p className="text-foreground/60 text-lg md:text-xl text-pretty">
-            Tres fundadores, tres disciplinas. Trabajás directo con quien hace, no con un intermediario.
+            Cuatro disciplinas, un mismo equipo. Trabajás directo con quien hace, no con un intermediario.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {team.map((member, i) => (
             <MemberCard
               key={member.id}
