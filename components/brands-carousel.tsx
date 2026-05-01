@@ -1,8 +1,8 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState } from "react"
-import { X, ExternalLink, ArrowUpRight } from "lucide-react"
+import { X, ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 type Brand = {
   name: string
@@ -13,6 +13,7 @@ type Brand = {
   description: string
   services: string[]
   result?: string
+  previews?: string[]
 }
 
 const brands: Brand[] = [
@@ -20,56 +21,59 @@ const brands: Brand[] = [
     name: "RR Sintético",
     logo: "/logos/Rrsintetico.png",
     url: "https://rrsintetico.com/",
-    industry: "Industria",
-    tagline: "Presencia digital para líder en pisos sintéticos",
+    industry: "Aplicación Web",
+    tagline: "App web con sistema de cotizaciones y gestión de proyectos",
     description:
-      "Desarrollamos la estrategia digital completa de RR Sintético, empresa referente en fabricación e instalación de pisos sintéticos. Desde el branding hasta la gestión de redes sociales, consolidamos su presencia online y generamos nuevas oportunidades de negocio.",
-    services: ["Branding", "Redes Sociales", "Performance Ads", "Estrategia Digital"],
-    result: "Incremento en consultas orgánicas y posicionamiento como referente del sector",
+      "Desarrollamos el sitio web y la plataforma de gestión completa para RR Sintético: diseño dinámico con React y Node.js, APIs para cálculos exactos en cotizaciones, integración de pagos y gestión de inventario. También incluye un sistema de seguimiento logístico en tiempo real para sus entregas.",
+    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "MongoDB"],
+    result: "Plataforma productiva en uso real con cotizador, inventario y tracking de pedidos",
+    previews: ["/previews/rrsintetico.png", "/previews/rrseguimientos.png"],
   },
   {
     name: "Soul Security",
     logo: "/logos/Soulsecurity.png",
     url: "https://soulsecurity.com.ar/",
-    industry: "Seguridad",
-    tagline: "Visibilidad y confianza para empresa de seguridad",
+    industry: "Sitio Web",
+    tagline: "Sitio corporativo para empresa de seguridad privada",
     description:
-      "Trabajamos con Soul Security en la construcción de su identidad digital, generando contenido de valor que transmite confianza y profesionalismo. Gestionamos sus campañas publicitarias para captar nuevos clientes en un mercado altamente competitivo.",
-    services: ["Branding", "Gestión de Redes", "Performance Ads"],
-    result: "Aumento sostenido de leads calificados mes a mes",
+      "Diseñamos y desarrollamos el sitio web corporativo de Soul Security, empresa especializada en instalación de cámaras, control de acceso y sistemas de seguridad para edificios. Sitio moderno, responsive y optimizado para generar consultas.",
+    services: ["Diseño Web", "Next.js", "Tailwind"],
+    result: "Sitio corporativo profesional que transmite confianza y genera consultas",
+    previews: ["/previews/soulsecurity.png"],
   },
   {
     name: "Monaco Cortinas",
     logo: "/logos/Monacocortinas.png",
     url: "https://www.monacocortinas.com.ar/",
-    industry: "Decoración & Hogar",
-    tagline: "Elegancia digital para una marca de cortinas premium",
+    industry: "Sitio Web",
+    tagline: "Sitio comercial con catálogo de productos y plan de repuesto",
     description:
-      "Potenciamos la presencia online de Monaco Cortinas con una estrategia visual coherente con su producto de alta gama. Diseñamos contenido aspiracional y campañas segmentadas para llegar a su público objetivo de manera efectiva.",
-    services: ["Estrategia Digital", "Contenido Visual", "Performance Ads"],
-    result: "Crecimiento en ventas online y mayor reconocimiento de marca",
+      "Desarrollamos el sitio web de Monaco Cortinas con catálogo completo de productos y formulario de contacto, más una segunda plataforma para Monaco Seguros con cotizador online. Ambos proyectos en Next.js y Tailwind, con diseño profesional y enfocados en conversión.",
+    services: ["Diseño Web", "Next.js", "Tailwind"],
+    result: "Dos sitios en producción: cortinas metálicas y correduría de seguros",
+    previews: ["/previews/monacocor.png", "/previews/monacoseg.png"],
   },
   {
     name: "Schepens",
     logo: "/logos/scheppens.png",
     url: "https://www.schepens.com.ar/",
     industry: "Retail",
-    tagline: "Transformación digital para empresa de retail",
+    tagline: "Estrategia digital para empresa de retail",
     description:
-      "Acompañamos a Schepens en su transformación digital, desarrollando una estrategia integral de marketing que abarca desde la presencia en redes hasta la publicidad paga. Logramos conectar la marca con nuevas audiencias y aumentar sus ventas digitales.",
-    services: ["Estrategia Digital", "Redes Sociales", "Performance Ads", "Branding"],
-    result: "Expansión de audiencia digital y aumento en conversiones",
+      "Acompañamos a Schepens en su presencia digital con gestión de redes sociales, contenido orientado a conversión y campañas de publicidad paga. Conectamos la marca con nuevas audiencias y potenciamos sus ventas online.",
+    services: ["Redes Sociales", "Performance Ads", "Estrategia Digital"],
+    result: "Mayor alcance digital y crecimiento sostenido en ventas online",
   },
   {
     name: "Vittal",
     logo: "/logos/vittal.png",
     url: "https://www.vittal.com.ar/",
     industry: "Salud",
-    tagline: "Comunicación digital para empresa de emergencias médicas",
+    tagline: "Comunicación digital para servicio de emergencias médicas",
     description:
-      "Colaboramos con Vittal en la gestión de su comunicación digital, creando contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a captar nuevos socios con mensajes claros y empáticos.",
-    services: ["Gestión de Redes", "Contenido Digital", "Performance Ads"],
-    result: "Mejora en el engagement y captación de nuevos socios",
+      "Gestionamos la comunicación digital de Vittal con contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a la captación de nuevos socios con mensajes claros, empáticos y de alto impacto.",
+    services: ["Gestión de Redes", "Performance Ads", "Contenido Digital"],
+    result: "Mejora en engagement y captación de nuevos socios",
   },
   {
     name: "PlotChain",
@@ -79,45 +83,55 @@ const brands: Brand[] = [
     tagline: "Posicionamiento de marca en el ecosistema Web3",
     description:
       "Trabajamos con PlotChain en su estrategia de comunicación y posicionamiento dentro del ecosistema blockchain. Desarrollamos contenido técnico accesible y campañas de awareness para atraer inversores y usuarios a su plataforma.",
-    services: ["Branding", "Estrategia Digital", "Contenido Técnico"],
-    result: "Crecimiento en comunidad y visibilidad en el sector Web3",
+    services: ["Estrategia Digital", "Branding", "Contenido Técnico"],
+    result: "Mayor visibilidad y crecimiento de comunidad en el sector Web3",
   },
   {
     name: "ADN",
     logo: "/logos/Adn.png",
-    url: "#",
-    industry: "Empresa",
-    tagline: "Estrategia y presencia digital",
+    url: "https://adndevelopers.com.ar/",
+    industry: "Aplicación Web",
+    tagline: "Plataforma inmobiliaria con CRM a medida",
     description:
-      "Desarrollamos junto a ADN una estrategia de marketing digital orientada a resultados, fortaleciendo su presencia online y generando nuevas oportunidades de crecimiento.",
-    services: ["Estrategia Digital", "Redes Sociales", "Performance Ads"],
-    result: "Mayor visibilidad y captación de nuevos clientes",
+      "Desarrollamos para ADN Developers una plataforma inmobiliaria con gestión de propiedades y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
+    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
+    result: "CRM en producción gestionando múltiples proyectos DOME activos",
+    previews: ["/previews/adn.png", "/previews/paneladn.png"],
   },
   {
     name: "CMVet",
     logo: "/logos/Cmvet.jpg",
     url: "#",
-    industry: "Veterinaria",
-    tagline: "Presencia digital para clínica veterinaria",
+    industry: "Aplicación Web · Veterinaria",
+    tagline: "Sistema a medida para análisis clínicos veterinarios",
     description:
-      "Acompañamos a CMVet en la construcción de su identidad digital, desarrollando contenido que conecta con dueños de mascotas y genera confianza en sus servicios veterinarios.",
-    services: ["Branding", "Redes Sociales", "Contenido Digital"],
-    result: "Aumento en consultas y fidelización de clientes",
+      "Desarrollamos un sistema completo para CMVet Centenario que se conecta directamente con las máquinas de análisis de sangre del laboratorio. La plataforma importa los datos automáticamente, organiza los resultados por paciente y panel (Bioquímica, Cinética Enzimática, etc.), y genera informes PDF profesionales con un solo clic, listos para entregar al veterinario.",
+    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "Sistema a medida"],
+    result: "Miles de análisis procesados con generación automática de informes PDF",
+    previews: ["/previews/cmvet1.png", "/previews/cmvet2.png"],
   },
   {
-    name: "I51",
+    name: "Imperio 51",
     logo: "/logos/I51.jpg",
     url: "#",
-    industry: "Empresa",
-    tagline: "Crecimiento digital estratégico",
+    industry: "Sitio Web",
+    tagline: "Sitio web moderno con identidad digital de alto impacto",
     description:
-      "Trabajamos con I51 en su expansión digital, diseñando una estrategia personalizada para alcanzar nuevas audiencias y potenciar su negocio en el entorno online.",
-    services: ["Estrategia Digital", "Performance Ads", "Branding"],
-    result: "Incremento en leads y posicionamiento de marca",
+      "Diseñamos y desarrollamos el sitio web de Imperio 51, una marca digital construida con personalidad fuerte y estética futurista. Interfaz oscura con detalles en cyan, animaciones de entrada y una presentación visual que captura la identidad de la marca desde el primer scroll.",
+    services: ["Diseño Web", "Next.js", "Tailwind", "Animaciones"],
+    result: "Identidad digital única y presencia online que refleja el poder de la marca",
+    previews: ["/previews/I51.png"],
   },
 ]
 
 function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
+  const [previewIndex, setPreviewIndex] = useState(0)
+  const previews = brand.previews ?? []
+  const hasPreviews = previews.length > 0
+
+  const prev = () => setPreviewIndex((i) => (i - 1 + previews.length) % previews.length)
+  const next = () => setPreviewIndex((i) => (i + 1) % previews.length)
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
@@ -130,52 +144,114 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
         exit={{ opacity: 0, scale: 0.95, y: 16 }}
         transition={{ duration: 0.25, ease: "easeOut" }}
         onClick={(e) => e.stopPropagation()}
-        className="relative z-10 w-full max-w-lg bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden"
+        className="relative z-10 w-full max-w-lg bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
       >
-        {/* Header con logo */}
-        <div className="relative bg-gradient-to-br from-foreground/5 to-primary/5 border-b border-foreground/10 px-6 pt-6 pb-5">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-1.5 rounded-full text-foreground/40 hover:text-foreground hover:bg-foreground/10 transition-all duration-200"
-            aria-label="Cerrar"
-          >
-            <X className="w-4 h-4" />
-          </button>
+        {/* Vista previa con galería */}
+        {hasPreviews && (
+          <div className="relative w-full aspect-video bg-foreground/5 overflow-hidden flex-shrink-0">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={previewIndex}
+                src={previews[previewIndex]}
+                alt={`Vista previa ${previewIndex + 1}`}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                className="w-full h-full object-cover object-top"
+              />
+            </AnimatePresence>
 
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 bg-background/60 rounded-xl border border-foreground/10 flex items-center justify-center p-2 flex-shrink-0">
+            {/* Overlay gradiente bottom */}
+            <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/60 to-transparent" />
+
+            {/* Controles navegación */}
+            {previews.length > 1 && (
+              <>
+                <button
+                  onClick={prev}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/70 hover:bg-background/90 border border-foreground/10 text-foreground/70 hover:text-foreground transition-all duration-200 backdrop-blur-sm"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={next}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-background/70 hover:bg-background/90 border border-foreground/10 text-foreground/70 hover:text-foreground transition-all duration-200 backdrop-blur-sm"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+                {/* Dots */}
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                  {previews.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setPreviewIndex(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
+                        i === previewIndex ? "bg-primary w-4" : "bg-foreground/30"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Botón cerrar sobre la imagen */}
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-3 p-1.5 rounded-full bg-background/70 hover:bg-background/90 border border-foreground/10 text-foreground/60 hover:text-foreground transition-all duration-200 backdrop-blur-sm"
+              aria-label="Cerrar"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        )}
+
+        {/* Header con logo (sin imagen o con imagen ya arriba) */}
+        <div className={`relative flex-shrink-0 ${hasPreviews ? "border-b border-foreground/10 px-5 pt-4 pb-4" : "bg-gradient-to-br from-foreground/5 to-primary/5 border-b border-foreground/10 px-6 pt-6 pb-5"}`}>
+          {!hasPreviews && (
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 p-1.5 rounded-full text-foreground/40 hover:text-foreground hover:bg-foreground/10 transition-all duration-200"
+              aria-label="Cerrar"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 bg-background/60 rounded-xl border border-foreground/10 flex items-center justify-center p-2 flex-shrink-0">
               <img
                 src={brand.logo || "/placeholder.svg"}
                 alt={brand.name}
-                className="max-h-10 max-w-full object-contain"
+                className="max-h-8 max-w-full object-contain"
               />
             </div>
             <div>
               <span className="text-[10px] uppercase tracking-widest font-semibold text-primary/70">
                 {brand.industry}
               </span>
-              <h3 className="text-lg font-bold text-foreground leading-tight mt-0.5">
+              <h3 className="text-base font-bold text-foreground leading-tight mt-0.5">
                 {brand.name}
               </h3>
-              <p className="text-sm text-foreground/50 mt-0.5">{brand.tagline}</p>
+              <p className="text-xs text-foreground/50 mt-0.5">{brand.tagline}</p>
             </div>
           </div>
         </div>
 
-        {/* Contenido */}
-        <div className="px-6 py-5 space-y-5">
+        {/* Contenido scrolleable */}
+        <div className="px-5 py-4 space-y-4 overflow-y-auto">
           <p className="text-sm text-foreground/70 leading-relaxed">{brand.description}</p>
 
           {/* Servicios */}
           <div>
-            <p className="text-xs uppercase tracking-widest font-semibold text-foreground/35 mb-2.5">
+            <p className="text-[10px] uppercase tracking-widest font-semibold text-foreground/35 mb-2">
               Servicios aplicados
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {brand.services.map((service) => (
                 <span
                   key={service}
-                  className="text-xs font-medium px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
+                  className="text-xs font-medium px-2.5 py-1 rounded-full bg-primary/10 text-primary border border-primary/20"
                 >
                   {service}
                 </span>
@@ -197,7 +273,7 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
 
         {/* Footer */}
         {brand.url !== "#" && (
-          <div className="px-6 pb-5">
+          <div className="px-5 pb-4 flex-shrink-0">
             <a
               href={brand.url}
               target="_blank"
