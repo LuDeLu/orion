@@ -18,6 +18,63 @@ type Brand = {
 
 const brands: Brand[] = [
   {
+    name: "Vittal",
+    logo: "/logos/vittal.png",
+    url: "https://www.vittal.com.ar/",
+    industry: "Salud",
+    tagline: "Comunicación digital para servicio de emergencias médicas",
+    description:
+      "Gestionamos la comunicación digital de Vittal con contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a la captación de nuevos socios con mensajes claros, empáticos y de alto impacto.",
+    services: ["Gestión de Redes", "Performance Ads", "Contenido Digital"],
+    result: "Mejora en engagement y captación de nuevos socios",
+  },
+  {
+    name: "ADN",
+    logo: "/logos/Adn.png",
+    url: "https://adndevelopers.com.ar/",
+    industry: "Aplicación Web",
+    tagline: "Plataforma inmobiliaria con CRM a medida",
+    description:
+      "Desarrollamos para ADN Developers una plataforma inmobiliaria con gestión de propiedades y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
+    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
+    result: "CRM en producción gestionando múltiples proyectos DOME activos",
+    previews: ["/previews/adn.png", "/previews/paneladn.png"],
+  },
+  {
+    name: "Schepens",
+    logo: "/logos/scheppens.png",
+    url: "https://www.schepens.com.ar/",
+    industry: "Retail",
+    tagline: "Estrategia digital para empresa de retail",
+    description:
+      "Acompañamos a Schepens en su presencia digital con gestión de redes sociales, contenido orientado a conversión y campañas de publicidad paga. Conectamos la marca con nuevas audiencias y potenciamos sus ventas online.",
+    services: ["Redes Sociales", "Performance Ads", "Estrategia Digital"],
+    result: "Mayor alcance digital y crecimiento sostenido en ventas online",
+  },
+  {
+    name: "CMVet",
+    logo: "/logos/Cmvet.jpg",
+    url: "#",
+    industry: "Aplicación Web · Veterinaria",
+    tagline: "Sistema a medida para análisis clínicos veterinarios",
+    description:
+      "Desarrollamos un sistema completo para CMVet Centenario que se conecta directamente con las máquinas de análisis de sangre del laboratorio. La plataforma importa los datos automáticamente, organiza los resultados por paciente y panel (Bioquímica, Cinética Enzimática, etc.), y genera informes PDF profesionales con un solo clic, listos para entregar al veterinario.",
+    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "Sistema a medida"],
+    result: "Miles de análisis procesados con generación automática de informes PDF",
+    previews: ["/previews/cmvet1.png", "/previews/cmvet2.png"],
+  },
+  {
+    name: "PlotChain",
+    logo: "/logos/Plotchain.png",
+    url: "http://plotchain.io/",
+    industry: "Tecnología & Blockchain",
+    tagline: "Posicionamiento de marca en el ecosistema Web3",
+    description:
+      "Trabajamos con PlotChain en su estrategia de comunicación y posicionamiento dentro del ecosistema blockchain. Desarrollamos contenido técnico accesible y campañas de awareness para atraer inversores y usuarios a su plataforma.",
+    services: ["Estrategia Digital", "Branding", "Contenido Técnico"],
+    result: "Mayor visibilidad y crecimiento de comunidad en el sector Web3",
+  },
+  {
     name: "RR Sintético",
     logo: "/logos/Rrsintetico.png",
     url: "https://rrsintetico.com/",
@@ -52,63 +109,6 @@ const brands: Brand[] = [
     services: ["Diseño Web", "Next.js", "Tailwind"],
     result: "Dos sitios en producción: cortinas metálicas y correduría de seguros",
     previews: ["/previews/monacocor.png", "/previews/monacoseg.png"],
-  },
-  {
-    name: "Schepens",
-    logo: "/logos/scheppens.png",
-    url: "https://www.schepens.com.ar/",
-    industry: "Retail",
-    tagline: "Estrategia digital para empresa de retail",
-    description:
-      "Acompañamos a Schepens en su presencia digital con gestión de redes sociales, contenido orientado a conversión y campañas de publicidad paga. Conectamos la marca con nuevas audiencias y potenciamos sus ventas online.",
-    services: ["Redes Sociales", "Performance Ads", "Estrategia Digital"],
-    result: "Mayor alcance digital y crecimiento sostenido en ventas online",
-  },
-  {
-    name: "Vittal",
-    logo: "/logos/vittal.png",
-    url: "https://www.vittal.com.ar/",
-    industry: "Salud",
-    tagline: "Comunicación digital para servicio de emergencias médicas",
-    description:
-      "Gestionamos la comunicación digital de Vittal con contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a la captación de nuevos socios con mensajes claros, empáticos y de alto impacto.",
-    services: ["Gestión de Redes", "Performance Ads", "Contenido Digital"],
-    result: "Mejora en engagement y captación de nuevos socios",
-  },
-  {
-    name: "PlotChain",
-    logo: "/logos/Plotchain.png",
-    url: "http://plotchain.io/",
-    industry: "Tecnología & Blockchain",
-    tagline: "Posicionamiento de marca en el ecosistema Web3",
-    description:
-      "Trabajamos con PlotChain en su estrategia de comunicación y posicionamiento dentro del ecosistema blockchain. Desarrollamos contenido técnico accesible y campañas de awareness para atraer inversores y usuarios a su plataforma.",
-    services: ["Estrategia Digital", "Branding", "Contenido Técnico"],
-    result: "Mayor visibilidad y crecimiento de comunidad en el sector Web3",
-  },
-  {
-    name: "ADN",
-    logo: "/logos/Adn.png",
-    url: "https://adndevelopers.com.ar/",
-    industry: "Aplicación Web",
-    tagline: "Plataforma inmobiliaria con CRM a medida",
-    description:
-      "Desarrollamos para ADN Developers una plataforma inmobiliaria con gestión de propiedades y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
-    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
-    result: "CRM en producción gestionando múltiples proyectos DOME activos",
-    previews: ["/previews/adn.png", "/previews/paneladn.png"],
-  },
-  {
-    name: "CMVet",
-    logo: "/logos/Cmvet.jpg",
-    url: "#",
-    industry: "Aplicación Web · Veterinaria",
-    tagline: "Sistema a medida para análisis clínicos veterinarios",
-    description:
-      "Desarrollamos un sistema completo para CMVet Centenario que se conecta directamente con las máquinas de análisis de sangre del laboratorio. La plataforma importa los datos automáticamente, organiza los resultados por paciente y panel (Bioquímica, Cinética Enzimática, etc.), y genera informes PDF profesionales con un solo clic, listos para entregar al veterinario.",
-    services: ["Desarrollo Full Stack", "Next.js", "Node.js", "Sistema a medida"],
-    result: "Miles de análisis procesados con generación automática de informes PDF",
-    previews: ["/previews/cmvet1.png", "/previews/cmvet2.png"],
   },
   {
     name: "Imperio 51",
@@ -326,22 +326,31 @@ export function BrandsCarousel() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative aspect-[5/3] flex flex-col items-center justify-center bg-background/30 backdrop-blur-sm border border-foreground/10 rounded-2xl px-5 py-5 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 hover:border-primary/40 hover:bg-background/50 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/8 transition-all duration-300 cursor-pointer text-left"
+                className="group relative flex flex-col items-center justify-between h-[100px] md:h-[112px] bg-foreground/[0.04] hover:bg-foreground/[0.07] backdrop-blur-sm border border-foreground/8 hover:border-primary/35 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 cursor-pointer"
                 aria-label={`Ver proyecto de ${brand.name}`}
-                title={`Ver trabajo con ${brand.name}`}
               >
-                <img
-                  src={brand.logo || "/placeholder.svg"}
-                  alt={brand.name}
-                  loading="lazy"
-                  className="max-h-12 md:max-h-14 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
-                />
-                {/* Overlay hint */}
-                <span className="absolute inset-0 flex items-end justify-center pb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-primary/80">
-                    Ver proyecto
+                {/* Línea accent top */}
+                <span className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                {/* Área logo */}
+                <div className="w-full flex items-center justify-center px-6 pt-6 pb-4 flex-1">
+                  <img
+                    src={brand.logo || "/placeholder.svg"}
+                    alt={brand.name}
+                    loading="lazy"
+                    className="max-h-11 md:max-h-14 max-w-[82%] object-contain grayscale opacity-45 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                  />
+                </div>
+
+                {/* Footer de la card */}
+                <div className="w-full px-3 pb-3 flex items-center justify-between gap-1">
+                  <span className="text-[10px] font-medium text-foreground/30 group-hover:text-foreground/65 transition-colors duration-300 truncate leading-tight">
+                    {brand.name}
                   </span>
-                </span>
+                  <span className="text-[9px] font-semibold uppercase tracking-wider text-primary/0 group-hover:text-primary/70 transition-all duration-300 whitespace-nowrap flex-shrink-0">
+                    Ver →
+                  </span>
+                </div>
               </motion.button>
             ))}
           </div>
