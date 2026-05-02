@@ -10,7 +10,6 @@ import { ContactSection } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { ConstellationBackground } from "@/components/constellation-background"
 import { GridOverlay } from "@/components/grid-overlay"
-import { FloatingParticles } from "@/components/floating-particles"
 import { StarField } from "@/components/star-field"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { ScrollToTop } from "@/components/scroll-to-top"
@@ -23,7 +22,6 @@ export default function Home() {
     <>
       <StructuredData />
       <main className="relative min-h-screen overflow-hidden">
-        <FloatingParticles />
         <ConstellationBackground />
         <StarField />
         <GridOverlay />

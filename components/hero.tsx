@@ -199,10 +199,11 @@ export function Hero() {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6 [clip-path:inset(0_0_-100vh_0)]">
-      {/* Glow ambiental — extiende suavemente más allá del hero para evitar cortes */}
-      <div className="absolute top-1/4 left-[15%] w-[42rem] h-[42rem] bg-primary/[0.07] rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute -bottom-40 right-[15%] w-[44rem] h-[44rem] bg-accent/[0.06] rounded-full blur-[150px] pointer-events-none -z-10" />
-      <div className="absolute -bottom-60 left-1/2 -translate-x-1/2 w-[60rem] h-[24rem] bg-primary/[0.04] rounded-[50%] blur-[120px] pointer-events-none -z-10" />
+      {/* Glow ambiental — combinado en una sola capa para reducir coste de blur */}
+      <div className="absolute inset-0 pointer-events-none -z-10 overflow-visible">
+        <div className="absolute top-1/4 left-[15%] w-[42rem] h-[42rem] bg-primary/[0.07] rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 right-[15%] w-[44rem] h-[44rem] bg-accent/[0.06] rounded-full blur-3xl" />
+      </div>
 
       <div className="scan-effect" />
 
