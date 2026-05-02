@@ -25,6 +25,12 @@ const showcaseScreens = [
     client: "RR Sintético",
     url: "rrsintetico.com/track",
   },
+    {
+    src: "/previews/soulsecurity.png",
+    label: "Pagina web empresarial",
+    client: "Soul Security",
+    url: "soulsecurity.com.ar",
+  },
 ]
 
 function BrowserMockup() {
