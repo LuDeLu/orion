@@ -190,7 +190,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://orionmkt.com.ar/logohorizontal.png",
+        url: "https://orionmkt.com.ar/logohorizontal2.png",
         width: 512,
         height: 512,
         alt: "Orion Marketing Logo - Orion MKT Argentina",
@@ -207,7 +207,7 @@ export const metadata: Metadata = {
     description:
       "Orion Marketing - Agencia líder en marketing digital para PyMEs y Startups. Branding, Social Media, Ads, Web. ROI garantizado. Consultoría gratuita.",
     images: {
-      url: "https://orionmkt.com.ar/logohorizontal.png",
+      url: "https://orionmkt.com.ar/logohorizontal2.png",
       alt: "Orion Marketing - Agencia de Marketing Digital Argentina",
     },
   },
