@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, TrendingUp, Users, Target } from "lucide-react"
+import { ArrowRight, TrendingUp, Target, Search, Database, LayoutDashboard, Workflow } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 import { Button } from "@/components/ui/button"
@@ -8,126 +8,185 @@ import Link from "next/link"
 
 const cases = [
   {
-    industry: "E-commerce",
-    title: "Más visibilidad y ventas para una tienda online local",
+    client: "Schepens",
+    industry: "SEO & Marketing Digital",
+    title: "De un sitio sin alcance a referente digital del rubro",
     challenge:
-      "Una tienda online local necesitaba aumentar su presencia digital y atraer clientes nuevos en un mercado cada vez más competitivo.",
+      "Schepens tenía un sitio web sin conversiones, sin alcance orgánico y con un diseño que no transmitía la calidad real de su producto. Cada visita se perdía sin generar contacto y la marca era prácticamente invisible en buscadores.",
     solution:
-      "Estructuramos campañas de Meta Ads con segmentación precisa, ajustamos el perfil de Instagram y mejoramos la comunicación visual de los productos.",
+      "Rediseñamos el sitio completo con foco en conversión, implementamos una estrategia de SEO técnico y de contenidos, y reforzamos la presencia digital con una propuesta visual mucho más atractiva y alineada a la marca.",
     results: [
-      { icon: TrendingUp, metric: "+40%", label: "Ventas en 3 meses" },
-      { icon: Users, metric: "×2", label: "Alcance orgánico" },
-      { icon: Target, metric: "Menor CPL", label: "Costo por cliente" },
+      { icon: Search, metric: "SEO+", label: "Posicionamiento orgánico" },
+      { icon: TrendingUp, metric: "Visitas", label: "Crecimiento sostenido" },
+      { icon: Target, metric: "Conversiones", label: "Mejora real en leads" },
     ],
   },
   {
-    industry: "Servicios",
-    title: "Construcción de marca desde cero para una startup",
+    client: "ADN Developers",
+    industry: "Desarrollo a medida",
+    title: "De información dispersa a un CRM que cierra ventas",
     challenge:
-      "Una startup de servicios profesionales no tenía presencia digital definida ni identidad de marca que le generara confianza frente a sus clientes potenciales.",
+      "ADN era una inmobiliaria con la información de proyectos y unidades dispersa entre planillas, mails y carpetas. Difundir datos actualizados a clientes era lento y confuso, y eso frenaba el cierre de operaciones.",
     solution:
-      "Desarrollamos su identidad visual, creamos sus perfiles en redes sociales y lanzamos una estrategia de contenido enfocada en posicionarse en su rubro.",
+      "Diseñamos y desarrollamos un CRM interno a medida que centraliza absolutamente todo: proyectos, departamentos uno a uno, estados, clientes y seguimiento de ventas. Una sola fuente de verdad para todo el equipo.",
     results: [
-      { icon: Users, metric: "+500", label: "Seguidores en 60 días" },
-      { icon: Target, metric: "Marca definida", label: "Identidad cohesiva" },
-      { icon: TrendingUp, metric: "Consultas", label: "Primeros leads reales" },
-    ],
-  },
-  {
-    industry: "Diseño & Branding",
-    title: "Renovación visual para conectar mejor con la audiencia",
-    challenge:
-      "Una marca con tiempo en el mercado sentía que su imagen no la representaba y que le costaba diferenciarse visualmente de la competencia.",
-    solution:
-      "Rediseñamos su identidad visual y adaptamos el lenguaje gráfico a sus redes sociales, logrando una comunicación más coherente y atractiva.",
-    results: [
-      { icon: Users, metric: "Engagement", label: "Mejor conexión con el público" },
-      { icon: Target, metric: "Imagen clara", label: "Diferenciación lograda" },
-      { icon: TrendingUp, metric: "Consistencia", label: "Comunicación unificada" },
+      { icon: Database, metric: "100%", label: "Información centralizada" },
+      { icon: LayoutDashboard, metric: "Unidad x unidad", label: "Trazabilidad total" },
+      { icon: Workflow, metric: "Más ventas", label: "Cierre más ágil" },
     ],
   },
 ]
 
 export function CaseStudies() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   return (
-    <section ref={ref} id="casos" className="relative py-20 px-4" aria-labelledby="cases-heading">
+    <section ref={ref} id="casos" className="relative py-28 px-4" aria-labelledby="cases-heading">
       <div className="max-w-7xl mx-auto">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-20 max-w-3xl mx-auto"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
-            Expertise
-          </span>
+          <div className="inline-flex items-center gap-2 mb-5">
+            <span className="h-px w-8 bg-primary/40" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-primary/80">
+              Casos de éxito
+            </span>
+            <span className="h-px w-8 bg-primary/40" />
+          </div>
           <h2
             id="cases-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mb-6 text-balance leading-[1.05]"
           >
             Soluciones reales para{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               problemas concretos
             </span>
           </h2>
-          <p className="text-foreground/60 text-xl text-pretty">
-            Cada caso parte de un desafío distinto. Así diseñamos la respuesta — y los resultados que se obtuvieron.
+          <p className="text-foreground/55 text-lg md:text-xl text-pretty leading-relaxed">
+            Cada proyecto parte de un desafío distinto. Estos son dos ejemplos de cómo lo resolvimos.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        {/* Cards */}
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-16">
           {cases.map((caseStudy, index) => (
             <motion.article
-              key={index}
+              key={caseStudy.client}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`glass-card rounded-2xl p-8 hover-lift ${cases.length % 2 === 1 && index === cases.length - 1 ? 'md:col-span-2 md:w-1/2 md:mx-auto' : ''
-                }`}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-foreground/[0.04] to-foreground/[0.01] border border-foreground/10 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10"
             >
-              <div className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider mb-4">
-                {caseStudy.industry}
-              </div>
-              <h3 className="text-2xl font-display font-bold text-foreground mb-4">{caseStudy.title}</h3>
+              {/* Glow accent */}
+              <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground/80 mb-2">El Desafío</h4>
-                  <p className="text-foreground/60 text-m">{caseStudy.challenge}</p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-foreground/80 mb-2">La Solución</h4>
-                  <p className="text-foreground/60 text-m">{caseStudy.solution}</p>
-                </div>
-              </div>
+              {/* Top decorative line */}
+              <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
-              <div className="border-t border-border/40 pt-5">
-                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-4">Resultados</p>
-                <div className="grid grid-cols-3 gap-3">
-                  {caseStudy.results.map((result, i) => (
-                    <div key={i} className="bg-primary/5 border border-primary/15 rounded-xl p-3 text-center">
-                      <result.icon className="w-4 h-4 text-primary mx-auto mb-1.5" />
-                      <div className="hidden sm:block text-xl font-bold text-foreground">{result.metric}</div>
-                      <div className="text-[10px] sm:text-xs text-foreground/50 leading-tight mt-0.5 break-words hyphens-auto">{result.label}</div>
+              {/* Watermark number */}
+              <span
+                aria-hidden
+                className="absolute top-4 right-6 text-[110px] md:text-[140px] font-display font-bold leading-none text-foreground/[0.025] select-none pointer-events-none"
+              >
+                0{index + 1}
+              </span>
+
+              <div className="relative p-8 md:p-10">
+                {/* Header */}
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-5 flex-wrap">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary/70">
+                      Caso 0{index + 1}
+                    </span>
+                    <span className="h-px flex-1 bg-foreground/10" />
+                    <span className="text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
+                      {caseStudy.industry}
+                    </span>
+                  </div>
+
+                  <p className="text-xs uppercase tracking-[0.2em] font-semibold text-foreground/40 mb-2">
+                    Cliente
+                  </p>
+                  <h3 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-5 leading-tight">
+                    {caseStudy.client}
+                  </h3>
+
+                  <p className="text-lg md:text-xl text-foreground/75 font-display leading-snug text-balance">
+                    {caseStudy.title}
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent mb-8" />
+
+                {/* Desafío + Solución */}
+                <div className="space-y-6 mb-8">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <span className="w-1 h-4 rounded-full bg-foreground/30" />
+                      <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/45">
+                        El desafío
+                      </h4>
                     </div>
-                  ))}
+                    <p className="text-foreground/65 leading-relaxed pl-3">{caseStudy.challenge}</p>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-2 mb-2.5">
+                      <span className="w-1 h-4 rounded-full bg-primary" />
+                      <h4 className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary/80">
+                        Nuestra solución
+                      </h4>
+                    </div>
+                    <p className="text-foreground/75 leading-relaxed pl-3">{caseStudy.solution}</p>
+                  </div>
+                </div>
+
+                {/* Resultados */}
+                <div className="pt-6 border-t border-foreground/8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                    <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-primary/80">
+                      Resultados
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-2 md:gap-3">
+                    {caseStudy.results.map((result, i) => (
+                      <div
+                        key={i}
+                        className="relative bg-foreground/[0.03] hover:bg-primary/5 border border-foreground/8 hover:border-primary/25 rounded-xl p-3 md:p-4 transition-all duration-300 overflow-hidden group/metric"
+                      >
+                        <result.icon className="w-4 h-4 text-primary/70 mb-2 transition-transform duration-300 group-hover/metric:scale-110" />
+                        <div className="text-sm md:text-base font-bold text-foreground leading-tight mb-1 break-words">
+                          {result.metric}
+                        </div>
+                        <div className="text-[10px] md:text-xs text-foreground/45 leading-tight">
+                          {result.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-
             </motion.article>
           ))}
         </div>
 
-
+        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
+          <p className="text-foreground/50 text-sm mb-5">
+            ¿Tu negocio tiene un desafío parecido?
+          </p>
           <Button
             size="lg"
             className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-foreground px-8 py-6 text-base font-semibold group rounded-full hover-lift"
