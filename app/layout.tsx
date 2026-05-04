@@ -20,11 +20,11 @@ const _spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: "Orion Marketing | Agencia de Marketing Digital Argentina | Orion MKT",
-    template: "%s | Orion Marketing - Agencia de Marketing Digital Argentina",
+    default: "Orion Marketing | Agencia de Marketing Digital en Argentina",
+    template: "%s | Orion Marketing",
   },
   description:
-    "Orion Marketing es la agencia de marketing digital líder en Argentina. Especialistas en branding, redes sociales, Google Ads, Facebook Ads, diseño web y estrategias digitales para PyMEs y Startups. Orion MKT - Tu negocio, nuestro universo. Consultoría gratuita.",
+    "Somos una agencia de marketing digital en Argentina enfocada en PyMEs y Startups. Branding, redes sociales, Google Ads, Meta Ads y diseño web con estrategia y resultados medibles. Tu negocio, nuestro universo.",
   metadataBase: new URL("https://orionmkt.com.ar"),
   alternates: {
     canonical: "https://orionmkt.com.ar",
@@ -181,19 +181,19 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Orion Marketing | Agencia de Marketing Digital #1 en Argentina",
+    title: "Orion Marketing | Agencia de Marketing Digital en Argentina",
     description:
-      "Orion Marketing - La agencia de marketing digital líder para PyMEs y Startups en Argentina. Branding, Social Media, Google Ads, Facebook Ads, Diseño Web. ROI garantizado. Consultoría gratuita. Tu negocio, nuestro universo.",
+      "Agencia de marketing digital para PyMEs y Startups: branding, redes sociales, Google Ads, Meta Ads y diseño web. Tu negocio, nuestro universo.",
     url: "https://orionmkt.com.ar",
-    siteName: "Orion Marketing - Orion MKT",
+    siteName: "Orion Marketing",
     locale: "es_AR",
     type: "website",
     images: [
       {
-        url: "https://orionmkt.com.ar/logohorizontal2.png",
-        width: 512,
-        height: 512,
-        alt: "Orion Marketing Logo - Orion MKT Argentina",
+        url: "https://orionmkt.com.ar/og-image-share.png",
+        width: 1200,
+        height: 630,
+        alt: "Orion Marketing - Agencia de Marketing Digital",
         type: "image/png",
       },
     ],
@@ -203,12 +203,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@orionmkt",
     creator: "@orionmkt",
-    title: "Orion Marketing | Agencia de Marketing Digital Argentina",
+    title: "Orion Marketing | Agencia de Marketing Digital en Argentina",
     description:
-      "Orion Marketing - Agencia líder en marketing digital para PyMEs y Startups. Branding, Social Media, Ads, Web. ROI garantizado. Consultoría gratuita.",
+      "Branding, redes sociales, ads y diseño web para PyMEs y Startups. Tu negocio, nuestro universo.",
     images: {
-      url: "https://orionmkt.com.ar/logohorizontal2.png",
-      alt: "Orion Marketing - Agencia de Marketing Digital Argentina",
+      url: "https://orionmkt.com.ar/og-image-share.png",
+      width: 1200,
+      height: 630,
+      alt: "Orion Marketing - Agencia de Marketing Digital",
     },
   },
   robots: {
@@ -272,7 +274,7 @@ export const metadata: Metadata = {
     "DC.title": "Orion Marketing - Agencia de Marketing Digital Argentina",
     "DC.creator": "Orion Marketing",
     "DC.subject": "Marketing Digital, Publicidad, Branding, Social Media",
-    "DC.description": "Agencia de marketing digital líder en Argentina para PyMEs y Startups",
+    "DC.description": "Agencia de marketing digital en Argentina enfocada en PyMEs y Startups",
     "DC.publisher": "Orion Marketing",
     "DC.language": "es-AR",
     "DC.coverage": "Argentina, Latinoamérica",
