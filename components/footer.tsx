@@ -35,9 +35,6 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-2 mb-6">
-            <Link href="/" className="flex items-center">
-              <img src="/logohorizontal2.png" alt="Orion MKT" className="h-22 w-63" />
-            </Link>
             <p className="text-muted-foreground max-w-sm mb-6">
               Agencia de marketing digital especializada en PyMEs y startups. Impulsamos tu negocio con estrategias
               innovadoras y resultados medibles.
