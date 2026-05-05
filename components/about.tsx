@@ -11,12 +11,6 @@ const features = [
   "Reportes claros y transparentes",
 ]
 
-const stats = [
-  { icon: Calendar, value: "1", label: "Año de experiencia" },
-  { icon: Users, value: "5+", label: "Clientes activos" },
-  { icon: Trophy, value: "100%", label: "Satisfacción" },
-  { icon: TrendingUp, value: "2x", label: "ROI Promedio" },
-]
 
 export function About() {
   const ref = useRef(null)
@@ -37,22 +31,21 @@ export function About() {
             </div>
             <h2
               id="about-heading"
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+              className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
             >
-              Una agencia que diseña{" "}
+              Una agencia que empieza{" "}
               <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                soluciones a medida
+                por entenderte
               </span>
             </h2>
             <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              Orion es una agencia con base en Buenos Aires que trabaja con PyMEs y startups de toda
-              Argentina. No creemos en planes genéricos: cada proyecto arranca con un diagnóstico
-              real del negocio, su mercado y su equipo.
+              Somos un equipo de Buenos Aires que trabaja con PyMEs y startups de toda
+              la región. Cada cliente es un mundo, y lo tratamos como tal. Por eso arrancamos siempre con un diagnóstico real antes de tirar cualquier idea arriba de la mesa.
             </p>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-pretty">
               Combinamos branding, marketing digital, diseño y desarrollo en una propuesta única
               para cada cliente. Trabajamos cerca, ajustamos sobre la marcha y medimos lo que
-              importa. El objetivo no es ejecutar tareas, es resolver problemas concretos.
+              importa.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-8">
@@ -66,22 +59,6 @@ export function About() {
                 >
                   <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
                   <span className="text-foreground">{feature}</span>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="glass-card rounded-xl p-4 text-center hover-lift"
-                >
-                  <stat.icon className="w-6 h-6 text-primary mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                  <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
                 </motion.div>
               ))}
             </div>

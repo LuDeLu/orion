@@ -10,28 +10,28 @@ const workflowSteps = [
     icon: Search,
     title: "Descubrimiento y Análisis",
     description:
-      "Escuchamos tu idea de negocio, analizamos tu mercado objetivo y entendemos tus objetivos comerciales. Definimos el público ideal y los desafíos específicos de tu PyME o Startup para avanzar con la estrategia correcta.",
+      "Nos sentamos con vos, escuchamos tu idea y entendemos a quién le querés vender. Antes de arrancar con cualquier estrategia, necesitamos tener claro el panorama completo.",
   },
   {
     number: "02",
     icon: ClipboardList,
     title: "Estrategia de Marketing Digital",
     description:
-      "Estudiamos tu mercado, competencia y audiencia para detectar oportunidades en branding, redes sociales y publicidad digital. Definimos el enfoque más efectivo con KPIs medibles y plan de acción detallado.",
+      "Antes de hacer cualquier cosa, entendemos el terreno: competencia, audiencia, oportunidades. De ahí sale el plan, con objetivos claros y forma de medir si está funcionando.",
   },
   {
     number: "03",
     icon: Rocket,
     title: "Ejecución y Optimización",
     description:
-      "Implementamos la estrategia de marketing digital con foco en rendimiento y resultados. Lanzamos campañas de Facebook Ads, Instagram Ads, contenido para redes sociales y diseño web, optimizando cada acción constantemente.",
+      "Ejecutamos todo: campañas en Meta, contenido, diseño web. Y mientras corre, estamos encima ajustando lo que haga falta para que los resultados mejoren cada día.",
   },
   {
     number: "04",
     icon: TrendingUp,
     title: "Medición, Análisis y Escalado",
     description:
-      "Medimos resultados con reportes transparentes, analizamos métricas de ROI, ajustamos la estrategia en tiempo real y escalamos lo que funciona para impulsar el crecimiento sostenible de tu negocio digital.",
+      "Reportes claros y concretos. Revisamos las métricas, tomamos decisiones y optimizamos todo el tiempo para que tu negocio siga creciendo.",
   },
 ]
 
@@ -71,15 +71,15 @@ export function Workflow() {
           </span>
           <h2
             id="workflow-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+            className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
           >
-            De diagnóstico a resultados,{" "}
+            Del diagnóstico a los resultados,{" "}
             <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              sin recetas genéricas
+              sin vueltas.
             </span>
           </h2>
           <p className="text-foreground/60 text-xl text-pretty">
-            Cada cliente arranca con un diagnóstico real y termina con un plan único. Este es el camino que recorremos juntos.
+            Cada cliente arranca con un diagnóstico real y termina con un plan hecho a su medida, con foco en resultados concretos y crecimiento sostenible.
           </p>
         </motion.div>
 

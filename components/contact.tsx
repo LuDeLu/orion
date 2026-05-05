@@ -136,7 +136,7 @@ export function ContactSection() {
                   className="w-full h-12 px-4 rounded-xl border border-[#2c2447]/30 bg-[#2c2447]/20 backdrop-blur-sm text-[#F0F0EB] placeholder:text-[#F0F0EB]/40 focus:border-[#e0642f] focus:outline-none focus:ring-2 focus:ring-[#e0642f]/20"
                 >
                   <option value="" className="bg-[#2c2447] text-[#F0F0EB]">
-                    ¿Qué tipo de proyecto necesitás?
+                    ¿Qué tipo de servicio necesitás?
                   </option>
                   <option value="branding" className="bg-[#2c2447] text-[#F0F0EB]">
                     Branding

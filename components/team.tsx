@@ -48,7 +48,7 @@ const team: Member[] = [
   {
     id: "lucas",
     name: "Lucas Baez",
-    role: "Fundador",
+    role: "CEO",
     area: "Desarrollo de software & web",
     initials: "LB",
     icon: Code2,
@@ -84,8 +84,8 @@ const team: Member[] = [
   },
   {
     id: "david",
-    name: "David Cabella",
-    role: "Fundador",
+    name: "Davi Cabella",
+    role: "Co-fundador",
     area: "Marketing & estrategia",
     initials: "DC",
     icon: Megaphone,
@@ -102,7 +102,7 @@ const team: Member[] = [
       "Diseña la estrategia comercial de cada cliente: posicionamiento, embudo, contenido y campañas.",
     bio: [
       "Especialista en marketing digital y co-fundador de Orion. Diseña la estrategia comercial de cada cliente: posicionamiento, embudo, contenido y campañas pagas.",
-      "Su enfoque combina branding y performance: construir marcas que se sostengan en el tiempo y, al mismo tiempo, generen demanda medible mes a mes.",
+      "Su enfoque combina branding y performance: construir marcas que se sostengan en el tiempo y; que al mismo tiempo, generen demanda medible mes a mes.",
     ],
     skills: [
       "Estrategia digital",
@@ -111,6 +111,13 @@ const team: Member[] = [
       "Embudos de conversión",
       "Analítica & KPIs",
       "Contenido",
+      "Desarrollo de marca",
+      "Tono",
+      "Research",
+      "Benchmark",
+      "SocialMedia Strategy",
+      "Listening",
+
     ],
     showcase: {
       type: "linkedin",
@@ -122,7 +129,7 @@ const team: Member[] = [
   {
     id: "annie",
     name: "Annie Ojeda",
-    role: "Fundadora",
+    role: "Co-fundadora",
     area: "Diseño gráfico & dirección creativa",
     initials: "AO",
     icon: Palette,
@@ -147,7 +154,7 @@ const team: Member[] = [
       "Sistemas de marca",
       "Dirección creativa",
       "Piezas para redes",
-      "Ilustración",
+      "Contenido pautable",
     ],
     showcase: {
       type: "external",
