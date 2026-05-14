@@ -1,21 +1,36 @@
 import { Header } from "@/components/header"
 import { Hero } from "@/components/hero"
-import { Services } from "@/components/services"
-import { About } from "@/components/about"
-import { Workflow } from "@/components/workflow"
 import { BrandsCarousel } from "@/components/brands-carousel"
-import { Team } from "@/components/team"
-import { Testimonials } from "@/components/testimonials"
-import { ContactSection } from "@/components/contact"
-import { Footer } from "@/components/footer"
-import { ConstellationBackground } from "@/components/constellation-background"
-import { GridOverlay } from "@/components/grid-overlay"
-import { StarField } from "@/components/star-field"
-import { WhatsAppButton } from "@/components/whatsapp-button"
-import { ScrollToTop } from "@/components/scroll-to-top"
-import { CaseStudies } from "@/components/case-studies"
+import { About } from "@/components/about"
 import { StructuredData } from "@/components/structured-data"
+import { GridOverlay } from "@/components/grid-overlay"
+import dynamic from "next/dynamic"
 import { Suspense } from "react"
+
+// Background canvas effects (client-only animations, hydrate after main)
+const ConstellationBackground = dynamic(() =>
+  import("@/components/constellation-background").then((m) => m.ConstellationBackground)
+)
+const StarField = dynamic(() =>
+  import("@/components/star-field").then((m) => m.StarField)
+)
+
+// Below-the-fold sections: split out to keep the initial JS bundle small
+const Team = dynamic(() => import("@/components/team").then((m) => m.Team))
+const Services = dynamic(() => import("@/components/services").then((m) => m.Services))
+const CaseStudies = dynamic(() => import("@/components/case-studies").then((m) => m.CaseStudies))
+const Workflow = dynamic(() => import("@/components/workflow").then((m) => m.Workflow))
+const Testimonials = dynamic(() => import("@/components/testimonials").then((m) => m.Testimonials))
+const ContactSection = dynamic(() =>
+  import("@/components/contact").then((m) => m.ContactSection)
+)
+const Footer = dynamic(() => import("@/components/footer").then((m) => m.Footer))
+const WhatsAppButton = dynamic(() =>
+  import("@/components/whatsapp-button").then((m) => m.WhatsAppButton)
+)
+const ScrollToTop = dynamic(() =>
+  import("@/components/scroll-to-top").then((m) => m.ScrollToTop)
+)
 
 export default function Home() {
   return (

@@ -2,6 +2,7 @@
 
 import { CheckCircle2, Users, Trophy, TrendingUp, Star, Calendar, BarChart2, MessageSquare, Zap, Globe2 } from "lucide-react"
 import { motion, useInView } from "framer-motion"
+import Image from "next/image"
 import { useRef } from "react"
 
 const features = [
@@ -161,7 +162,7 @@ export function About() {
                   <div className="relative">
                     <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-xl" />
                     <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/40 to-accent/20 border border-primary/30 flex items-center justify-center shadow-lg shadow-primary/10">
-                      <img src="/logo.png" alt="Orion MKT" className="h-9 w-9 object-contain" />
+                      <Image src="/logo.png" alt="Orion MKT" width={36} height={36} className="h-9 w-9 object-contain" />
                     </div>
                   </div>
                   <span className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/40">Orion Marketing</span>

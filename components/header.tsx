@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
@@ -90,9 +91,12 @@ export function Header() {
             >
               <div className="relative">
                 <span className="absolute inset-0 bg-primary/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
-                <img
+                <Image
                   src="/logohorizontal3.png"
                   alt="Orion MKT"
+                  width={180}
+                  height={48}
+                  priority
                   className={`relative w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
                     scrolled ? "h-10" : "h-12"
                   }`}

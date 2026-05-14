@@ -2,6 +2,7 @@
 
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState } from "react"
+import Image from "next/image"
 import { X, ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
 
 type Brand = {
@@ -19,7 +20,7 @@ type Brand = {
 const brands: Brand[] = [
   {
     name: "Vittal",
-    logo: "/logos/vittal.png",
+    logo: "/logos/vittal.webp",
     url: "https://www.vittal.com.ar/",
     industry: "Salud",
     tagline: "Comunicación digital para servicio de emergencias médicas",
@@ -30,7 +31,7 @@ const brands: Brand[] = [
   },
   {
     name: "ADN",
-    logo: "/logos/Adn.png",
+    logo: "/logos/Adn.webp",
     url: "https://adndevelopers.com.ar/",
     industry: "Aplicación Web",
     tagline: "Plataforma constructora con CRM a medida",
@@ -38,11 +39,11 @@ const brands: Brand[] = [
       "Desarrollamos para ADN Developers una plataforma constructora con gestión de proyectos y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
     result: "CRM en producción gestionando múltiples proyectos DOME activos",
-    previews: ["/previews/adn.png", "/previews/paneladn.png"],
+    previews: ["/previews/adn.webp", "/previews/paneladn.webp"],
   },
   {
     name: "Schepens",
-    logo: "/logos/scheppens.png",
+    logo: "/logos/scheppens.webp",
     url: "https://www.schepens.com.ar/",
     industry: "Retail",
     tagline: "Estrategia digital para empresa de retail",
@@ -53,7 +54,7 @@ const brands: Brand[] = [
   },
   {
     name: "CMVet",
-    logo: "/logos/Cmvet.jpg",
+    logo: "/logos/Cmvet.webp",
     url: "#",
     industry: "Aplicación Web · Veterinaria",
     tagline: "Sistema a medida para análisis clínicos veterinarios",
@@ -61,11 +62,11 @@ const brands: Brand[] = [
       "Desarrollamos un sistema completo para CMVet Centenario que se conecta directamente con las máquinas de análisis de sangre del laboratorio. La plataforma importa los datos automáticamente, organiza los resultados por paciente y panel (Bioquímica, Cinética Enzimática, etc.), y genera informes PDF profesionales con un solo clic, listos para entregar al veterinario.",
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "Sistema a medida"],
     result: "Miles de análisis procesados con generación automática de informes PDF",
-    previews: ["/previews/cmvet1.png", "/previews/cmvet2.png"],
+    previews: ["/previews/cmvet1.webp", "/previews/cmvet2.webp"],
   },
   {
     name: "PlotChain",
-    logo: "/logos/Plotchain.png",
+    logo: "/logos/Plotchain.webp",
     url: "http://plotchain.io/",
     industry: "Tecnología & Blockchain",
     tagline: "Posicionamiento de marca en el ecosistema Web3",
@@ -76,7 +77,7 @@ const brands: Brand[] = [
   },
   {
     name: "RR Sintético",
-    logo: "/logos/Rrsintetico.png",
+    logo: "/logos/Rrsintetico.webp",
     url: "https://rrsintetico.com/",
     industry: "Aplicación Web",
     tagline: "App web con sistema de cotizaciones y gestión de proyectos",
@@ -84,11 +85,11 @@ const brands: Brand[] = [
       "Desarrollamos el sitio web y la plataforma de gestión completa para RR Sintético: diseño dinámico con React y Node.js, APIs para cálculos exactos en cotizaciones, integración de pagos y gestión de inventario. También incluye un sistema de seguimiento logístico en tiempo real para sus entregas.",
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "MongoDB"],
     result: "Plataforma productiva en uso real con cotizador, inventario y tracking de pedidos",
-    previews: ["/previews/rrsintetico.png", "/previews/rrseguimientos.png"],
+    previews: ["/previews/rrsintetico.webp", "/previews/rrseguimientos.webp"],
   },
   {
     name: "Soul Security",
-    logo: "/logos/Soulsecurity.png",
+    logo: "/logos/Soulsecurity.webp",
     url: "https://soulsecurity.com.ar/",
     industry: "Sitio Web",
     tagline: "Sitio corporativo para empresa de seguridad privada",
@@ -96,11 +97,11 @@ const brands: Brand[] = [
       "Diseñamos y desarrollamos el sitio web corporativo de Soul Security, empresa especializada en instalación de cámaras, control de acceso y sistemas de seguridad para edificios. Sitio moderno, responsive y optimizado para generar consultas.",
     services: ["Diseño Web", "Next.js", "Tailwind"],
     result: "Sitio corporativo profesional que transmite confianza y genera consultas",
-    previews: ["/previews/soulsecurity.png"],
+    previews: ["/previews/soulsecurity.webp"],
   },
   {
     name: "Monaco Cortinas",
-    logo: "/logos/Monacocortinas.png",
+    logo: "/logos/Monacocortinas.webp",
     url: "https://www.monacocortinas.com.ar/",
     industry: "Sitio Web",
     tagline: "Sitio comercial con catálogo de productos y plan de repuesto",
@@ -108,11 +109,11 @@ const brands: Brand[] = [
       "Desarrollamos el sitio web de Monaco Cortinas con catálogo completo de productos y formulario de contacto, más una segunda plataforma para Monaco Seguros con cotizador online. Ambos proyectos en Next.js y Tailwind, con diseño profesional y enfocados en conversión.",
     services: ["Diseño Web", "Next.js", "Tailwind"],
     result: "Dos sitios en producción: cortinas metálicas y correduría de seguros",
-    previews: ["/previews/monacocor.png", "/previews/monacoseg.png"],
+    previews: ["/previews/monacocor.webp", "/previews/monacoseg.webp"],
   },
   {
     name: "Imperio 51",
-    logo: "/logos/I51.jpg",
+    logo: "/logos/I51.webp",
     url: "#",
     industry: "Sitio Web",
     tagline: "Sitio web moderno con identidad digital de alto impacto",
@@ -120,7 +121,7 @@ const brands: Brand[] = [
       "Diseñamos y desarrollamos el sitio web de Imperio 51, una marca digital construida con personalidad fuerte y estética futurista. Interfaz oscura con detalles en cyan, animaciones de entrada y una presentación visual que captura la identidad de la marca desde el primer scroll.",
     services: ["Diseño Web", "Next.js", "Tailwind", "Animaciones"],
     result: "Identidad digital única y presencia online que refleja el poder de la marca",
-    previews: ["/previews/I51.png"],
+    previews: ["/previews/I51.webp"],
   },
 ]
 
@@ -150,16 +151,22 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
         {hasPreviews && (
           <div className="relative w-full aspect-video bg-foreground/5 overflow-hidden flex-shrink-0">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={previewIndex}
-                src={previews[previewIndex]}
-                alt={`Vista previa ${previewIndex + 1}`}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.2 }}
-                className="w-full h-full object-cover object-top"
-              />
+                className="absolute inset-0"
+              >
+                <Image
+                  src={previews[previewIndex]}
+                  alt={`Vista previa ${previewIndex + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 512px"
+                  className="object-cover object-top"
+                />
+              </motion.div>
             </AnimatePresence>
 
             {/* Overlay gradiente bottom */}
@@ -220,10 +227,12 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
 
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-background/60 rounded-xl border border-foreground/10 flex items-center justify-center p-2 flex-shrink-0">
-              <img
+              <Image
                 src={brand.logo || "/placeholder.svg"}
                 alt={brand.name}
-                className="max-h-8 max-w-full object-contain"
+                width={48}
+                height={32}
+                className="max-h-8 max-w-full object-contain w-auto h-auto"
               />
             </div>
             <div>
@@ -334,11 +343,13 @@ export function BrandsCarousel() {
 
                 {/* Área logo */}
                 <div className="w-full flex items-center justify-center px-6 pt-6 pb-4 flex-1">
-                  <img
+                  <Image
                     src={brand.logo || "/placeholder.svg"}
                     alt={brand.name}
+                    width={160}
+                    height={56}
                     loading="lazy"
-                    className="max-h-11 md:max-h-14 max-w-[82%] object-contain grayscale opacity-45 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                    className="max-h-11 md:max-h-14 max-w-[82%] object-contain grayscale opacity-45 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105 w-auto h-auto"
                   />
                 </div>
 

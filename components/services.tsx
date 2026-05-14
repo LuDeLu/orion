@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { motion, useInView } from "framer-motion"
 
 const IconComponent = ({ src, alt }: { src: string; alt: string }) => (
-  <img src={src || "/placeholder.svg"} alt={alt} className="" />
+  <img src={src || "/placeholder.svg"} alt={alt} width={32} height={32} loading="lazy" decoding="async" />
 )
 
 const services = [

@@ -133,6 +133,25 @@
   html {
     scroll-behavior: smooth;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Adding new flow animations and effects */
@@ -350,4 +369,15 @@
   background-size: 100% 200vh;
   animation: scan 15s linear infinite;
   z-index: 2;
+  will-change: background-position;
+}
+
+/* Disable expensive fixed-overlay animations on small screens */
+@media (max-width: 768px) {
+  .scan-effect {
+    display: none;
+  }
+  .grain-overlay {
+    display: none;
+  }
 }

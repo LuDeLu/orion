@@ -3,30 +3,31 @@
 import { ArrowRight, MapPin, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
 const showcaseScreens = [
   {
-    src: "/previews/I51.png",
+    src: "/previews/I51.webp",
     label: "Pagina web",
     client: "Imperio 51",
     url: "Imperio51.com.ar",
   },
   {
-    src: "/previews/schepens.png",
+    src: "/previews/schepens.webp",
     label: "Renovacion de pagina web + SEO",
     client: "Schepens",
     url: "www.schepens.com.ar/",
   },
   {
-    src: "/previews/rrseguimientos.png",
+    src: "/previews/rrseguimientos.webp",
     label: "Tracking logístico",
     client: "RR Sintético",
     url: "rrsintetico.com/track",
   },
     {
-    src: "/previews/soulsecurity.png",
+    src: "/previews/soulsecurity.webp",
     label: "Pagina web empresarial",
     client: "Soul Security",
     url: "soulsecurity.com.ar",
@@ -96,16 +97,23 @@ function BrowserMockup() {
           {/* Screenshot area */}
           <div className="relative aspect-[16/10] bg-foreground/[0.02] overflow-hidden">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={current.src}
-                src={current.src}
-                alt={current.label}
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
+                className="absolute inset-0"
+              >
+                <Image
+                  src={current.src}
+                  alt={current.label}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority={index === 0}
+                  className="object-cover object-top"
+                />
+              </motion.div>
             </AnimatePresence>
 
             {/* Gradiente bottom para el label */}
