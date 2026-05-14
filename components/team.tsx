@@ -64,7 +64,7 @@ const team: Member[] = [
     short:
       "Traduce los objetivos comerciales en producto: sitios, landings y aplicaciones que convierten.",
     bio: [
-      "Desarrollador full-stack y co-fundador de Orion. Trabaja en la intersección entre marketing y producto, traduciendo objetivos de negocio en sitios, landings y aplicaciones web que realmente convierten.",
+      "Desarrollador full-stack y fundador de Orion. Trabaja en la intersección entre marketing y producto, traduciendo objetivos de negocio en sitios, landings y aplicaciones web que realmente convierten.",
       "Se especializa en stacks modernos (Next.js, React, TypeScript) y en armar soluciones técnicas hechas a medida para cada cliente: desde landings enfocadas en performance hasta integraciones, paneles internos y e-commerces.",
     ],
     skills: [
@@ -74,6 +74,14 @@ const team: Member[] = [
       "SEO técnico",
       "Integraciones & automatizaciones",
       "Performance web",
+      "E-commerce",
+      "Sistemas a medida",
+      "Hosting & dominios",
+      "Soporte técnico",
+      "Desarrollo web",
+      "Arquitectura de software",
+      "Web apps",
+      "Headless CMS",
     ],
     showcase: {
       type: "portfolio",

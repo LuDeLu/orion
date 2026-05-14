@@ -26,7 +26,7 @@ const cases = [
     industry: "Desarrollo a medida",
     title: "De información dispersa a un CRM que cierra ventas",
     challenge:
-      "ADN era una inmobiliaria con la información de proyectos y unidades dispersa entre planillas, mails y carpetas. Difundir datos actualizados a clientes era lento y confuso, y eso frenaba el cierre de operaciones y el crecimiento del negocio.",
+      "ADN era una constructora con la información de proyectos y unidades dispersa entre planillas, mails y carpetas. Difundir datos actualizados a clientes era lento y confuso, y eso frenaba el cierre de operaciones y el crecimiento del negocio.",
     solution:
       "Diseñamos y desarrollamos un CRM interno a medida que centraliza absolutamente todo: proyectos, departamentos uno a uno, estados, clientes y seguimiento de ventas. Una sola fuente de verdad para todo el equipo.",
     results: [

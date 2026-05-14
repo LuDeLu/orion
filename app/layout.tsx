@@ -4,7 +4,6 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
-import "./globals.css"
 
 const _inter = Inter({
   subsets: ["latin"],

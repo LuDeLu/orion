@@ -33,9 +33,9 @@ const brands: Brand[] = [
     logo: "/logos/Adn.png",
     url: "https://adndevelopers.com.ar/",
     industry: "Aplicación Web",
-    tagline: "Plataforma inmobiliaria con CRM a medida",
+    tagline: "Plataforma constructora con CRM a medida",
     description:
-      "Desarrollamos para ADN Developers una plataforma inmobiliaria con gestión de propiedades y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
+      "Desarrollamos para ADN Developers una plataforma constructora con gestión de proyectos y clientes, más un CRM personalizado para seguimiento interno de proyectos, obras, calendarios y post-venta. Todo centralizado en un único panel administrativo.",
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
     result: "CRM en producción gestionando múltiples proyectos DOME activos",
     previews: ["/previews/adn.png", "/previews/paneladn.png"],
