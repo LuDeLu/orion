@@ -290,6 +290,32 @@
   }
 }
 
+/* Marquee infinito para carrousel de marcas */
+@keyframes marquee-x {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-x 60s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover,
+.marquee-paused {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
 /* Animación de estrellas extremadamente lenta para efecto sutil */
 @keyframes star-twinkle {
   0%,

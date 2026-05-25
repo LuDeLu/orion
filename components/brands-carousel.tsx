@@ -3,7 +3,14 @@
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef, useState } from "react"
 import Image from "next/image"
-import { X, ExternalLink, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react"
+import {
+  X,
+  ExternalLink,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
+} from "lucide-react"
 
 type Brand = {
   name: string
@@ -15,6 +22,7 @@ type Brand = {
   services: string[]
   result?: string
   previews?: string[]
+  accent?: string
 }
 
 const brands: Brand[] = [
@@ -28,6 +36,7 @@ const brands: Brand[] = [
       "Gestionamos la comunicación digital de Vittal con contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a la captación de nuevos socios con mensajes claros, empáticos y de alto impacto.",
     services: ["Gestión de Redes", "Paid Media", "Contenido Digital"],
     result: "Mejora en engagement y captación de nuevos socios",
+    accent: "from-rose-500/25 via-rose-500/10 to-transparent",
   },
   {
     name: "ADN",
@@ -40,6 +49,7 @@ const brands: Brand[] = [
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "PostgreSQL"],
     result: "CRM en producción gestionando múltiples proyectos DOME activos",
     previews: ["/previews/adn.webp", "/previews/paneladn.webp"],
+    accent: "from-sky-500/25 via-sky-500/10 to-transparent",
   },
   {
     name: "Schepens",
@@ -51,6 +61,8 @@ const brands: Brand[] = [
       "Acompañamos a Schepens en su presencia digital con gestión de redes sociales, contenido orientado a conversión y campañas de publicidad paga. Conectamos la marca con nuevas audiencias y potenciamos sus ventas online.",
     services: ["Redes Sociales", "Paid Media", "Estrategia Digital"],
     result: "Mayor alcance digital y crecimiento sostenido en ventas online",
+    previews: ["/previews/schepens.webp"],
+    accent: "from-amber-500/25 via-amber-500/10 to-transparent",
   },
   {
     name: "CMVet",
@@ -63,6 +75,7 @@ const brands: Brand[] = [
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "Sistema a medida"],
     result: "Miles de análisis procesados con generación automática de informes PDF",
     previews: ["/previews/cmvet1.webp", "/previews/cmvet2.webp"],
+    accent: "from-emerald-500/25 via-emerald-500/10 to-transparent",
   },
   {
     name: "PlotChain",
@@ -74,6 +87,7 @@ const brands: Brand[] = [
       "Trabajamos con PlotChain en su estrategia de comunicación y posicionamiento dentro del ecosistema blockchain. Desarrollamos contenido técnico accesible y campañas de awareness para atraer inversores y usuarios a su plataforma.",
     services: ["Estrategia Digital", "Branding", "Contenido Técnico"],
     result: "Mayor visibilidad y crecimiento de comunidad en el sector Web3",
+    accent: "from-violet-500/30 via-violet-500/10 to-transparent",
   },
   {
     name: "RR Sintético",
@@ -86,6 +100,7 @@ const brands: Brand[] = [
     services: ["Desarrollo Full Stack", "Next.js", "Node.js", "MongoDB"],
     result: "Plataforma productiva en uso real con cotizador, inventario y tracking de pedidos",
     previews: ["/previews/rrsintetico.webp", "/previews/rrseguimientos.webp"],
+    accent: "from-lime-500/25 via-lime-500/10 to-transparent",
   },
   {
     name: "Soul Security",
@@ -98,6 +113,7 @@ const brands: Brand[] = [
     services: ["Diseño Web", "Next.js", "Tailwind"],
     result: "Sitio corporativo profesional que transmite confianza y genera consultas",
     previews: ["/previews/soulsecurity.webp"],
+    accent: "from-slate-400/25 via-slate-400/10 to-transparent",
   },
   {
     name: "Monaco Cortinas",
@@ -110,6 +126,7 @@ const brands: Brand[] = [
     services: ["Diseño Web", "Next.js", "Tailwind"],
     result: "Dos sitios en producción: cortinas metálicas y correduría de seguros",
     previews: ["/previews/monacocor.webp", "/previews/monacoseg.webp"],
+    accent: "from-orange-500/25 via-orange-500/10 to-transparent",
   },
   {
     name: "Imperio 51",
@@ -122,6 +139,7 @@ const brands: Brand[] = [
     services: ["Diseño Web", "Next.js", "Tailwind", "Animaciones"],
     result: "Identidad digital única y presencia online que refleja el poder de la marca",
     previews: ["/previews/I51.webp"],
+    accent: "from-cyan-500/30 via-cyan-500/10 to-transparent",
   },
 ]
 
@@ -147,7 +165,6 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         className="relative z-10 w-full max-w-lg bg-background border border-foreground/10 rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
       >
-        {/* Vista previa con galería */}
         {hasPreviews && (
           <div className="relative w-full aspect-video bg-foreground/5 overflow-hidden flex-shrink-0">
             <AnimatePresence mode="wait">
@@ -169,10 +186,8 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
               </motion.div>
             </AnimatePresence>
 
-            {/* Overlay gradiente bottom */}
             <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/60 to-transparent" />
 
-            {/* Controles navegación */}
             {previews.length > 1 && (
               <>
                 <button
@@ -187,14 +202,13 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
-                {/* Dots */}
                 <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
                   {previews.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => setPreviewIndex(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-all duration-200 ${
-                        i === previewIndex ? "bg-primary w-4" : "bg-foreground/30"
+                      className={`h-1.5 rounded-full transition-all duration-200 ${
+                        i === previewIndex ? "bg-primary w-4" : "bg-foreground/30 w-1.5"
                       }`}
                     />
                   ))}
@@ -202,7 +216,6 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
               </>
             )}
 
-            {/* Botón cerrar sobre la imagen */}
             <button
               onClick={onClose}
               className="absolute top-3 right-3 p-1.5 rounded-full bg-background/70 hover:bg-background/90 border border-foreground/10 text-foreground/60 hover:text-foreground transition-all duration-200 backdrop-blur-sm"
@@ -213,8 +226,13 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
           </div>
         )}
 
-        {/* Header con logo (sin imagen o con imagen ya arriba) */}
-        <div className={`relative flex-shrink-0 ${hasPreviews ? "border-b border-foreground/10 px-5 pt-4 pb-4" : "bg-gradient-to-br from-foreground/5 to-primary/5 border-b border-foreground/10 px-6 pt-6 pb-5"}`}>
+        <div
+          className={`relative flex-shrink-0 ${
+            hasPreviews
+              ? "border-b border-foreground/10 px-5 pt-4 pb-4"
+              : "bg-gradient-to-br from-foreground/5 to-primary/5 border-b border-foreground/10 px-6 pt-6 pb-5"
+          }`}
+        >
           {!hasPreviews && (
             <button
               onClick={onClose}
@@ -247,11 +265,9 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
           </div>
         </div>
 
-        {/* Contenido scrolleable */}
         <div className="px-5 py-4 space-y-4 overflow-y-auto">
           <p className="text-sm text-foreground/70 leading-relaxed">{brand.description}</p>
 
-          {/* Servicios */}
           <div>
             <p className="text-[10px] uppercase tracking-widest font-semibold text-foreground/35 mb-2">
               Servicios aplicados
@@ -268,7 +284,6 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
             </div>
           </div>
 
-          {/* Resultado */}
           {brand.result && (
             <div className="flex gap-3 bg-foreground/[0.03] border border-foreground/8 rounded-xl px-4 py-3">
               <ArrowUpRight className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
@@ -280,7 +295,6 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
           )}
         </div>
 
-        {/* Footer */}
         {brand.url !== "#" && (
           <div className="px-5 pb-4 flex-shrink-0">
             <a
@@ -299,79 +313,201 @@ function BrandModal({ brand, onClose }: { brand: Brand; onClose: () => void }) {
   )
 }
 
+function BrandCard({
+  brand,
+  onClick,
+}: {
+  brand: Brand
+  onClick: () => void
+}) {
+  const preview = brand.previews?.[0]
+  const hasPreview = !!preview
+  const accent = brand.accent ?? "from-primary/25 via-primary/10 to-transparent"
+
+  return (
+    <button
+      onClick={onClick}
+      aria-label={`Ver caso de ${brand.name}`}
+      className="group relative flex-shrink-0 w-[280px] md:w-[340px] h-[360px] md:h-[400px] rounded-2xl overflow-hidden bg-card/40 border border-foreground/10 hover:border-primary/40 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/15 hover:-translate-y-1.5 transition-all duration-500 ease-out text-left"
+    >
+      <div className="absolute inset-0">
+        {hasPreview ? (
+          <Image
+            src={preview}
+            alt={`${brand.name} - preview`}
+            fill
+            sizes="(max-width: 768px) 280px, 340px"
+            loading="lazy"
+            className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+          />
+        ) : (
+          <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-card`}>
+            <div className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(circle_at_30%_20%,#ffffff_0%,transparent_50%)]" />
+            <div className="absolute inset-0 flex items-center justify-center p-10">
+              <Image
+                src={brand.logo}
+                alt={brand.name}
+                width={240}
+                height={120}
+                className="max-h-24 md:max-h-28 max-w-[75%] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)] w-auto h-auto group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 via-40% to-background/0" />
+        <div
+          className={`absolute inset-0 bg-gradient-to-tr ${accent} opacity-50 mix-blend-screen pointer-events-none`}
+        />
+      </div>
+
+      <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold text-foreground/90 bg-background/60 backdrop-blur-md border border-foreground/15 rounded-full px-2.5 py-1">
+        <Sparkles className="w-3 h-3 text-primary" />
+        {brand.industry}
+      </span>
+
+      {brand.result && (
+        <span className="absolute top-3 right-3 z-10 text-[9px] uppercase tracking-wider font-bold text-emerald-300 bg-emerald-500/15 backdrop-blur-md border border-emerald-400/30 rounded-full px-2 py-1">
+          Caso real
+        </span>
+      )}
+
+      <div className="absolute inset-x-0 bottom-0 z-10 p-4 md:p-5 flex flex-col gap-2.5">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-9 bg-background/70 backdrop-blur-md rounded-lg border border-foreground/15 flex items-center justify-center p-1.5 flex-shrink-0">
+            <Image
+              src={brand.logo}
+              alt={brand.name}
+              width={36}
+              height={24}
+              className="max-h-6 max-w-full object-contain w-auto h-auto"
+            />
+          </div>
+          <h3 className="font-display text-lg md:text-xl font-bold text-foreground leading-tight">
+            {brand.name}
+          </h3>
+        </div>
+
+        <p className="text-xs md:text-[13px] text-foreground/70 leading-snug line-clamp-2 min-h-[2.5rem]">
+          {brand.tagline}
+        </p>
+
+        <div className="flex items-center justify-between pt-1">
+          <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all duration-300">
+            Ver caso
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform duration-300" />
+          </span>
+          <div className="flex gap-1">
+            {brand.services.slice(0, 2).map((s) => (
+              <span
+                key={s}
+                className="text-[9px] font-medium px-1.5 py-0.5 rounded-full bg-foreground/10 text-foreground/55 border border-foreground/10"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <span className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </button>
+  )
+}
+
 export function BrandsCarousel() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.2 })
+  const isInView = useInView(ref, { once: true, amount: 0.15 })
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null)
+  const [paused, setPaused] = useState(false)
+
+  const loop = [...brands, ...brands]
 
   return (
     <>
-      <section ref={ref} className="relative pt-2 pb-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Título sección */}
+      <section ref={ref} className="relative pt-6 pb-24 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-64 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-10 md:mb-14"
           >
-            <span className="inline-block text-xs font-semibold uppercase tracking-[0.3em] text-primary/60 mb-3">
-              Nuestro trabajo
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary/80 mb-4 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+              <Sparkles className="w-3.5 h-3.5" />
+              Casos de éxito
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Empresas que confían en nosotros
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4 tracking-tight">
+              Marcas que confiaron{" "}
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                en nosotros
+              </span>
             </h2>
-            <p className="text-sm text-foreground/45 max-w-md mx-auto">
-              Hacé click en cada empresa para conocer el trabajo que realizamos juntos
+            <p className="text-sm md:text-base text-foreground/55 max-w-xl mx-auto leading-relaxed">
+              Desde startups hasta empresas consolidadas: descubrí cómo
+              transformamos cada proyecto en una historia con resultados reales.
             </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6 text-xs text-foreground/45">
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                {brands.length}+ marcas activas
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                +5 industrias
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                Proyectos en producción
+              </span>
+            </div>
           </motion.div>
+        </div>
 
-          {/* Grid de proyectos */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
-            {brands.map((brand, index) => (
-              <motion.button
-                key={brand.name}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative group/marquee"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-background to-transparent" />
+
+          <div
+            className={`marquee-track flex gap-4 md:gap-5 py-4 w-max ${
+              paused ? "marquee-paused" : ""
+            }`}
+          >
+            {loop.map((brand, i) => (
+              <BrandCard
+                key={`${brand.name}-${i}`}
+                brand={brand}
                 onClick={() => setSelectedBrand(brand)}
-                initial={{ opacity: 0, y: 14 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="group relative flex flex-col items-center justify-between h-[100px] md:h-[112px] bg-foreground/[0.04] hover:bg-foreground/[0.07] backdrop-blur-sm border border-foreground/8 hover:border-primary/35 rounded-2xl overflow-hidden hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 cursor-pointer"
-                aria-label={`Ver proyecto de ${brand.name}`}
-              >
-                {/* Línea accent top */}
-                <span className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                {/* Área logo */}
-                <div className="w-full flex items-center justify-center px-6 pt-6 pb-4 flex-1">
-                  <Image
-                    src={brand.logo || "/placeholder.svg"}
-                    alt={brand.name}
-                    width={160}
-                    height={56}
-                    loading="lazy"
-                    className="max-h-11 md:max-h-14 max-w-[82%] object-contain grayscale opacity-45 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105 w-auto h-auto"
-                  />
-                </div>
-
-                {/* Footer de la card */}
-                <div className="w-full px-3 pb-3 flex items-center justify-between gap-1">
-                  <span className="text-[10px] font-medium text-foreground/30 group-hover:text-foreground/65 transition-colors duration-300 truncate leading-tight">
-                    {brand.name}
-                  </span>
-                  <span className="text-[9px] font-semibold uppercase tracking-wider text-primary/0 group-hover:text-primary/70 transition-all duration-300 whitespace-nowrap flex-shrink-0">
-                    Ver →
-                  </span>
-                </div>
-              </motion.button>
+              />
             ))}
           </div>
-        </div>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-center text-xs text-foreground/40 mt-8 px-4"
+        >
+          Pasá el cursor para pausar · Hacé click en cualquier marca para ver el caso completo
+        </motion.p>
       </section>
 
-      {/* Modal */}
-      {selectedBrand && (
-        <BrandModal brand={selectedBrand} onClose={() => setSelectedBrand(null)} />
-      )}
+      <AnimatePresence>
+        {selectedBrand && (
+          <BrandModal brand={selectedBrand} onClose={() => setSelectedBrand(null)} />
+        )}
+      </AnimatePresence>
     </>
   )
 }
