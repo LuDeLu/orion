@@ -468,7 +468,6 @@ export function BrandsCarousel() {
             className="text-center mb-10 md:mb-14"
           >
             <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-primary/80 mb-4 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
-              <Sparkles className="w-3.5 h-3.5" />
               Casos de éxito
             </span>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-4 tracking-tight">
