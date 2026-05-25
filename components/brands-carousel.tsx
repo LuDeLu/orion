@@ -1,7 +1,13 @@
 "use client"
 
-import { motion, useInView, AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
+import {
+  motion,
+  useInView,
+  AnimatePresence,
+  useMotionValue,
+  useAnimationFrame,
+} from "framer-motion"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import {
   X,
@@ -328,7 +334,7 @@ function BrandCard({
     <button
       onClick={onClick}
       aria-label={`Ver caso de ${brand.name}`}
-      className="group relative flex-shrink-0 w-[280px] md:w-[340px] h-[360px] md:h-[400px] rounded-2xl overflow-hidden bg-card/40 border border-foreground/10 hover:border-primary/40 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/15 hover:-translate-y-1.5 transition-all duration-500 ease-out text-left"
+      className="group relative flex-shrink-0 w-[320px] md:w-[420px] h-[420px] md:h-[500px] rounded-2xl overflow-hidden bg-card/40 border border-foreground/10 hover:border-primary/40 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/15 hover:-translate-y-1.5 transition-all duration-500 ease-out text-left"
     >
       <div className="absolute inset-0">
         {hasPreview ? (
@@ -336,20 +342,22 @@ function BrandCard({
             src={preview}
             alt={`${brand.name} - preview`}
             fill
-            sizes="(max-width: 768px) 280px, 340px"
-            loading="lazy"
+            sizes="(max-width: 768px) 320px, 420px"
+            quality={95}
+            priority={false}
             className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
           />
         ) : (
           <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-card`}>
             <div className="absolute inset-0 opacity-[0.07] bg-[radial-gradient(circle_at_30%_20%,#ffffff_0%,transparent_50%)]" />
-            <div className="absolute inset-0 flex items-center justify-center p-10">
+            <div className="absolute inset-0 flex items-center justify-center p-12">
               <Image
                 src={brand.logo}
                 alt={brand.name}
-                width={240}
-                height={120}
-                className="max-h-24 md:max-h-28 max-w-[75%] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)] w-auto h-auto group-hover:scale-105 transition-transform duration-500"
+                width={320}
+                height={160}
+                quality={95}
+                className="max-h-32 md:max-h-40 max-w-[78%] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)] w-auto h-auto group-hover:scale-105 transition-transform duration-500"
               />
             </div>
           </div>
@@ -362,7 +370,6 @@ function BrandCard({
       </div>
 
       <span className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-semibold text-foreground/90 bg-background/60 backdrop-blur-md border border-foreground/15 rounded-full px-2.5 py-1">
-        <Sparkles className="w-3 h-3 text-primary" />
         {brand.industry}
       </span>
 
@@ -423,6 +430,31 @@ export function BrandsCarousel() {
 
   const loop = [...brands, ...brands]
 
+  const trackRef = useRef<HTMLDivElement>(null)
+  const x = useMotionValue(0)
+  const halfWidthRef = useRef(0)
+
+  useEffect(() => {
+    const measure = () => {
+      if (trackRef.current) {
+        halfWidthRef.current = trackRef.current.scrollWidth / 2
+      }
+    }
+    measure()
+    window.addEventListener("resize", measure)
+    return () => window.removeEventListener("resize", measure)
+  }, [])
+
+  useAnimationFrame((_, delta) => {
+    if (paused || !!selectedBrand || halfWidthRef.current === 0) return
+    const speed = 60
+    let next = x.get() - (speed * delta) / 1000
+    if (next <= -halfWidthRef.current) {
+      next += halfWidthRef.current
+    }
+    x.set(next)
+  })
+
   return (
     <>
       <section ref={ref} className="relative pt-6 pb-24 overflow-hidden">
@@ -478,10 +510,10 @@ export function BrandsCarousel() {
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-r from-background to-transparent" />
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-10 bg-gradient-to-l from-background to-transparent" />
 
-          <div
-            className={`marquee-track flex gap-4 md:gap-5 py-4 w-max ${
-              paused ? "marquee-paused" : ""
-            }`}
+          <motion.div
+            ref={trackRef}
+            style={{ x }}
+            className="flex gap-4 md:gap-6 py-4 w-max will-change-transform"
           >
             {loop.map((brand, i) => (
               <BrandCard
@@ -490,7 +522,7 @@ export function BrandsCarousel() {
                 onClick={() => setSelectedBrand(brand)}
               />
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.p
