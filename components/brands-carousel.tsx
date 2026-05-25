@@ -26,7 +26,7 @@ const brands: Brand[] = [
     tagline: "Comunicación digital para servicio de emergencias médicas",
     description:
       "Gestionamos la comunicación digital de Vittal con contenido que refuerza la confianza en sus servicios de emergencias médicas. Desarrollamos campañas orientadas a la captación de nuevos socios con mensajes claros, empáticos y de alto impacto.",
-    services: ["Gestión de Redes", "Performance Ads", "Contenido Digital"],
+    services: ["Gestión de Redes", "Paid Media", "Contenido Digital"],
     result: "Mejora en engagement y captación de nuevos socios",
   },
   {
@@ -49,7 +49,7 @@ const brands: Brand[] = [
     tagline: "Estrategia digital para empresa de retail",
     description:
       "Acompañamos a Schepens en su presencia digital con gestión de redes sociales, contenido orientado a conversión y campañas de publicidad paga. Conectamos la marca con nuevas audiencias y potenciamos sus ventas online.",
-    services: ["Redes Sociales", "Performance Ads", "Estrategia Digital"],
+    services: ["Redes Sociales", "Paid Media", "Estrategia Digital"],
     result: "Mayor alcance digital y crecimiento sostenido en ventas online",
   },
   {

@@ -200,10 +200,10 @@ export function StructuredData() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Performance Ads y Publicidad Digital",
+            name: "Paid Media y Publicidad Digital",
             description:
               "Campañas publicitarias con ROI medible de Orion Marketing. Facebook Ads, Instagram Ads, Google Ads, TikTok Ads y remarketing estratégico optimizado.",
-            serviceType: "Performance Ads",
+            serviceType: "Paid Media",
             provider: {
               "@type": "Organization",
               name: "Orion Marketing",
@@ -451,7 +451,7 @@ export function StructuredData() {
         name: "¿Qué es Orion Marketing y qué servicios ofrece?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Orion Marketing (también conocida como Orion MKT) es una agencia de marketing digital líder en Argentina especializada en PyMEs y Startups. Ofrecemos branding y diseño de identidad, social media marketing (Instagram, Facebook, LinkedIn, TikTok), performance ads (Facebook Ads, Instagram Ads, Google Ads, TikTok Ads), diseño web responsivo, e-commerce, estrategia digital y diseño creativo.",
+          text: "Orion Marketing (también conocida como Orion MKT) es una agencia de marketing digital líder en Argentina especializada en PyMEs y Startups. Ofrecemos branding y diseño de identidad, social media marketing (Instagram, Facebook, LinkedIn, TikTok), Paid Media (Facebook Ads, Instagram Ads, Google Ads, TikTok Ads), diseño web responsivo, e-commerce, estrategia digital y diseño creativo.",
         },
       },
       {
@@ -467,7 +467,7 @@ export function StructuredData() {
         name: "¿En cuánto tiempo veo resultados con Orion Marketing?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Con Orion Marketing, los primeros resultados en campañas de performance ads pueden verse en 2-4 semanas. El SEO, branding y estrategias de contenido son de mediano plazo (3-6 meses). El social media marketing muestra resultados progresivos desde el primer mes. Trabajamos con KPIs medibles desde el día uno.",
+          text: "Con Orion Marketing, los primeros resultados en campañas de Paid Media pueden verse en 2-4 semanas. El SEO, branding y estrategias de contenido son de mediano plazo (3-6 meses). El social media marketing muestra resultados progresivos desde el primer mes. Trabajamos con KPIs medibles desde el día uno.",
         },
       },
       {
@@ -600,7 +600,7 @@ export function StructuredData() {
       {
         "@type": "ListItem",
         position: 3,
-        name: "Performance Ads por Orion Marketing",
+        name: "Paid Media por Orion Marketing",
         url: "https://orionmkt.com.ar/#servicios",
       },
       {

@@ -145,7 +145,7 @@ export function ContactSection() {
                     Estrategia Digital
                   </option>
                   <option value="ads" className="bg-[#2c2447] text-[#F0F0EB]">
-                    Performance Ads
+                    Paid Media
                   </option>
                   <option value="social" className="bg-[#2c2447] text-[#F0F0EB]">
                     Social Media

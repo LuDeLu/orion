@@ -44,7 +44,7 @@ const services = [
   },
   {
     icon: "/icons/performance_ads.ico",
-    title: "Performance Ads",
+    title: "Paid Media",
     description: "Campañas publicitarias con ROI medible y optimizado.",
     image: "/services/performanceads.webp",
     fullDescription:
