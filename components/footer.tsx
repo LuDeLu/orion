@@ -46,13 +46,13 @@ export function Footer() {
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary shrink-0" />
-                <a href="https://wa.me/5491156566083" className="text-sm hover:text-foreground transition-colors">
+                <a href="https://wa.me/5491156566083" className="text-sm hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                   +54 9 11 5656-6083
                 </a>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="h-4 w-4 text-primary shrink-0" />
-                <a href="mailto:hola@orionmkt.com.ar" className="text-sm hover:text-foreground transition-colors">
+                <a href="mailto:hola@orionmkt.com.ar" className="text-sm hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                   hola@orionmkt.com.ar
                 </a>
               </div>
@@ -64,7 +64,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors"
+                  className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:-translate-y-0.5 hover:bg-primary/5 transition-[color,border-color,transform,background-color] duration-[350ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
                 >
                   <social.icon className="h-5 w-5" />
                 </a>
@@ -79,7 +79,7 @@ export function Footer() {
                 <li key={link.label}>
                   <button
                     onClick={() => handleServiceClick(link.service)}
-                    className="text-muted-foreground hover:text-foreground transition-colors text-left"
+                    className="text-muted-foreground hover:text-foreground hover:translate-x-1 transition-[color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] text-left"
                   >
                     {link.label}
                   </button>
@@ -93,7 +93,7 @@ export function Footer() {
             <ul className="space-y-3">
               {footerLinks.empresa.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href={link.href} className="text-muted-foreground hover:text-foreground hover:translate-x-1 transition-[color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] inline-block">
                     {link.label}
                   </Link>
                 </li>
@@ -107,10 +107,10 @@ export function Footer() {
             © {new Date().getFullYear()} Orion Marketing - Agencia de Marketing Digital. Todos los derechos reservados.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-foreground transition-colors">
+            <Link href="#" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
               Privacidad
             </Link>
-            <Link href="#" className="hover:text-foreground transition-colors">
+            <Link href="#" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
               Términos
             </Link>
           </div>

@@ -295,7 +295,7 @@ function ShowcasePreview({ member }: { member: Member }) {
           />
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
             <div
-              className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.avatarFrom} ${accent.avatarTo} border border-foreground/15 ring-1 ${accent.ring} mb-4 group-hover:scale-105 transition-transform duration-300`}
+              className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.avatarFrom} ${accent.avatarTo} border border-foreground/15 ring-1 ${accent.ring} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]`}
             >
               <Icon className={`w-6 h-6 ${accent.iconColor}`} />
             </div>
@@ -306,7 +306,7 @@ function ShowcasePreview({ member }: { member: Member }) {
             {isExternalLink && (
               <p className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
                 Abrir sitio
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
               </p>
             )}
           </div>
@@ -333,7 +333,7 @@ function MemberCard({
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group text-left relative overflow-hidden rounded-3xl border border-foreground/10 bg-background/40 backdrop-blur-sm p-8 hover:border-primary/40 hover:bg-background/60 transition-all duration-300 hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+      className="group text-left relative overflow-hidden rounded-3xl border border-foreground/10 bg-background/40 backdrop-blur-sm p-8 hover:border-primary/40 hover:bg-background/60 hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       aria-label={`Ver perfil de ${member.name}`}
     >
       <div
@@ -359,7 +359,7 @@ function MemberCard({
         </span>
         <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${member.accent.iconColor}`}>
           Detalles
-          <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="w-4 h-4 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
         </span>
       </div>
     </motion.button>

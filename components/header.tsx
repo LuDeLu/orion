@@ -90,14 +90,14 @@ export function Header() {
               aria-label="Orion Marketing - Inicio"
             >
               <div className="relative">
-                <span className="absolute inset-0 bg-primary/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+                <span className="absolute inset-0 bg-primary/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] rounded-full" />
                 <Image
                   src="/logohorizontal3.png"
                   alt="Orion MKT"
                   width={180}
                   height={48}
                   priority
-                  className={`relative w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
+                  className={`relative w-auto object-contain transition-[transform,height] duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105 ${
                     scrolled ? "h-10" : "h-12"
                   }`}
                 />
@@ -142,13 +142,13 @@ export function Header() {
             <div className="hidden lg:flex items-center gap-4">
               <Button
                 size="sm"
-                className="group relative overflow-hidden bg-gradient-to-r from-primary to-accent hover:opacity-95 text-foreground font-semibold rounded-full pl-5 pr-4 py-5 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-shadow duration-300"
+                className="group bg-gradient-to-r from-primary to-accent text-foreground font-semibold rounded-full pl-5 pr-4 py-5 shadow-lg shadow-primary/20 btn-shine"
                 asChild
               >
                 <Link href="#contacto">
-                  <span className="flex items-center gap-1.5">
+                  <span className="relative z-10 flex items-center gap-1.5">
                     Pedir propuesta
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
                 </Link>
               </Button>
@@ -236,7 +236,7 @@ export function Header() {
                             {link.label}
                           </span>
                         </span>
-                        <ArrowUpRight className="w-5 h-5 text-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+                        <ArrowUpRight className="w-5 h-5 text-foreground/40 group-hover:text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-[transform,color] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]" />
                       </Link>
                     </motion.li>
                   ))}

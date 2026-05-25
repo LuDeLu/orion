@@ -127,12 +127,12 @@ export function Workflow() {
               >
                 <div className="glass-card rounded-2xl p-8 hover-lift h-full flex flex-col">
                   {/* Icon Circle */}
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20 flex items-center justify-center mb-6 mx-auto group-hover:from-primary/30 group-hover:to-accent/30 transition-all duration-300">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/20 flex items-center justify-center mb-6 mx-auto group-hover:from-primary/35 group-hover:to-accent/35 group-hover:scale-110 group-hover:rotate-3 transition-[background-color,transform,border-color] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                     <step.icon className="h-8 w-8 text-primary" />
                   </div>
 
                   {/* Step Number */}
-                  <div className="text-6xl font-display font-bold text-foreground/10 absolute top-4 right-4 group-hover:text-foreground/20 transition-colors">
+                  <div className="text-6xl font-display font-bold text-foreground/10 absolute top-4 right-4 group-hover:text-primary/30 group-hover:scale-110 transition-[color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                     {step.number}
                   </div>
 

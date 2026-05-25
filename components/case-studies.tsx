@@ -80,7 +80,7 @@ export function CaseStudies() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.15 }}
-              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-foreground/[0.04] to-foreground/[0.01] border border-foreground/10 hover:border-primary/30 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/10"
+              className="group relative overflow-hidden rounded-3xl bg-gradient-to-br from-foreground/[0.04] to-foreground/[0.01] border border-foreground/10 hover:border-primary/30 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/15 transition-[transform,box-shadow,border-color] duration-[420ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] will-change-transform"
             >
               {/* Glow accent */}
               <div className="absolute -top-32 -right-32 w-64 h-64 bg-primary/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -159,9 +159,9 @@ export function CaseStudies() {
                     {caseStudy.results.map((result, i) => (
                       <div
                         key={i}
-                        className="relative bg-foreground/[0.03] hover:bg-primary/5 border border-foreground/8 hover:border-primary/25 rounded-xl p-3 md:p-4 transition-all duration-300 overflow-hidden group/metric"
+                        className="relative bg-foreground/[0.03] hover:bg-primary/5 border border-foreground/8 hover:border-primary/25 rounded-xl p-3 md:p-4 transition-[background-color,border-color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 overflow-hidden group/metric"
                       >
-                        <result.icon className="w-4 h-4 text-primary/70 mb-2 transition-transform duration-300 group-hover/metric:scale-110" />
+                        <result.icon className="w-4 h-4 text-primary/70 mb-2 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)] group-hover/metric:scale-125" />
                         <div className="text-sm md:text-base font-bold text-foreground leading-tight mb-1 break-words">
                           {result.metric}
                         </div>
@@ -189,13 +189,13 @@ export function CaseStudies() {
           </p>
           <Button
             size="lg"
-            className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-foreground px-8 py-6 text-base font-semibold group rounded-full hover-lift"
+            className="bg-gradient-to-r from-primary to-accent text-foreground px-8 py-6 text-base font-semibold group rounded-full btn-shine"
             asChild
           >
             <Link href="#contacto">
-              <span className="flex items-center justify-center">
+              <span className="relative z-10 flex items-center justify-center">
                 Sí, quiero mi propuesta
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" />
               </span>
             </Link>
           </Button>

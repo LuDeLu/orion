@@ -196,9 +196,9 @@ export function ContactSection() {
                     initial={{ opacity: 0, x: 20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                    className="flex items-start gap-4 group hover:translate-x-1 transition-all duration-300"
+                    className="flex items-start gap-4 group hover:translate-x-1.5 transition-transform duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e0642f]/20 to-[#f7d785]/10 border border-[#e0642f]/20 flex items-center justify-center flex-shrink-0 group-hover:from-[#e0642f]/30 group-hover:to-[#f7d785]/20 group-hover:border-[#e0642f]/40 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e0642f]/20 to-[#f7d785]/10 border border-[#e0642f]/20 flex items-center justify-center flex-shrink-0 group-hover:from-[#e0642f]/35 group-hover:to-[#f7d785]/25 group-hover:border-[#e0642f]/50 group-hover:scale-110 transition-[background-color,border-color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                       <item.icon className="w-5 h-5 text-[#e0642f]" />
                     </div>
                     <div>
@@ -220,7 +220,7 @@ export function ContactSection() {
                   ¿Preferís contactarnos directamente por WhatsApp?
                 </p>
                 <Button
-                  className="w-full bg-gradient-to-r from-[#e0642f] to-[#f7d785] hover:opacity-90 text-[#2c2447] font-bold rounded-xl h-12 transition-all duration-300 hover:shadow-lg hover:shadow-[#e0642f]/20"
+                  className="w-full bg-gradient-to-r from-[#e0642f] to-[#f7d785] text-[#2c2447] font-bold rounded-xl h-12 btn-shine"
                   asChild
                 >
                   <a

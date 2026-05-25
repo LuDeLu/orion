@@ -61,7 +61,8 @@ function BrowserMockup() {
         <motion.div
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="relative rounded-2xl overflow-hidden border border-foreground/10 bg-background/40 backdrop-blur-md shadow-2xl shadow-primary/10"
+          style={{ willChange: "transform" }}
+          className="relative rounded-2xl overflow-hidden border border-foreground/10 bg-background/40 backdrop-blur-md shadow-2xl shadow-primary/10 gpu-layer"
         >
           {/* Browser chrome */}
           <div className="relative flex items-center gap-2 px-4 py-3 bg-foreground/[0.04] border-b border-foreground/8">
@@ -206,14 +207,12 @@ export function Hero() {
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6 [clip-path:inset(0_0_-100vh_0)]">
+    <section ref={ref} className="relative min-h-screen flex items-center pt-32 pb-20 px-4 md:px-6 [clip-path:inset(0_0_-100vh_0)] isolate">
       {/* Glow ambiental — combinado en una sola capa para reducir coste de blur */}
       <div className="absolute inset-0 pointer-events-none -z-10 overflow-visible">
         <div className="absolute top-1/4 left-[15%] w-[42rem] h-[42rem] bg-primary/[0.07] rounded-full blur-3xl" />
         <div className="absolute -bottom-40 right-[15%] w-[44rem] h-[44rem] bg-accent/[0.06] rounded-full blur-3xl" />
       </div>
-
-      <div className="scan-effect" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-10 items-center">
@@ -257,20 +256,20 @@ export function Hero() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-foreground px-9 py-7 text-base md:text-lg font-semibold group rounded-full relative overflow-hidden hover-lift w-full sm:w-auto"
+                className="bg-gradient-to-r from-primary to-accent text-foreground px-9 py-7 text-base md:text-lg font-semibold group rounded-full btn-shine w-full sm:w-auto"
                 asChild
               >
                 <Link href="#contacto">
                   <span className="relative z-10 flex items-center justify-center">
                     Pedir mi propuesta
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1" />
                   </span>
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary/30 text-foreground hover:bg-primary/60 px-9 py-7 text-base md:text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
+                className="border-primary/30 text-foreground hover:bg-primary/15 hover:border-primary/60 px-9 py-7 text-base md:text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
                 asChild
               >
                 <Link href="#equipo">Conocer al equipo</Link>

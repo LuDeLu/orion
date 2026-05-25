@@ -40,19 +40,18 @@ export default function Home() {
         <ConstellationBackground />
         <StarField />
         <GridOverlay />
-        <div className="grain-overlay" />
         <Header />
         <Hero />
         <BrandsCarousel />
-        <About />
-        <Team />
+        <div className="cv-auto"><About /></div>
+        <div className="cv-auto"><Team /></div>
         <Suspense fallback={<div className="py-32" />}>
-          <Services />
+          <div className="cv-auto"><Services /></div>
         </Suspense>
-        <CaseStudies />
-        <Workflow />
-        <Testimonials />
-        <ContactSection />
+        <div className="cv-auto"><CaseStudies /></div>
+        <div className="cv-auto"><Workflow /></div>
+        <div className="cv-auto"><Testimonials /></div>
+        <div className="cv-auto"><ContactSection /></div>
         <WhatsAppButton />
         <ScrollToTop />
         <Footer />

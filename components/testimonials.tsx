@@ -62,9 +62,9 @@ export function Testimonials() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl p-8 hover:border-primary/40 transition-all duration-300"
+              className="group relative bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl p-8 hover:border-primary/40 hover:bg-background/60 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/10 transition-[transform,box-shadow,border-color,background-color] duration-[420ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] will-change-transform"
             >
-              <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/15" />
+              <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/15 group-hover:text-primary/40 group-hover:scale-110 transition-[color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]" />
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: t.rating }).map((_, idx) => (
                   <Star key={idx} className="w-4 h-4 text-accent fill-accent" />

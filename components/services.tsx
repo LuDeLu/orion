@@ -165,24 +165,24 @@ export function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => openModal(service)}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 transition-all duration-500 cursor-pointer hover-lift"
+              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 cursor-pointer hover-lift"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
                   src={service.image || "/placeholder.svg"}
                   alt={`${service.title} - Orion Marketing`}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="object-cover transition-transform duration-[700ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
               </div>
               <div className="p-8 relative">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:from-primary/35 group-hover:to-accent/35 group-hover:scale-110 transition-[background-color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                   <IconComponent src={service.icon} alt={service.title} />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-foreground mb-3">{service.title}</h3>
+                <h3 className="text-2xl font-display font-bold text-foreground mb-3 transition-colors duration-300 group-hover:text-primary">{service.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{service.description}</p>
-                <div className="mt-4 text-primary text-sm font-medium group-hover:underline">Ver más detalles →</div>
+                <div className="mt-4 text-primary text-sm font-medium inline-flex items-center gap-1 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:gap-2">Ver más detalles <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></div>
               </div>
             </motion.div>
           ))}

@@ -209,9 +209,9 @@ export function About() {
                       initial={{ opacity: 0, y: 16 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.45, delay }}
-                      className="flex flex-col gap-2 bg-primary/[0.12] hover:bg-primary/[0.18] border border-primary/[0.20] hover:border-primary/40 rounded-2xl p-4 transition-all duration-300 group"
+                      className="flex flex-col gap-2 bg-primary/[0.12] hover:bg-primary/[0.20] border border-primary/[0.20] hover:border-primary/45 hover:-translate-y-1 rounded-2xl p-4 transition-[transform,background-color,border-color] duration-[380ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group"
                     >
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/15 flex items-center justify-center group-hover:from-primary/30 transition-all duration-300">
+                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/15 flex items-center justify-center group-hover:from-primary/35 group-hover:scale-110 group-hover:rotate-6 transition-[background-color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         <Icon className="w-4 h-4 text-primary" />
                       </div>
                       <p className="text-sm font-bold text-foreground leading-tight">{title}</p>

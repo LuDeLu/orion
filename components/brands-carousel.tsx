@@ -334,7 +334,7 @@ function BrandCard({
     <button
       onClick={onClick}
       aria-label={`Ver caso de ${brand.name}`}
-      className="group relative flex-shrink-0 w-[320px] md:w-[420px] h-[420px] md:h-[500px] rounded-2xl overflow-hidden bg-card/40 border border-foreground/10 hover:border-primary/40 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/15 hover:-translate-y-1.5 transition-all duration-500 ease-out text-left"
+      className="group relative flex-shrink-0 w-[320px] md:w-[420px] h-[420px] md:h-[500px] rounded-2xl overflow-hidden bg-card/40 border border-foreground/10 hover:border-primary/40 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/15 hover:-translate-y-2 transition-[transform,box-shadow,border-color] duration-[450ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] text-left will-change-transform"
     >
       <div className="absolute inset-0">
         {hasPreview ? (
@@ -345,7 +345,7 @@ function BrandCard({
             sizes="(max-width: 768px) 320px, 420px"
             quality={95}
             priority={false}
-            className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"
+            className="object-cover object-top scale-105 group-hover:scale-110 transition-transform duration-[800ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
           />
         ) : (
           <div className={`absolute inset-0 bg-gradient-to-br ${accent} bg-card`}>
@@ -357,7 +357,7 @@ function BrandCard({
                 width={320}
                 height={160}
                 quality={95}
-                className="max-h-32 md:max-h-40 max-w-[78%] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)] w-auto h-auto group-hover:scale-105 transition-transform duration-500"
+                className="max-h-32 md:max-h-40 max-w-[78%] object-contain drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)] w-auto h-auto group-hover:scale-110 transition-transform duration-[600ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
               />
             </div>
           </div>
@@ -400,9 +400,9 @@ function BrandCard({
         </p>
 
         <div className="flex items-center justify-between pt-1">
-          <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all duration-300">
+          <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-[gap] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
             Ver caso
-            <ArrowUpRight className="w-3.5 h-3.5 group-hover:rotate-12 transition-transform duration-300" />
+            <ArrowUpRight className="w-3.5 h-3.5 group-hover:rotate-12 group-hover:translate-x-0.5 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]" />
           </span>
           <div className="flex gap-1">
             {brand.services.slice(0, 2).map((s) => (
@@ -433,6 +433,16 @@ export function BrandsCarousel() {
   const trackRef = useRef<HTMLDivElement>(null)
   const x = useMotionValue(0)
   const halfWidthRef = useRef(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const wasDraggedRef = useRef(false)
+
+  const handleCardClick = (brand: Brand) => {
+    if (wasDraggedRef.current) {
+      wasDraggedRef.current = false
+      return
+    }
+    setSelectedBrand(brand)
+  }
 
   useEffect(() => {
     const measure = () => {
@@ -446,18 +456,23 @@ export function BrandsCarousel() {
   }, [])
 
   useAnimationFrame((_, delta) => {
-    if (paused || !!selectedBrand || halfWidthRef.current === 0) return
-    const speed = 60
-    let next = x.get() - (speed * delta) / 1000
-    if (next <= -halfWidthRef.current) {
-      next += halfWidthRef.current
+    const half = halfWidthRef.current
+    if (half === 0) return
+
+    if (!paused && !selectedBrand && !isDragging) {
+      const speed = 110
+      x.set(x.get() - (speed * delta) / 1000)
     }
-    x.set(next)
+
+    let v = x.get()
+    if (v <= -half) v += half
+    else if (v > 0) v -= half
+    if (v !== x.get()) x.set(v)
   })
 
   return (
     <>
-      <section ref={ref} className="relative pt-6 pb-24 overflow-hidden">
+      <section ref={ref} className="relative pt-6 pb-24 overflow-hidden isolate-paint">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-64 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4">
@@ -512,13 +527,22 @@ export function BrandsCarousel() {
           <motion.div
             ref={trackRef}
             style={{ x }}
-            className="flex gap-4 md:gap-6 py-4 w-max will-change-transform"
+            drag="x"
+            dragConstraints={{ left: -Infinity, right: Infinity }}
+            dragElastic={0}
+            dragMomentum={true}
+            onDragStart={() => {
+              wasDraggedRef.current = true
+              setIsDragging(true)
+            }}
+            onDragEnd={() => setIsDragging(false)}
+            className="flex gap-4 md:gap-6 py-4 w-max will-change-transform cursor-grab active:cursor-grabbing select-none"
           >
             {loop.map((brand, i) => (
               <BrandCard
                 key={`${brand.name}-${i}`}
                 brand={brand}
-                onClick={() => setSelectedBrand(brand)}
+                onClick={() => handleCardClick(brand)}
               />
             ))}
           </motion.div>
@@ -530,7 +554,7 @@ export function BrandsCarousel() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-center text-xs text-foreground/40 mt-8 px-4"
         >
-          Pasá el cursor para pausar · Hacé click en cualquier marca para ver el caso completo
+          Arrastrá para controlarlo · Hover para pausar · Click para ver el caso completo
         </motion.p>
       </section>
 
