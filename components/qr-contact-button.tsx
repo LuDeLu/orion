@@ -59,7 +59,10 @@ export function QrContactButton() {
 
   return (
     <>
-      <div className="fixed bottom-24 right-6 z-50 flex items-center gap-2">
+      <div
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
         <motion.button
           onClick={dismiss}
           initial={{ opacity: 0 }}
