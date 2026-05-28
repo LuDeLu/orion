@@ -28,14 +28,11 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Detectar sección activa con IntersectionObserver
+  // Detectar sección activa con IntersectionObserver.
+  // Algunas secciones se montan tarde (ej: Servicios está dentro de un <Suspense>
+  // por useSearchParams). Por eso observamos lo que existe ahora y además usamos
+  // un MutationObserver para enganchar las secciones cuando aparecen.
   useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.getElementById(link.id))
-      .filter((el): el is HTMLElement => el !== null)
-
-    if (sections.length === 0) return
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -51,8 +48,33 @@ export function Header() {
       }
     )
 
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
+    const observed = new Set<string>()
+    const observeAvailable = () => {
+      for (const link of navLinks) {
+        if (observed.has(link.id)) continue
+        const el = document.getElementById(link.id)
+        if (el) {
+          observer.observe(el)
+          observed.add(link.id)
+        }
+      }
+      return observed.size === navLinks.length
+    }
+
+    const allFound = observeAvailable()
+
+    let mutation: MutationObserver | undefined
+    if (!allFound) {
+      mutation = new MutationObserver(() => {
+        if (observeAvailable()) mutation?.disconnect()
+      })
+      mutation.observe(document.body, { childList: true, subtree: true })
+    }
+
+    return () => {
+      observer.disconnect()
+      mutation?.disconnect()
+    }
   }, [])
 
   // Bloquear scroll cuando menú móvil abierto
