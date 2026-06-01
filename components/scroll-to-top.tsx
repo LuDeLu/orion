@@ -2,20 +2,29 @@
 
 import { useState, useEffect } from "react"
 import { ChevronUp } from "lucide-react"
+import { useLenis } from "lenis/react"
 
 export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
+  const lenis = useLenis()
 
   useEffect(() => {
     const toggleVisibility = () => {
       setIsVisible(window.scrollY > 300)
     }
-    window.addEventListener("scroll", toggleVisibility)
+    window.addEventListener("scroll", toggleVisibility, { passive: true })
     return () => window.removeEventListener("scroll", toggleVisibility)
   }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" })
+    if (lenis) {
+      lenis.scrollTo(0, {
+        duration: 1.6,
+        easing: (t: number) => 1 - Math.pow(1 - t, 4),
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
   }
 
   if (!isVisible) return null

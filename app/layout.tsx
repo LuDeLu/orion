@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
+import { LenisProvider } from "@/components/providers/lenis-provider"
 import "./globals.css"
 
 const _inter = Inter({
@@ -376,7 +377,7 @@ gtag('config', 'AW-18044639379');`}
             title="Google Tag Manager"
           />
         </noscript>
-        {children}
+        <LenisProvider>{children}</LenisProvider>
         <Analytics />
         <SpeedInsights />
       </body>

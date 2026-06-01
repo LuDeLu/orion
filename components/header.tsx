@@ -1,11 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu, X, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
+import { useLenis } from "lenis/react"
 
 const navLinks = [
   { href: "#nosotros", label: "Nosotros", id: "nosotros" },
@@ -85,6 +86,29 @@ export function Header() {
     }
   }, [isOpen])
 
+  const lenis = useLenis()
+
+  const handleAnchorClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (!href.startsWith("#")) return
+      const target = document.getElementById(href.slice(1))
+      if (!target) return
+      e.preventDefault()
+      setIsOpen(false)
+      if (lenis) {
+        lenis.scrollTo(target, {
+          offset: -80,
+          duration: 1.6,
+          easing: (t: number) => 1 - Math.pow(1 - t, 4),
+        })
+      } else {
+        target.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
+      if (history.replaceState) history.replaceState(null, "", href)
+    },
+    [lenis]
+  )
+
   const handleLinkClick = () => setIsOpen(false)
 
   return (
@@ -135,6 +159,7 @@ export function Header() {
                     <li key={link.href} className="relative">
                       <Link
                         href={link.href}
+                        onClick={(e) => handleAnchorClick(e, link.href)}
                         className={`relative z-10 inline-flex items-center px-4 py-1.5 text-sm font-medium transition-colors duration-300 rounded-full ${
                           isActive
                             ? "text-foreground"
@@ -167,7 +192,7 @@ export function Header() {
                 className="group bg-gradient-to-r from-primary to-accent text-foreground font-semibold rounded-full pl-5 pr-4 py-5 shadow-lg shadow-primary/20 btn-shine"
                 asChild
               >
-                <Link href="#contacto">
+                <Link href="#contacto" onClick={(e) => handleAnchorClick(e, "#contacto")}>
                   <span className="relative z-10 flex items-center gap-1.5">
                     Pedir propuesta
                     <ArrowUpRight className="h-4 w-4 transition-transform duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -243,7 +268,7 @@ export function Header() {
                     >
                       <Link
                         href={link.href}
-                        onClick={handleLinkClick}
+                        onClick={(e) => handleAnchorClick(e, link.href)}
                         className={`group flex items-center justify-between py-4 border-b border-foreground/8 transition-colors duration-300 ${
                           activeSection === link.id
                             ? "text-foreground"
@@ -275,9 +300,8 @@ export function Header() {
                 <Button
                   className="w-full bg-gradient-to-r from-primary to-accent text-foreground rounded-full font-semibold py-6 text-base shadow-xl shadow-primary/20"
                   asChild
-                  onClick={handleLinkClick}
                 >
-                  <Link href="#contacto">
+                  <Link href="#contacto" onClick={(e) => handleAnchorClick(e, "#contacto")}>
                     <span className="flex items-center justify-center gap-2">
                       Pedir mi propuesta
                       <ArrowUpRight className="h-5 w-5" />
