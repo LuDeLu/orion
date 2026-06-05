@@ -122,19 +122,6 @@ const brands: Brand[] = [
     accent: "from-slate-400/25 via-slate-400/10 to-transparent",
   },
   {
-    name: "Monaco Cortinas",
-    logo: "/logos/Monacocortinas.webp",
-    url: "https://www.monacocortinas.com.ar/",
-    industry: "Sitio Web",
-    tagline: "Sitio comercial con catálogo de productos y plan de repuesto",
-    description:
-      "Desarrollamos el sitio web de Monaco Cortinas con catálogo completo de productos y formulario de contacto, más una segunda plataforma para Monaco Seguros con cotizador online. Ambos proyectos en Next.js y Tailwind, con diseño profesional y enfocados en conversión.",
-    services: ["Diseño Web", "Next.js", "Tailwind"],
-    result: "Dos sitios en producción: cortinas metálicas y correduría de seguros",
-    previews: ["/previews/monacocor.webp", "/previews/monacoseg.webp"],
-    accent: "from-orange-500/25 via-orange-500/10 to-transparent",
-  },
-  {
     name: "Imperio 51",
     logo: "/logos/I51.webp",
     url: "#",
