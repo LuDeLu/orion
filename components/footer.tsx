@@ -1,48 +1,39 @@
 "use client"
 
 import Link from "next/link"
-import { Instagram, Linkedin, Twitter, MapPin, Phone, Mail, Facebook } from "lucide-react"
+import { Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react"
+import { useAreas } from "@/hooks/use-areas"
+import { useT } from "@/components/i18n-provider"
+import { fill } from "@/lib/i18n"
 
-const footerLinks = {
-  servicios: [
-    { label: "Branding", href: "#", service: "Branding" },
-    { label: "Social Media", href: "#", service: "Social Media" },
-    { label: "Publicidad Digital", href: "#", service: "Publicidad Digital" },
-    { label: "Desarrollo Web", href: "#", service: "Desarrollo Web" },
-  ],
-  empresa: [
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Expertise", href: "#casos" },
-    { label: "Contacto", href: "#contacto" },
-  ],
-}
+const companyLinks = [
+  { key: "casos", href: "/#casos" },
+  { key: "nosotros", href: "/#nosotros" },
+  { key: "equipo", href: "/#equipo" },
+  { key: "contacto", href: "/#contacto" },
+] as const
 
+// Solo redes que existen: un ícono que no lleva a ningún lado resta confianza.
 const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/orionmkt.ar", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/company/orionmkt-ar", label: "LinkedIn" },
-  { icon: Facebook, href: "#", label: "Facebook" },
 ]
 
 
 export function Footer() {
-  const handleServiceClick = (serviceName: string) => {
-    const message = encodeURIComponent(`Hola! Me interesa consultar sobre ${serviceName}`)
-    window.open(`https://wa.me/5491156566083?text=${message}`, "_blank")
-  }
+  const t = useT()
+  const areas = useAreas()
 
   return (
     <footer className="relative border-t border-border py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div className="lg:col-span-2 mb-6">
-            <p className="text-muted-foreground max-w-sm mb-6">
-              Agencia de marketing digital especializada en PyMEs y startups. Impulsamos tu negocio con estrategias
-              innovadoras y resultados medibles.
-            </p>
+            <p className="text-muted-foreground max-w-sm mb-6">{t.footer.description}</p>
             <div className="space-y-3 mb-6">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary shrink-0" />
-                <span className="text-sm">Argentina - Operamos en todo el país y LATAM</span>
+                <span className="text-sm">{t.footer.location}</span>
               </div>
               <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="h-4 w-4 text-primary shrink-0" />
@@ -73,28 +64,32 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Servicios</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t.footer.areasHeading}</h4>
             <ul className="space-y-3">
-              {footerLinks.servicios.map((link) => (
-                <li key={link.label}>
-                  <button
-                    onClick={() => handleServiceClick(link.service)}
-                    className="text-muted-foreground hover:text-foreground hover:translate-x-1 transition-[color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] text-left"
+              {areas.map((area) => (
+                <li key={area.slug}>
+                  <Link
+                    href={area.href}
+                    className="group inline-flex items-center gap-2 text-muted-foreground hover:text-foreground hover:translate-x-1 transition-[color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]"
                   >
-                    {link.label}
-                  </button>
+                    <span
+                      className="w-1.5 h-1.5 rounded-full shrink-0"
+                      style={{ background: area.accent.hex }}
+                    />
+                    {area.name}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Empresa</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t.footer.companyHeading}</h4>
             <ul className="space-y-3">
-              {footerLinks.empresa.map((link) => (
-                <li key={link.label}>
+              {companyLinks.map((link) => (
+                <li key={link.key}>
                   <Link href={link.href} className="text-muted-foreground hover:text-foreground hover:translate-x-1 transition-[color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] inline-block">
-                    {link.label}
+                    {t.nav[link.key]}
                   </Link>
                 </li>
               ))}
@@ -104,14 +99,14 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Orion Marketing - Agencia de Marketing Digital. Todos los derechos reservados.
+            {fill(t.footer.copyright, { year: new Date().getFullYear() })}
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
-              Privacidad
+            <Link href="/privacidad" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              {t.footer.privacy}
             </Link>
-            <Link href="#" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
-              Términos
+            <Link href="/terminos" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              {t.footer.terms}
             </Link>
           </div>
         </div>

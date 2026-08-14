@@ -142,12 +142,12 @@ export function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20 max-w-4xl mx-auto"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
+          <span className="inline-block px-4 py-2 rounded-md bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
             Servicios
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground mt-4 mb-6 text-balance leading-[1.08] tracking-tight">
             Disciplinas que combinamos{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+            <span className="text-primary">
               según tu proyecto
             </span>
           </h2>
@@ -165,7 +165,7 @@ export function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => openModal(service)}
-              className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 cursor-pointer hover-lift"
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br from-card/50 to-card/30 border border-border/50 hover:border-primary/50 cursor-pointer hover-lift"
             >
               <div className="aspect-[4/3] relative overflow-hidden">
                 <Image
@@ -180,7 +180,7 @@ export function Services() {
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center mb-4 group-hover:from-primary/35 group-hover:to-accent/35 group-hover:scale-110 transition-[background-color,transform] duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
                   <IconComponent src={service.icon} alt={service.title} />
                 </div>
-                <h3 className="text-2xl font-display font-bold text-foreground mb-3 transition-colors duration-300 group-hover:text-primary">{service.title}</h3>
+                <h3 className="text-2xl font-display font-extrabold text-foreground mb-3 transition-colors duration-300 group-hover:text-primary">{service.title}</h3>
                 <p className="text-foreground/70 leading-relaxed">{service.description}</p>
                 <div className="mt-4 text-primary text-sm font-medium inline-flex items-center gap-1 transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:gap-2">Ver más detalles <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span></div>
               </div>
@@ -195,7 +195,7 @@ export function Services() {
           onClick={closeModal}
         >
           <div
-            className="bg-card border border-border rounded-2xl max-w-3xl w-full overflow-hidden"
+            className="bg-card border border-border rounded-xl max-w-3xl w-full overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
@@ -220,7 +220,7 @@ export function Services() {
                   <IconComponent src={selectedService.icon} alt={selectedService.title} />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground">
+                  <h3 className="text-2xl md:text-3xl font-display font-extrabold text-foreground">
                     {selectedService.title}
                   </h3>
                   <p className="text-foreground/60 mt-1">{selectedService.description}</p>
@@ -231,7 +231,7 @@ export function Services() {
                 {selectedService.fullDescription}
               </p>
 
-              <h4 className="text-xl font-display font-bold text-foreground mb-4">¿Qué incluye?</h4>
+              <h4 className="text-xl font-display font-extrabold text-foreground mb-4">¿Qué incluye?</h4>
               <ul className="grid gap-3 mb-8">
                 {selectedService.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-foreground/80">

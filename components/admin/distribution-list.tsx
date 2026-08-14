@@ -21,7 +21,7 @@ export function DistributionList({
         <h3 className="text-sm font-semibold text-white">{title}</h3>
         {total > 0 && (
           <span
-            className="text-[10px] font-medium px-2 py-0.5 rounded-full"
+            className="text-[10px] font-medium px-2 py-0.5 rounded-md"
             style={{ background: "rgba(224,100,47,0.10)", color: "rgba(224,100,47,0.80)", border: "1px solid rgba(224,100,47,0.20)" }}
           >
             {total} total

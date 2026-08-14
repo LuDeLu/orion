@@ -1,245 +1,161 @@
 "use client"
 
-import { CheckCircle2, Users, Trophy, TrendingUp, Star, Calendar, BarChart2, MessageSquare, Zap, Globe2 } from "lucide-react"
-import { motion, useInView } from "framer-motion"
+import Link from "next/link"
 import Image from "next/image"
 import { useRef } from "react"
-
-const features = [
-  "Diagnóstico previo antes de proponer",
-  "Plan único, no plantillas reutilizadas",
-  "Equipo dedicado y atención directa",
-  "Reportes claros y transparentes",
-]
+import { motion, useInView } from "framer-motion"
+import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { useAreas } from "@/hooks/use-areas"
+import { useT } from "@/components/i18n-provider"
 
 
 export function About() {
+  const t = useT()
+  const areas = useAreas()
+  const features = t.about.features
+  const factSheet = t.about.sheet
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section ref={ref} id="nosotros" className="relative py-20 px-4 overflow-hidden" aria-labelledby="about-heading">
-      <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+    <section
+      ref={ref}
+      id="nosotros"
+      className="relative py-24 px-4 md:px-6 scroll-mt-24"
+      aria-labelledby="about-heading"
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-12 lg:gap-16 items-start">
+          {/* ── Columna editorial ───────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="max-w-xl mx-auto lg:mx-0"
           >
-            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-6">
-              Nosotros
-            </div>
+            <span className="inline-block px-4 py-2 rounded-md bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-6">
+              {t.about.kicker}
+            </span>
+
             <h2
               id="about-heading"
-              className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+              className="text-3xl md:text-4xl lg:text-5xl font-display font-extrabold text-foreground mb-7 text-balance leading-[1.08] tracking-tight"
             >
-              Una agencia que empieza{" "}
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                por entenderte
-              </span>
+              {t.about.titleStart}{" "}
+              <span className="text-primary">{t.about.titleHighlight}</span>
             </h2>
-            <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-pretty">
-              Somos un equipo de Buenos Aires que trabaja con PyMEs y startups de toda
-              la región. Cada cliente es un mundo, y lo tratamos como tal. Por eso arrancamos siempre con un diagnóstico real antes de tirar cualquier idea arriba de la mesa.
-            </p>
-            <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-pretty">
-              Combinamos branding, marketing digital, diseño y desarrollo en una propuesta única
-              para cada cliente. Trabajamos cerca, ajustamos sobre la marcha y medimos lo que
-              importa.
-            </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
-                  className="flex items-center gap-3"
-                >
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0" />
-                  <span className="text-foreground">{feature}</span>
-                </motion.div>
-              ))}
+            <div className="space-y-5 mb-9">
+              <p className="text-foreground/65 text-lg leading-relaxed text-pretty">
+                {t.about.p1}
+              </p>
+              <p className="text-foreground/65 text-lg leading-relaxed text-pretty">
+                {t.about.p2}
+              </p>
             </div>
+
+            {/* Diferenciales, en lista con reglas */}
+            <ul className="border-t border-[var(--hairline)]">
+              {features.map((feature, index) => (
+                <motion.li
+                  key={feature}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.07 }}
+                  className="flex items-center gap-3 py-3.5 border-b border-[var(--hairline)]"
+                >
+                  <CheckCircle2 className="h-4 w-4 text-primary shrink-0" />
+                  <span className="text-foreground/85">{feature}</span>
+                </motion.li>
+              ))}
+            </ul>
           </motion.div>
 
+          {/* ── Ficha institucional ─────────────────────────── */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="relative"
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:sticky lg:top-24"
           >
-            <div className="relative rounded-3xl glass-card p-10 lg:p-16 overflow-hidden hover-lift">
-              <div className="absolute inset-0 opacity-20">
-                {/* Orion constellation — pixel-perfect from wikipedia.org/wiki/File:ConstellationOrion.svg (200×200 viewBox) */}
-                <svg viewBox="55 25 100 130" className="w-full h-full">
-                  {/* Lines drawn first so stars sit on top */}
-                  {(
-                    [
-                      // x1,         y1,          x2,          y2
-                      [86.864, 84.589, 104.187, 75.806], // Betelgeuse → Meissa area
-                      [104.187, 75.806, 112.899, 88.281], // → Bellatrix
-                      [112.899, 88.281, 106.977, 109.422], // Bellatrix → Alnilam
-                      [106.977, 109.422, 122.087, 139.035], // Alnilam → Rigel
-                      [122.087, 139.035, 93.287, 144.136], // Rigel → Saiph
-                      [93.287, 144.136, 99.338, 117.247], // Saiph → belt (Alnitak)
-                      [99.338, 117.247, 86.864, 84.589], // Alnitak → Betelgeuse
-                      // Left arm chain
-                      [86.864, 84.589, 80.719, 76.733],
-                      [80.719, 76.733, 72.873, 60.744],
-                      [72.873, 60.744, 76.626, 58.846],
-                      [76.626, 58.846, 80.191, 40.266],
-                      [72.873, 60.744, 71.016, 43.516], // branch
-                      // Right arm chain
-                      [112.899, 88.281, 143.391, 85.843],
-                      [138.756, 74.734, 142.552, 79.054],
-                      [142.552, 79.054, 143.391, 85.843],
-                      [143.391, 85.843, 142.307, 90.619],
-                      [142.307, 90.619, 139.821, 101.753],
-                      [139.821, 101.753, 136.110, 104.336],
-                    ] as [number, number, number, number][]
-                  ).map(([x1, y1, x2, y2], i) => (
-                    <motion.line
-                      key={i}
-                      x1={x1} y1={y1} x2={x2} y2={y2}
-                      stroke="#9c72e0"
-                      strokeWidth="0.7"
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={isInView ? { pathLength: 1, opacity: 0.75 } : {}}
-                      transition={{ duration: 0.7, delay: 1.2 + i * 0.07 }}
-                    />
-                  ))}
-                  {/* Stars — exact cx/cy/r from the Wikimedia SVG, recoloured to brand palette */}
-                  {(
-                    [
-                      // [id,              cx,       cy,       r,     fill]
-                      ["betelgeuse", 86.864, 84.589, 4.440, "#9c72e0"], // α Ori — left shoulder
-                      ["bellatrix", 104.187, 75.806, 2.088, "#9c72e0"], // γ Ori — right shoulder (head side)
-                      ["mintaka", 112.899, 88.281, 3.488, "#9c72e0"], // δ Ori — belt right
-                      ["alnilam", 106.977, 109.422, 3.000, "#9c72e0"], // ε Ori — belt centre
-                      ["rigel", 122.087, 139.035, 4.656, "#844be3"], // β Ori — right foot (brightest)
-                      ["saiph", 93.287, 144.136, 3.144, "#844be3"], // κ Ori — left foot
-                      ["alnitak", 99.338, 117.247, 3.408, "#9c72e0"], // ζ Ori — belt left
-                      // Left arm
-                      ["pi5ori", 80.719, 76.733, 1.504, "#9c72e0"],
-                      ["pi3ori", 72.873, 60.744, 1.240, "#9c72e0"],
-                      ["pi4ori", 76.626, 58.846, 1.264, "#9c72e0"],
-                      ["pi2ori", 80.191, 40.266, 1.088, "#9c72e0"],
-                      ["pi1ori", 71.016, 43.516, 0.640, "#9c72e0"],
-                      // Right arm
-                      ["chi2ori", 143.391, 85.843, 2.248, "#9c72e0"],
-                      ["chi1ori", 138.756, 74.734, 1.088, "#9c72e0"],
-                      ["mu_ori", 142.552, 79.054, 1.320, "#9c72e0"],
-                      ["nu_ori", 142.307, 90.619, 1.856, "#9c72e0"],
-                      ["xi_ori", 139.821, 101.753, 1.832, "#9c72e0"],
-                      ["omicron_ori", 136.110, 104.336, 1.224, "#9c72e0"],
-                    ] as [string, number, number, number, string][]
-                  ).map(([id, cx, cy, r, fill], i) => (
-                    <motion.circle
-                      key={id as string}
-                      cx={cx as number} cy={cy as number} r={r as number}
-                      fill={fill as string}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.8 + i * 0.06 }}
-                      style={{ transformOrigin: `${cx}px ${cy}px` }}
-                    />
-                  ))}
-                </svg>
-              </div>
-
-              <div className="relative z-10 h-full min-h-[400px] flex flex-col items-center justify-center gap-6 px-2 py-8">
-                {/* Logo badge central */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  className="flex flex-col items-center gap-2"
-                >
-                  <div className="relative">
-                    <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-xl" />
-                    <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/40 to-accent/20 border border-primary/30 flex items-center justify-center shadow-lg shadow-primary/10">
-                      <Image src="/logo.png" alt="Orion MKT" width={36} height={36} className="h-9 w-9 object-contain" />
-                    </div>
-                  </div>
-                  <span className="text-xs font-bold tracking-[0.2em] uppercase text-foreground/40">Orion Marketing</span>
-                </motion.div>
-
-                {/* Divider */}
-                <motion.div
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={isInView ? { scaleX: 1, opacity: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 0.75 }}
-                  className="w-24 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
-                />
-
-                {/* 2×2 pillar grid */}
-                <div className="grid grid-cols-2 gap-3 w-full max-w-sm">
-                  {[
-                    {
-                      icon: MessageSquare,
-                      title: "A medida",
-                      desc: "Cada propuesta nace del cliente",
-                      delay: 0.8,
-                    },
-                    {
-                      icon: BarChart2,
-                      title: "Data-driven",
-                      desc: "Decisiones basadas en métricas reales",
-                      delay: 0.9,
-                    },
-                    {
-                      icon: Zap,
-                      title: "Cercanos",
-                      desc: "Trato directo con los fundadores",
-                      delay: 1.0,
-                    },
-                    {
-                      icon: Globe2,
-                      title: "Integrales",
-                      desc: "Marketing, diseño y desarrollo en un solo equipo",
-                      delay: 1.1,
-                    },
-                  ].map(({ icon: Icon, title, desc, delay }, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 16 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.45, delay }}
-                      className="flex flex-col gap-2 bg-primary/[0.12] hover:bg-primary/[0.20] border border-primary/[0.20] hover:border-primary/45 hover:-translate-y-1 rounded-2xl p-4 transition-[transform,background-color,border-color] duration-[380ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group"
-                    >
-                      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary/20 to-accent/10 border border-primary/15 flex items-center justify-center group-hover:from-primary/35 group-hover:scale-110 group-hover:rotate-6 transition-[background-color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
-                        <Icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <p className="text-sm font-bold text-foreground leading-tight">{title}</p>
-                      <p className="text-xs text-foreground/45 leading-snug">{desc}</p>
-                    </motion.div>
-                  ))}
+            <div className="rounded-xl overflow-hidden border border-[var(--hairline)] bg-[var(--tint-1)]">
+              {/* Cabecera */}
+              <div className="flex items-center gap-3 px-6 py-5 border-b border-[var(--hairline)]">
+                <div className="w-10 h-10 rounded-md bg-primary/12 border border-primary/25 flex items-center justify-center shrink-0">
+                  <Image
+                    src="/logo.png"
+                    alt=""
+                    width={28}
+                    height={28}
+                    className="w-6 h-6 object-contain"
+                  />
+                </div>
+                <div className="leading-tight">
+                  <p className="font-display font-extrabold text-foreground tracking-tight">
+                    Orion Marketing
+                  </p>
+                  <p className="text-xs uppercase tracking-[0.22em] text-foreground/65">
+                    {t.about.sheetTitle}
+                  </p>
                 </div>
               </div>
-            </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: 20 }}
-              animate={isInView ? { opacity: 1, scale: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.7 }}
-              className="absolute -top-4 -right-4 bg-primary text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg shadow-primary/20"
-            >
-              <Star className="w-4 h-4 inline mr-1" />
-              Propuestas a medida
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8, x: -20 }}
-              animate={isInView ? { opacity: 1, scale: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="absolute -bottom-4 -left-4 bg-secondary text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-lg shadow-secondary/20"
-            >
-              <Star className="w-4 h-4 inline mr-1" />
-              Toda Argentina
-            </motion.div>
+              {/* Datos duros */}
+              <dl>
+                {factSheet.map((row, i) => (
+                  <motion.div
+                    key={row.label}
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.35, delay: 0.3 + i * 0.05 }}
+                    className="flex items-baseline justify-between gap-4 px-6 py-3.5 border-b border-[var(--hairline)]"
+                  >
+                    <dt className="text-xs uppercase tracking-[0.16em] text-foreground/65 shrink-0">
+                      {row.label}
+                    </dt>
+                    <dd className="text-sm text-foreground/85 text-right font-medium">
+                      {row.value}
+                    </dd>
+                  </motion.div>
+                ))}
+              </dl>
+
+              {/* Accesos a las tres áreas */}
+              <div className="p-3 grid gap-1.5">
+                {areas.map((area, i) => {
+                  const Icon = area.icon
+                  return (
+                    <motion.div
+                      key={area.slug}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.35, delay: 0.55 + i * 0.06 }}
+                    >
+                      <Link
+                        href={area.href}
+                        className="group flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors duration-300 hover:bg-[var(--tint-1)]"
+                      >
+                        <span
+                          className="w-7 h-7 rounded-md flex items-center justify-center shrink-0"
+                          style={{
+                            background: `rgba(${area.accent.rgb},0.12)`,
+                            border: `1px solid rgba(${area.accent.rgb},0.25)`,
+                          }}
+                        >
+                          <Icon className="w-3.5 h-3.5" style={{ color: area.accent.hex }} />
+                        </span>
+                        <span className="text-sm text-foreground/75 flex-1 min-w-0 truncate">
+                          {area.name}
+                        </span>
+                        <ArrowRight
+                          className="w-4 h-4 shrink-0 opacity-0 -translate-x-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                          style={{ color: area.accent.hex }}
+                        />
+                      </Link>
+                    </motion.div>
+                  )
+                })}
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

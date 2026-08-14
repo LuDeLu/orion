@@ -5,6 +5,8 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
 import { LenisProvider } from "@/components/providers/lenis-provider"
+import { ThemeProvider } from "@/components/theme-provider"
+import { I18nProvider } from "@/components/i18n-provider"
 import "./globals.css"
 
 const _inter = Inter({
@@ -297,7 +299,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  colorScheme: "dark",
+  colorScheme: "dark light",
 }
 
 export default function RootLayout({
@@ -306,7 +308,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="es-AR" prefix="og: https://ogp.me/ns#">
+    // suppressHydrationWarning: next-themes escribe data-theme en <html> antes
+    // de hidratar, y el idioma guardado ajusta lang al montar.
+    <html lang="es-AR" prefix="og: https://ogp.me/ns#" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
@@ -377,7 +381,16 @@ gtag('config', 'AW-18044639379');`}
             title="Google Tag Manager"
           />
         </noscript>
-        <LenisProvider>{children}</LenisProvider>
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <I18nProvider>
+            <LenisProvider>{children}</LenisProvider>
+          </I18nProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>

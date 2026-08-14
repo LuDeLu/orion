@@ -3,32 +3,13 @@
 import { Quote, Star } from "lucide-react"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+import { useT } from "@/components/i18n-provider"
 
-const testimonials = [
-  {
-    quote:
-      "Excelente y rápido trabajo de los chicos, bastante cómodo todo. No hay nada de lo cual quejarse.",
-    author: "Diego Alacore",
-    role: "Dueño · Soul Security",
-    rating: 5,
-  },
-  {
-    quote:
-      "Súper conforme con todo el servicio. La verdad me potenció mucho el crecimiento. Recomendados.",
-    author: "Diego Rivis",
-    role: "Dueño · RR Sintético",
-    rating: 5,
-  },
-  {
-    quote:
-      "Orion nos ayudó a ordenar nuestro mensaje y a enfocarnos en los clientes correctos. Desde entonces, la calidad de nuestros leads mejoró notablemente.",
-    author: "Lucina Schepens",
-    role: "Brand Manager · Schepens",
-    rating: 5,
-  },
-]
+const authors = ["Diego Alacore", "Diego Rivis", "Lucina Schepens"]
 
 export function Testimonials() {
+  const t = useT()
+  const testimonials = t.testimonials.items.map((x, i) => ({ ...x, author: authors[i], rating: 5 }))
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.2 })
 
@@ -41,17 +22,15 @@ export function Testimonials() {
           transition={{ duration: 0.6 }}
           className="text-center mb-14 max-w-3xl mx-auto"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
-            Testimonios
+          <span className="inline-block px-4 py-2 rounded-md bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
+            {t.testimonials.kicker}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance">
-            Lo que dicen quienes ya{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              trabajaron con nosotros
-            </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground mt-4 mb-6 text-balance leading-[1.08] tracking-tight">
+            {t.testimonials.titleStart}{" "}
+            <span className="text-primary">{t.testimonials.titleHighlight}</span>
           </h2>
-          <p className="text-foreground/60 text-lg md:text-xl text-pretty">
-            Cada cliente recibe una solución pensada para su realidad. Esto es lo que cuentan.
+          <p className="text-foreground/65 text-lg md:text-xl text-pretty">
+            {t.testimonials.lead}
           </p>
         </motion.div>
 
@@ -62,7 +41,7 @@ export function Testimonials() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group relative bg-background/40 backdrop-blur-sm border border-foreground/10 rounded-2xl p-8 hover:border-primary/40 hover:bg-background/60 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/10 transition-[transform,box-shadow,border-color,background-color] duration-[420ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+              className="group relative bg-background/40 backdrop-blur-sm border border-[var(--hairline)] rounded-xl p-8 hover:border-primary/40 hover:bg-background/60 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-primary/10 transition-[transform,box-shadow,border-color,background-color] duration-[420ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] will-change-transform"
             >
               <Quote className="absolute top-6 right-6 h-8 w-8 text-primary/15 group-hover:text-primary/40 group-hover:scale-110 transition-[color,transform] duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]" />
               <div className="flex gap-1 mb-4">
@@ -73,7 +52,7 @@ export function Testimonials() {
               <p className="text-foreground/80 leading-relaxed mb-6 italic">&ldquo;{t.quote}&rdquo;</p>
               <div>
                 <div className="font-bold text-foreground">{t.author}</div>
-                <div className="text-sm text-foreground/55">{t.role}</div>
+                <div className="text-sm text-foreground/65">{t.role}</div>
               </div>
             </motion.div>
           ))}

@@ -30,6 +30,22 @@ export function ConstellationBackground() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
+    // Canvas no entiende var(): resolvemos los tokens de tema a mano y los
+    // refrescamos cuando cambia data-theme en <html>.
+    const css = (name: string, fallback: string) =>
+      getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback
+    let starRgb = css("--star-rgb", "247,215,133")
+    let coreRgb = css("--star-core-rgb", "240,240,235")
+    const readTheme = () => {
+      starRgb = css("--star-rgb", "247,215,133")
+      coreRgb = css("--star-core-rgb", "240,240,235")
+    }
+    const themeObserver = new MutationObserver(readTheme)
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    })
+
     let stars: Star[] = []
     let connections: Array<{ a: number; b: number; alpha: number }> = []
     let shootingStars: ShootingStar[] = []
@@ -111,7 +127,7 @@ export function ConstellationBackground() {
       ctx.lineWidth = 0.5
       for (let k = 0; k < connections.length; k++) {
         const c = connections[k]
-        ctx.strokeStyle = `rgba(247,215,133,${c.alpha})`
+        ctx.strokeStyle = `rgba(${starRgb}, ${c.alpha})`
         ctx.beginPath()
         ctx.moveTo(stars[c.a].x, stars[c.a].y)
         ctx.lineTo(stars[c.b].x, stars[c.b].y)
@@ -125,13 +141,13 @@ export function ConstellationBackground() {
         const pulse = Math.sin(t + s.twinkle) * 0.15 + 0.9
 
         // Halo dorado tenue (un solo arc en vez de radial gradient)
-        ctx.fillStyle = `rgba(247,215,133,${s.a * pulse * 0.18})`
+        ctx.fillStyle = `rgba(${starRgb}, ${s.a * pulse * 0.18})`
         ctx.beginPath()
         ctx.arc(s.x, s.y, s.r * 3, 0, Math.PI * 2)
         ctx.fill()
 
         // Core blanco
-        ctx.fillStyle = `rgba(240,240,235,${s.a * pulse})`
+        ctx.fillStyle = `rgba(${coreRgb},${s.a * pulse})`
         ctx.beginPath()
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2)
         ctx.fill()
@@ -151,8 +167,8 @@ export function ConstellationBackground() {
 
         // Trail
         const grad = ctx.createLinearGradient(star.x, star.y, star.x - star.vx * 8, star.y - star.vy * 8)
-        grad.addColorStop(0, `rgba(247, 215, 133, ${star.opacity * 0.9})`)
-        grad.addColorStop(1, "rgba(247, 215, 133, 0)")
+        grad.addColorStop(0, `rgba(${starRgb}, ${star.opacity * 0.9})`)
+        grad.addColorStop(1, `rgba(${starRgb}, 0)`)
         ctx.strokeStyle = grad
         ctx.lineWidth = 2
         ctx.lineCap = "round"
@@ -162,7 +178,7 @@ export function ConstellationBackground() {
         ctx.stroke()
 
         // Punta brillante
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`
+        ctx.fillStyle = `rgba(${coreRgb}, ${star.opacity})`
         ctx.beginPath()
         ctx.arc(star.x, star.y, 2, 0, Math.PI * 2)
         ctx.fill()
@@ -204,6 +220,7 @@ export function ConstellationBackground() {
       running = false
       window.removeEventListener("resize", resize)
       document.removeEventListener("visibilitychange", onVisibility)
+      themeObserver.disconnect()
       cancelAnimationFrame(raf)
     }
   }, [])

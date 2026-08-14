@@ -62,7 +62,7 @@ function BrowserMockup() {
           animate={{ y: [0, -6, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           style={{ willChange: "transform" }}
-          className="relative rounded-2xl overflow-hidden border border-foreground/10 bg-background/40 backdrop-blur-md shadow-2xl shadow-primary/10 gpu-layer"
+          className="relative rounded-xl overflow-hidden border border-foreground/10 bg-background/40 backdrop-blur-md shadow-2xl shadow-primary/10 gpu-layer"
         >
           {/* Browser chrome */}
           <div className="relative flex items-center gap-2 px-4 py-3 bg-foreground/[0.04] border-b border-foreground/8">
@@ -162,7 +162,7 @@ function BrowserMockup() {
           initial={{ opacity: 0, y: 20, x: -10 }}
           animate={{ opacity: 1, y: 0, x: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="absolute -bottom-5 -left-3 md:-left-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-2xl bg-background/90 backdrop-blur-xl border border-foreground/10 shadow-xl"
+          className="absolute -bottom-5 -left-3 md:-left-6 hidden sm:flex items-center gap-3 px-4 py-3 rounded-xl bg-background/90 backdrop-blur-xl border border-foreground/10 shadow-xl"
         >
           <div className="flex -space-x-2">
             <span className="w-7 h-7 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-[10px] font-bold text-foreground border-2 border-background">
@@ -222,7 +222,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 12 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs md:text-sm font-semibold uppercase tracking-wider mb-7"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-primary/10 border border-primary/20 text-primary text-xs md:text-sm font-semibold uppercase tracking-wider mb-7"
             >
               Proyectos personalizados para cada caso
             </motion.div>
@@ -231,10 +231,10 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-display font-bold text-foreground mb-6 leading-[1.05] tracking-tight text-balance select-none"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-display font-extrabold text-foreground mb-6 leading-[1.05] tracking-tight text-balance select-none"
             >
               Estrategias hechas a la medida de{" "}
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+              <span className="text-primary">
                 tu negocio
               </span>
             </motion.h1>
@@ -256,7 +256,7 @@ export function Hero() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-primary to-accent text-foreground px-9 py-7 text-base md:text-lg font-semibold group rounded-full btn-shine w-full sm:w-auto"
+                className="bg-gradient-to-r from-primary to-accent text-foreground px-9 py-7 text-base md:text-lg font-semibold group rounded-md btn-shine w-full sm:w-auto"
                 asChild
               >
                 <Link href="#contacto">
@@ -269,7 +269,7 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary/30 text-foreground hover:bg-primary/15 hover:border-primary/60 px-9 py-7 text-base md:text-lg font-semibold rounded-full bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
+                className="border-primary/30 text-foreground hover:bg-primary/15 hover:border-primary/60 px-9 py-7 text-base md:text-lg font-semibold rounded-md bg-transparent backdrop-blur-sm hover-lift w-full sm:w-auto"
                 asChild
               >
                 <Link href="#equipo">Conocer al equipo</Link>

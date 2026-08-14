@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
 import {
@@ -8,19 +9,24 @@ import {
   ExternalLink,
   Linkedin,
   Code2,
-  Palette,
   Megaphone,
   Globe,
   Mail,
   ArrowUpRight,
   Server,
 } from "lucide-react"
+import Link from "next/link"
+import type { AreaSlug } from "@/lib/areas"
+import { useAreas } from "@/hooks/use-areas"
+import { useT } from "@/components/i18n-provider"
 
 type Member = {
   id: string
   name: string
   role: string
   area: string
+  /** Landing del área que lidera esta persona */
+  areaSlug: AreaSlug
   initials: string
   icon: typeof Code2
   accent: {
@@ -48,8 +54,9 @@ const team: Member[] = [
   {
     id: "lucas",
     name: "Lucas Baez",
-    role: "CEO",
+    role: "Socio fundador y CEO",
     area: "Desarrollo de software & web",
+    areaSlug: "software",
     initials: "LB",
     icon: Code2,
    accent: {
@@ -93,8 +100,9 @@ const team: Member[] = [
   {
     id: "david",
     name: "Davi Cabella",
-    role: "Co-fundador",
+    role: "Socio fundador",
     area: "Marketing & estrategia",
+    areaSlug: "marketing",
     initials: "DC",
     icon: Megaphone,
     accent: {
@@ -135,47 +143,11 @@ const team: Member[] = [
     },
   },
   {
-    id: "annie",
-    name: "Annie Ojeda",
-    role: "Co-fundadora",
-    area: "Diseño gráfico & dirección creativa",
-    initials: "AO",
-    icon: Palette,
-    accent: {
-      avatarFrom: "from-primary/40",
-      avatarTo: "to-accent/20",
-      ring: "ring-primary/30",
-      glow: "bg-primary/20",
-      iconColor: "text-primary",
-      chipBg: "bg-primary/10",
-      chipBorder: "border-primary/25",
-    },    
-    short:
-      "Define la identidad visual de cada cliente: branding, sistemas de marca y dirección creativa.",
-    bio: [
-      "Diseñadora gráfica y co-fundadora de Orion. Está detrás de la identidad visual de cada cliente: branding, sistemas de marca, piezas para redes y dirección creativa.",
-      "Cree que el diseño no es decoración: es una herramienta para que el mensaje del cliente llegue claro, coherente y memorable a su audiencia.",
-    ],
-    skills: [
-      "Branding & identidad",
-      "Diseño editorial",
-      "Sistemas de marca",
-      "Dirección creativa",
-      "Piezas para redes",
-      "Contenido pautable",
-    ],
-    showcase: {
-      type: "external",
-      url: "https://www.artstation.com/annieth",
-      title: "artstation.com/annieth",
-      subtitle: "Portafolio de diseño & arte",
-    },
-  },
-  {
     id: "nicolas",
     name: "Nicolas Mazzotti",
-    role: "Co-fundador",
+    role: "Socio fundador",
     area: "IT & infraestructura",
+    areaSlug: "it",
     initials: "NM",
     icon: Server,
     accent: {
@@ -219,16 +191,16 @@ function Avatar({ member, size = "md" }: { member: Member; size?: "md" | "lg" })
 
   return (
     <div className="relative flex-shrink-0">
-      <div className={`absolute inset-0 ${member.accent.glow} blur-xl rounded-2xl`} />
+      <div className={`absolute inset-0 ${member.accent.glow} blur-xl rounded-xl`} />
       <div
-        className={`relative ${dim} rounded-2xl bg-gradient-to-br ${member.accent.avatarFrom} ${member.accent.avatarTo} border border-foreground/15 ring-1 ${member.accent.ring} flex items-center justify-center shadow-lg`}
+        className={`relative ${dim} rounded-xl bg-gradient-to-br ${member.accent.avatarFrom} ${member.accent.avatarTo} border border-[var(--hairline-strong)] ring-1 ${member.accent.ring} flex items-center justify-center shadow-lg`}
       >
-        <span className={`${text} font-display font-bold text-foreground tracking-tight`}>
+        <span className={`${text} font-display font-extrabold text-foreground tracking-tight`}>
           {member.initials}
         </span>
       </div>
       <div
-        className={`absolute -bottom-1.5 -right-1.5 ${badge} rounded-xl bg-background border border-foreground/15 flex items-center justify-center shadow-md`}
+        className={`absolute -bottom-1.5 -right-1.5 ${badge} rounded-xl bg-background border border-[var(--hairline-strong)] flex items-center justify-center shadow-md`}
       >
         <Icon className={`${badgeIcon} ${member.accent.iconColor}`} />
       </div>
@@ -261,18 +233,18 @@ function ShowcasePreview({ member }: { member: Member }) {
 
   return (
     <Wrapper>
-      <div className="relative overflow-hidden rounded-2xl border border-foreground/10 bg-background/40 backdrop-blur-sm group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/5 transition-all duration-300">
+      <div className="relative overflow-hidden rounded-xl border border-[var(--hairline)] bg-background/40 backdrop-blur-sm group-hover:border-primary/40 group-hover:shadow-xl group-hover:shadow-primary/5 transition-all duration-300">
         {/* Browser chrome */}
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-foreground/10 bg-foreground/[0.03]">
+        <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--hairline)] bg-[var(--tint-1)]">
           <div className="flex gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-foreground/15" />
             <span className="w-2.5 h-2.5 rounded-full bg-foreground/15" />
             <span className="w-2.5 h-2.5 rounded-full bg-foreground/15" />
           </div>
-          <div className="flex-1 mx-3 px-3 py-1 rounded-md bg-foreground/[0.04] border border-foreground/10 text-xs text-foreground/55 truncate font-mono">
+          <div className="flex-1 mx-3 px-3 py-1 rounded-md bg-[var(--tint-1)] border border-[var(--hairline)] text-xs text-foreground/65 truncate font-mono">
             {isExternalLink ? showcase.url.replace(/^https?:\/\//, "").replace(/\/$/, "") : "próximamente"}
           </div>
-          <ExternalLink className="w-3.5 h-3.5 text-foreground/40 group-hover:text-primary transition-colors" />
+          <ExternalLink className="w-3.5 h-3.5 text-foreground/65 group-hover:text-primary transition-colors" />
         </div>
 
         {/* Preview body */}
@@ -282,7 +254,7 @@ function ShowcasePreview({ member }: { member: Member }) {
             className="absolute inset-0 opacity-[0.08]"
             style={{
               backgroundImage:
-                "radial-gradient(circle at 20% 20%, rgba(156,114,224,0.7) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(247,215,133,0.6) 0, transparent 40%)",
+                "radial-gradient(circle at 20% 20%, rgba(156,114,224,0.7) 0, transparent 40%), radial-gradient(circle at 80% 70%, rgba(var(--star-rgb), 0.6) 0, transparent 40%)",
             }}
           />
           <div
@@ -295,14 +267,14 @@ function ShowcasePreview({ member }: { member: Member }) {
           />
           <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
             <div
-              className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${accent.avatarFrom} ${accent.avatarTo} border border-foreground/15 ring-1 ${accent.ring} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]`}
+              className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${accent.avatarFrom} ${accent.avatarTo} border border-[var(--hairline-strong)] ring-1 ${accent.ring} mb-4 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-[400ms] [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]`}
             >
               <Icon className={`w-6 h-6 ${accent.iconColor}`} />
             </div>
-            <p className="text-base font-display font-bold text-foreground mb-1">
+            <p className="text-base font-display font-extrabold text-foreground mb-1">
               {showcase.title}
             </p>
-            <p className="text-xs text-foreground/55">{showcase.subtitle}</p>
+            <p className="text-xs text-foreground/65">{showcase.subtitle}</p>
             {isExternalLink && (
               <p className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-primary">
                 Abrir sitio
@@ -327,13 +299,16 @@ function MemberCard({
   index: number
   isInView: boolean
 }) {
+  const t = useT().team
+  const area = useAreas().find((a) => a.slug === member.areaSlug)!
+
   return (
     <motion.button
       onClick={onOpen}
       initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group text-left relative overflow-hidden rounded-3xl border border-foreground/10 bg-background/40 backdrop-blur-sm p-8 hover:border-primary/40 hover:bg-background/60 hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+      className="group text-left relative overflow-hidden rounded-xl border border-[var(--hairline)] bg-background/40 backdrop-blur-sm p-8 hover:border-primary/40 hover:bg-background/60 hover-lift focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       aria-label={`Ver perfil de ${member.name}`}
     >
       <div
@@ -343,18 +318,30 @@ function MemberCard({
       <div className="relative flex items-start gap-5 mb-6">
         <Avatar member={member} />
         <div className="flex-1 min-w-0">
-          <h3 className="text-xl font-display font-bold text-foreground leading-tight">
+          <h3 className="text-xl font-display font-extrabold text-foreground leading-tight">
             {member.name}
           </h3>
           <p className={`text-sm font-semibold mt-1 ${member.accent.iconColor}`}>{member.role}</p>
-          <p className="text-sm text-foreground/55 mt-0.5">{member.area}</p>
+          <p className="text-sm text-foreground/65 mt-0.5">{member.area}</p>
         </div>
       </div>
 
-      <p className="relative text-foreground/70 leading-relaxed text-sm mb-6">{member.short}</p>
+      <p className="relative text-foreground/70 leading-relaxed text-sm mb-5">{member.short}</p>
 
-      <div className="relative flex items-center justify-between pt-5 border-t border-foreground/10">
-        <span className="text-xs text-foreground/45 uppercase tracking-[0.15em] font-semibold">
+      {/* Área que lidera */}
+      <span
+        className="relative inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md mb-6"
+        style={{
+          background: `rgba(${area.accent.rgb},0.10)`,
+          border: `1px solid rgba(${area.accent.rgb},0.24)`,
+          color: area.accent.hex,
+        }}
+      >
+        {t.leadsPrefix} {area.name}
+      </span>
+
+      <div className="relative flex items-center justify-between pt-5 border-t border-[var(--hairline)]">
+        <span className="text-xs text-foreground/65 uppercase tracking-[0.15em] font-semibold">
           Ver perfil
         </span>
         <span className={`inline-flex items-center gap-1.5 text-sm font-semibold ${member.accent.iconColor}`}>
@@ -367,6 +354,9 @@ function MemberCard({
 }
 
 function MemberModal({ member, onClose }: { member: Member; onClose: () => void }) {
+  const t = useT().team
+  const area = useAreas().find((a) => a.slug === member.areaSlug)!
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose()
@@ -386,99 +376,147 @@ function MemberModal({ member, onClose }: { member: Member; onClose: () => void 
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed inset-0 bg-background/85 backdrop-blur-xl z-[60] flex items-start md:items-center justify-center p-4 md:p-6 overflow-y-auto"
+      // data-lenis-prevent: sin esto Lenis se queda con la rueda del mouse y
+      // desplaza la página de atrás, dejando el final del modal inalcanzable.
+      data-lenis-prevent
+      className="fixed inset-0 bg-background/85 backdrop-blur-xl z-[60] overflow-y-auto overscroll-contain"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-label={`Perfil de ${member.name}`}
     >
-      <motion.div
-        initial={{ opacity: 0, y: 24, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 16, scale: 0.97 }}
-        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-        className="relative w-full max-w-3xl my-auto bg-card/95 border border-foreground/15 rounded-3xl overflow-hidden shadow-2xl shadow-primary/10"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-foreground/10 flex items-center justify-center hover:bg-background hover:border-foreground/25 transition-colors"
-          aria-label="Cerrar"
+      {/* Envoltorio de altura mínima completa: centra cuando el contenido entra
+          y deja scrollear entero cuando no. `my-auto` sobre el overlay recortaba
+          los extremos en fichas largas. */}
+      <div className="min-h-full flex items-center justify-center p-4 md:p-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24, scale: 0.97 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 16, scale: 0.97 }}
+          transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-full max-w-3xl bg-card/95 border border-[var(--hairline-strong)] rounded-xl overflow-hidden shadow-2xl shadow-primary/10"
+          onClick={(e) => e.stopPropagation()}
         >
-          <X className="h-5 w-5" />
-        </button>
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm border border-[var(--hairline)] flex items-center justify-center hover:bg-background hover:border-[var(--hairline-strong)] transition-colors"
+            aria-label="Cerrar"
+          >
+            <X className="h-5 w-5" />
+          </button>
 
-        <div
-          className={`relative px-6 md:px-10 pt-10 pb-8 border-b border-foreground/10 bg-gradient-to-br ${member.accent.avatarFrom} ${member.accent.avatarTo}`}
-        >
-          <div className="absolute inset-0 bg-card/60 backdrop-blur-md" />
-          <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5">
-            <Avatar member={member} size="lg" />
-            <div className="flex-1 min-w-0">
-              <h3 className="text-2xl md:text-3xl font-display font-bold text-foreground leading-tight">
-                {member.name}
-              </h3>
-              <p className={`font-semibold mt-1 ${member.accent.iconColor}`}>{member.role}</p>
-              <p className="text-foreground/65 text-sm mt-0.5">{member.area}</p>
+          <div
+            className={`relative px-6 md:px-10 pt-10 pb-8 border-b border-[var(--hairline)] bg-gradient-to-br ${member.accent.avatarFrom} ${member.accent.avatarTo}`}
+          >
+            <div className="absolute inset-0 bg-card/60 backdrop-blur-md" />
+            <div className="relative flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              <Avatar member={member} size="lg" />
+              <div className="flex-1 min-w-0">
+                <h3 className="text-2xl md:text-3xl font-display font-extrabold text-foreground leading-tight">
+                  {member.name}
+                </h3>
+                <p className={`font-semibold mt-1 ${member.accent.iconColor}`}>{member.role}</p>
+                <p className="text-foreground/65 text-sm mt-0.5">{member.area}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="px-6 md:px-10 py-8 space-y-8">
-          <div className="space-y-4">
-            {member.bio.map((p, i) => (
-              <p key={i} className="text-foreground/75 leading-relaxed">
-                {p}
-              </p>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/40 mb-3">
-              Especialidades
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {member.skills.map((s) => (
-                <span
-                  key={s}
-                  className={`px-3 py-1.5 rounded-full ${member.accent.chipBg} border ${member.accent.chipBorder} text-xs font-medium text-foreground/85`}
-                >
-                  {s}
-                </span>
+          <div className="px-6 md:px-10 py-8 space-y-8">
+            <div className="space-y-4">
+              {member.bio.map((p, i) => (
+                <p key={i} className="text-foreground/75 leading-relaxed">
+                  {p}
+                </p>
               ))}
             </div>
-          </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/40 mb-3">
-              {member.showcase.type === "linkedin" ? "LinkedIn" : "Portafolio"}
-            </h4>
-            <ShowcasePreview member={member} />
-          </div>
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/65 mb-3">
+                Especialidades
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {member.skills.map((s) => (
+                  <span
+                    key={s}
+                    className={`px-3 py-1.5 rounded-full ${member.accent.chipBg} border ${member.accent.chipBorder} text-xs font-medium text-foreground/85`}
+                  >
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-          {member.contact && (
-            <a
-              href={member.contact.href}
-              className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              {member.contact.label}
-            </a>
-          )}
-        </div>
-      </motion.div>
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/65 mb-3">
+                {member.showcase.type === "linkedin" ? "LinkedIn" : "Portafolio"}
+              </h4>
+              <ShowcasePreview member={member} />
+            </div>
+
+            {/* Puerta al área que lidera */}
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/65 mb-3">
+                Área que lidera
+              </h4>
+              <Link
+                href={area.href}
+                onClick={onClose}
+                className="group flex items-center justify-between gap-4 rounded-xl p-4 transition-colors duration-300"
+                style={{
+                  background: `rgba(${area.accent.rgb},0.08)`,
+                  border: `1px solid rgba(${area.accent.rgb},0.22)`,
+                }}
+              >
+                <div className="min-w-0">
+                  <p className="font-display font-extrabold text-foreground leading-tight">
+                    {area.name}
+                  </p>
+                  <p className="text-sm text-foreground/65 leading-snug mt-0.5">
+                    {area.teaser}
+                  </p>
+                </div>
+                <ArrowUpRight
+                  className="w-5 h-5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  style={{ color: area.accent.hex }}
+                />
+              </Link>
+            </div>
+
+            {member.contact && (
+              <a
+                href={member.contact.href}
+                className="inline-flex items-center gap-2 text-sm text-foreground/70 hover:text-primary transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                {member.contact.label}
+              </a>
+            )}
+          </div>
+        </motion.div>
+      </div>
     </motion.div>
   )
 }
 
 export function Team() {
+  const t = useT()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.15 })
   const [activeId, setActiveId] = useState<string | null>(null)
-  const active = team.find((m) => m.id === activeId) || null
+  // createPortal solo existe en el cliente: esperamos al montaje.
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
+
+  // Rol, área, resumen y bio salen del diccionario; el resto (íconos, colores,
+  // showcase, skills) es estructural y vive en el array `team`.
+  const localized = team.map((m) => {
+    const tr = t.team.members[m.id]
+    return tr ? { ...m, role: tr.role, area: tr.area, short: tr.short, bio: tr.bio } : m
+  })
+  const active = localized.find((m) => m.id === activeId) || null
 
   return (
-    <section ref={ref} id="equipo" className="relative py-20 px-4" aria-labelledby="team-heading">
+    <section ref={ref} id="equipo" className="relative py-20 px-4 scroll-mt-24" aria-labelledby="team-heading">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -486,25 +524,23 @@ export function Team() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
-            Nuestro equipo
+          <span className="inline-block px-4 py-2 rounded-md bg-primary/10 text-primary font-semibold text-sm uppercase tracking-wider mb-4">
+            {t.team.kicker}
           </span>
           <h2
             id="team-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground mt-4 mb-6 text-balance"
+            className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold text-foreground mt-4 mb-6 text-balance leading-[1.08] tracking-tight"
           >
-            Las personas detrás de{" "}
-            <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-              cada solución
-            </span>
+            {t.team.titleStart}{" "}
+            <span className="text-primary">{t.team.titleHighlight}</span>
           </h2>
-          <p className="text-foreground/60 text-lg md:text-xl text-pretty">
-            Cuatro disciplinas, un mismo equipo. Trabajás directo con quien hace, no con un intermediario.
+          <p className="text-foreground/65 text-lg md:text-xl text-pretty">
+            {t.team.lead}
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {team.map((member, i) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {localized.map((member, i) => (
             <MemberCard
               key={member.id}
               member={member}
@@ -516,9 +552,19 @@ export function Team() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {active && <MemberModal member={active} onClose={() => setActiveId(null)} />}
-      </AnimatePresence>
+      {/* El modal va por portal al <body>: la sección vive dentro de un
+          contenedor .cv-auto y `content-visibility: auto` implica contención de
+          pintado, que convierte a ese contenedor en el bloque de referencia de
+          los `position: fixed` que tenga adentro. Sin el portal, el overlay se
+          anclaba a la sección en vez de a la ventana y el modal aparecía
+          cortado. */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {active && <MemberModal member={active} onClose={() => setActiveId(null)} />}
+          </AnimatePresence>,
+          document.body
+        )}
     </section>
   )
 }

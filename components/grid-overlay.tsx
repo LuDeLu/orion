@@ -9,7 +9,7 @@ export function GridOverlay() {
         style={{
           backgroundSize: "100px 100%",
           backgroundImage:
-            "repeating-linear-gradient(90deg, transparent, transparent 99px, rgba(224, 100, 47, 0.05) 99px, rgba(224, 100, 47, 0.05) 100px)",
+            "repeating-linear-gradient(90deg, transparent, transparent 99px, var(--grid-line) 99px, var(--grid-line) 100px)",
         }}
       />
 
@@ -19,7 +19,7 @@ export function GridOverlay() {
         style={{
           backgroundSize: "100% 100px",
           backgroundImage:
-            "repeating-linear-gradient(0deg, transparent, transparent 99px, rgba(224, 100, 47, 0.05) 99px, rgba(224, 100, 47, 0.05) 100px)",
+            "repeating-linear-gradient(0deg, transparent, transparent 99px, var(--grid-line) 99px, var(--grid-line) 100px)",
         }}
       />
 

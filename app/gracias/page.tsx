@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { CheckCircle } from "lucide-react"
@@ -20,9 +21,11 @@ export default function GraciasPage() {
     }
   }, [])
 
+  // Al terminar la cuenta volvemos al inicio, no al formulario: quien acaba de
+  // escribir no tiene nada que hacer de nuevo ahí.
   useEffect(() => {
     if (countdown === 0) {
-      router.push("/#contacto")
+      router.push("/")
       return
     }
     const timer = setTimeout(() => setCountdown((c) => c - 1), 1000)
@@ -43,17 +46,17 @@ export default function GraciasPage() {
           transition={{ type: "spring", stiffness: 200, damping: 16, delay: 0.2 }}
           className="flex justify-center mb-6"
         >
-          <CheckCircle className="w-20 h-20 text-[#e0642f]" />
+          <CheckCircle className="w-20 h-20 text-primary" />
         </motion.div>
 
-        <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">
+        <h1 className="text-4xl md:text-5xl font-display font-extrabold text-foreground mb-4">
           ¡Gracias por{" "}
-          <span className="bg-gradient-to-r from-[#e0642f] via-[#f7d785] to-[#e0642f] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
             escribirnos!
           </span>
         </h1>
 
-        <p className="text-[#F0F0EB]/70 text-lg mb-10 leading-relaxed">
+        <p className="text-foreground/70 text-lg mb-10 leading-relaxed">
           Recibimos tu mensaje. Nuestro equipo te va a contactar en menos de 24 horas con una propuesta personalizada.
         </p>
 
@@ -65,7 +68,7 @@ export default function GraciasPage() {
                 cy="32"
                 r="28"
                 fill="none"
-                stroke="#2c2447"
+                stroke="var(--hairline-strong)"
                 strokeWidth="4"
               />
               <motion.circle
@@ -73,7 +76,7 @@ export default function GraciasPage() {
                 cy="32"
                 r="28"
                 fill="none"
-                stroke="#e0642f"
+                stroke="var(--primary)"
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeDasharray={`${2 * Math.PI * 28}`}
@@ -82,13 +85,31 @@ export default function GraciasPage() {
                 transition={{ duration: 5, ease: "linear" }}
               />
             </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-[#F0F0EB]">
+            <span className="absolute inset-0 flex items-center justify-center text-xl font-bold text-foreground">
               {countdown}
             </span>
           </div>
-          <p className="text-[#F0F0EB]/50 text-sm">
-            Volvés al formulario en {countdown} segundo{countdown !== 1 ? "s" : ""}
+          <p className="text-foreground/65 text-sm">
+            Volvés al inicio en {countdown} segundo{countdown !== 1 ? "s" : ""}
           </p>
+        </div>
+
+        {/* Salidas explícitas: nadie tiene que esperar a que corra el reloj. */}
+        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center w-full sm:w-auto h-11 px-5 rounded-xl border border-foreground/20 text-foreground text-sm font-semibold hover:bg-foreground/[0.06] transition-colors"
+          >
+            Ir al inicio ahora
+          </Link>
+          <a
+            href="https://wa.me/5491156566083?text=Hola!%20Acabo%20de%20escribirles%20por%20la%20web"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center w-full sm:w-auto h-11 px-5 rounded-xl bg-primary/10 border border-primary/30 text-primary text-sm font-semibold hover:bg-primary/20 transition-colors"
+          >
+            Escribirnos por WhatsApp
+          </a>
         </div>
       </motion.div>
     </main>

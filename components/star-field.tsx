@@ -40,7 +40,7 @@ export function StarField() {
             top: `${star.y}%`,
             width: `${star.size}px`,
             height: `${star.size}px`,
-            background: `rgba(247, 215, 133, 0.25)`,
+            background: `rgba(var(--star-rgb), 0.25)`,
             animationDelay: `${star.delay}s`,
             animationDuration: `${star.duration}s`,
           }}

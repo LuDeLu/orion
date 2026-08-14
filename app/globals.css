@@ -58,6 +58,37 @@
 
   --radius:              0.625rem;
 
+  /* ── Tokens semánticos de superficie ──────────────────
+     Reemplazan a los rgba() literales de los componentes para que el
+     tema claro pueda invertirlos. "tint" = velo sobre el fondo;
+     en oscuro aclara, en claro oscurece. */
+  --tint-1:              rgba(255,255,255,0.025);
+  --tint-2:              rgba(255,255,255,0.045);
+  --tint-3:              rgba(255,255,255,0.075);
+  --hairline:            rgba(255,255,255,0.08);
+  --hairline-strong:     rgba(255,255,255,0.14);
+  --panel:               rgba(14,12,34,0.60);
+  --panel-strong:        rgba(14,12,34,0.78);
+
+  --shadow-color:        0,0,0;
+  --shadow-lift:         0 18px 40px -18px rgba(0,0,0,0.55);
+
+  /* Silueta monocroma de los logos de clientes (ver .logo-mono) */
+  --logo-mono:           brightness(0) invert(1);
+
+  /* Fondos animados (canvas y estrellas) */
+  --star-rgb:            247,215,133;
+  --star-core-rgb:       240,240,235;
+  --grid-line:           rgba(224,100,47,0.05);
+
+  /* Áreas — una estrella del cinturón de Orión por vertical */
+  --area-marketing:      #e0642f;
+  --area-marketing-rgb:  224,100,47;
+  --area-software:       #9c72e0;
+  --area-software-rgb:   156,114,224;
+  --area-it:             #2fb8a0;
+  --area-it-rgb:         47,184,160;
+
   /* Sidebar */
   --sidebar:             #0a0818;
   --sidebar-foreground:  #f4f2ee;
@@ -67,6 +98,102 @@
   --sidebar-accent-foreground: #f4f2ee;
   --sidebar-border:      rgba(255,255,255,0.06);
   --sidebar-ring:        #e0642f;
+}
+
+/* ═══════════════════════════════════════════════════════
+   TEMA CLARO
+   Mismo ADN de marca: el hueso está teñido hacia el índigo del
+   fondo oscuro y el texto es el índigo profundo, no negro puro.
+   El naranja se oscurece para pasar contraste AA sobre claro
+   (#e0642f sobre hueso da 3.4:1, insuficiente para texto chico).
+   ═══════════════════════════════════════════════════════ */
+:root[data-theme="light"] {
+  /* Papel cálido, nunca blanco puro. El fondo baja un punto respecto de las
+     superficies para que las tarjetas se despeguen: en claro la elevación se
+     lee por luz (la tarjeta es más clara que la página), igual que en oscuro
+     se lee al revés. */
+  --background:          #f1ece3;
+  --surface:             #fcfbf9;
+  --surface-elevated:    #fefdfb;
+  --border-subtle:       rgba(20,18,46,0.09);
+  --border-default:      rgba(20,18,46,0.15);
+  --border-strong:       rgba(20,18,46,0.24);
+
+  /* El naranja de marca se hunde hasta pasar AA en su peor caso: texto chico
+     naranja sobre un chip de su propio color al 10%. #c2521c daba 3.85:1 y
+     #a84515 4.41:1; con #9e4113 llega a 4.81:1 y sigue leyéndose Orion. */
+  --brand-orange:        #9e4113;
+  --brand-orange-light:  #c2521c;
+  --brand-orange-dim:    rgba(158,65,19,0.12);
+  --brand-gold:          #8f6b12;
+  --brand-gold-dim:      rgba(143,107,18,0.12);
+
+  --foreground:          #14122e;
+  --foreground-muted:    rgba(20,18,46,0.62);
+  --foreground-subtle:   rgba(20,18,46,0.42);
+
+  --primary:             #9e4113;
+  --primary-foreground:  #ffffff;
+
+  --card:                #fcfbf9;
+  --card-foreground:     #14122e;
+
+  --popover:             #fefdfb;
+  --popover-foreground:  #14122e;
+
+  --secondary:           #e2dbcb;
+  --secondary-foreground:#14122e;
+
+  --muted:               #e4ddcd;
+  --muted-foreground:    rgba(20,18,46,0.62);
+
+  --accent:              #7d5c0f;
+  --accent-foreground:   #ffffff;
+
+  --destructive:         #b3372f;
+  --destructive-foreground: #ffffff;
+
+  --border:              rgba(20,18,46,0.13);
+  --input:               rgba(20,18,46,0.09);
+  --ring:                #9e4113;
+
+  --chart-1:             #9e4113;
+  --chart-2:             #8f6b12;
+  --chart-3:             #d98d5c;
+  --chart-4:             #d8d2c8;
+  --chart-5:             rgba(158,65,19,0.30);
+
+  /* El velo ACLARA, no oscurece. Un velo oscuro sobre papel hunde la tarjeta
+     y la deja gris sucia; blanco sobre papel la levanta y mantiene el calor.
+     --tint-3 queda en tinta porque solo se usa como línea, no como fondo. */
+  --tint-1:              rgba(255,255,255,0.78);
+  --tint-2:              rgba(255,255,255,0.95);
+  --tint-3:              rgba(20,18,46,0.10);
+  --hairline:            rgba(20,18,46,0.11);
+  --hairline-strong:     rgba(20,18,46,0.20);
+  --panel:               rgba(254,253,251,0.88);
+  --panel-strong:        rgba(254,253,251,0.97);
+
+  /* Sombra cálida y suave: el negro puro sobre papel ensucia */
+  --shadow-color:        38,28,10;
+  --shadow-lift:         0 16px 34px -16px rgba(38,28,10,0.22);
+
+  /* En claro los logos se imprimen en tinta, no en blanco */
+  --logo-mono:           brightness(0) invert(0);
+
+  /* La constelación pasa a índigo tenue: sigue leyéndose sobre hueso */
+  --star-rgb:            143,107,18;
+  --star-core-rgb:       20,18,46;
+  --grid-line:           rgba(158,65,19,0.07);
+
+  /* Acentos de área ajustados para contraste sobre claro: los tres pasan AA
+     tanto sobre el fondo hueso como sobre las tarjetas. */
+  --area-marketing:      #9e4113;
+  --area-marketing-rgb:  158,65,19;
+  --area-software:       #6b4bb8;
+  --area-software-rgb:   107,75,184;
+  --area-it:             #0f6353;
+  --area-it-rgb:         15,99,83;
 }
 
 @theme inline {
@@ -128,25 +255,32 @@
 
 /* ── Orion design utilities ───────────────────────────── */
 .glass-card {
-  background: rgba(14, 12, 34, 0.60);
+  background: var(--panel);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid var(--tint-3);
 }
 
 .glass-card-strong {
-  background: rgba(21, 18, 46, 0.80);
+  background: var(--panel-strong);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.10);
+  border: 1px solid var(--hairline-strong);
 }
 
 /* Orange glow for primary CTAs */
 .glow-orange {
-  box-shadow: 0 0 24px rgba(224,100,47,0.30), 0 4px 12px rgba(0,0,0,0.40);
+  box-shadow: 0 0 24px rgba(224,100,47,0.30), 0 4px 12px rgba(var(--shadow-color),0.40);
 }
 .glow-orange:hover {
-  box-shadow: 0 0 32px rgba(224,100,47,0.45), 0 4px 16px rgba(0,0,0,0.50);
+  box-shadow: 0 0 32px rgba(224,100,47,0.45), 0 4px 16px rgba(var(--shadow-color),0.50);
+}
+/* Sobre papel el halo naranja se ve sucio: queda solo la sombra de apoyo. */
+:root[data-theme="light"] .glow-orange {
+  box-shadow: 0 6px 16px -6px rgba(168,69,21,0.35);
+}
+:root[data-theme="light"] .glow-orange:hover {
+  box-shadow: 0 10px 22px -8px rgba(168,69,21,0.45);
 }
 
 /* Input focus orange ring */
@@ -163,8 +297,22 @@
   box-shadow: 0 0 0 3px rgba(224,100,47,0.12);
 }
 
-/* Color-scheme for native date pickers */
+/* Controles nativos (date pickers, scrollbars, autofill) en el tema correcto */
 input[type="date"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="light"] input[type="date"] { color-scheme: light; }
+
+/* El input glass está escrito para fondo oscuro; sobre papel se invierte. */
+:root[data-theme="light"] .input-orion {
+  background: rgba(255,255,255,0.75);
+  border-color: rgba(20,18,46,0.15);
+  color: #14122e;
+}
+:root[data-theme="light"] .input-orion::placeholder { color: rgba(20,18,46,0.45); }
+:root[data-theme="light"] .input-orion:focus {
+  border-color: rgba(168,69,21,0.6);
+  box-shadow: 0 0 0 3px rgba(168,69,21,0.14);
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -228,6 +376,176 @@ input[type="date"] { color-scheme: dark; }
   background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite;
+}
+
+/* ── Utilidades de layout y movimiento ─────────────────── */
+
+/* Difiere el render de secciones fuera de pantalla */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 700px;
+}
+
+/* Promueve a capa propia elementos con animación continua */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Elevación al hover para cards y botones secundarios */
+.hover-lift {
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+/* Barrido de brillo sobre los CTA principales */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-120%);
+  background: linear-gradient(
+    100deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 80%
+  );
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+@keyframes fade-in-scale {
+  from { opacity: 0; transform: scale(0.94) translateY(14px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-fade-in-scale {
+  animation: fade-in-scale 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in-left {
+  animation: slide-in-left 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Muro de logos de clientes ─────────────────────────────
+   Los logos vienen con polaridades distintas (algunos claros, otros
+   oscuros), así que se normalizan a silueta monocroma y recuperan su
+   color al hover. Las dos listas de filtros tienen las mismas funciones
+   para que la transición interpole en vez de saltar. */
+.logo-mono {
+  filter: var(--logo-mono);
+  transition: filter 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group\/logo:hover .logo-mono,
+.group\/logo:focus-visible .logo-mono {
+  filter: brightness(1) invert(0);
+}
+
+@keyframes marquee-x {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* El desvanecido de los bordes es una máscara, no dos gradientes pintados
+   con el color del fondo: así sigue funcionando sobre cualquier superficie
+   (glow, tema claro) y no mete dos capas en el stacking context. */
+.marquee-viewport {
+  --marquee-fade: 3.5rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--marquee-fade),
+    #000 calc(100% - var(--marquee-fade)),
+    transparent 100%
+  );
+}
+@media (min-width: 768px) {
+  .marquee-viewport { --marquee-fade: 9rem; }
+}
+
+.marquee-track {
+  animation: marquee-x var(--marquee-duration, 46s) linear infinite;
+}
+/* Dos grupos de 50vw mínimo: el track mide al menos un viewport completo,
+   así el -50% de la animación cae siempre justo sobre el inicio del segundo
+   grupo. Antes, con el track más angosto que la pantalla, se abría un hueco
+   visible en monitores anchos. */
+.marquee-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 50vw;
+  justify-content: space-around;
+}
+.marquee-viewport:hover .marquee-track,
+.marquee-viewport:focus-within .marquee-track,
+.marquee-track[data-running="false"] {
+  animation-play-state: paused;
+}
+
+/* Línea que se dibuja entre los pasos del workflow */
+@keyframes flow-draw {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: 0; }
+}
+.flow-connector {
+  stroke-dasharray: 200;
+  animation: flow-draw 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-scale,
+  .animate-slide-in-left,
+  .flow-connector {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+  }
+  .hover-lift:hover { transform: none; }
+  .btn-shine::after { display: none; }
+  /* Sin animación el track quedaba recortado y la mitad de los logos eran
+     inalcanzables: pasa a grilla envolvente con una sola copia. */
+  .marquee-viewport {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .marquee-track {
+    animation: none;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-group {
+    min-width: 0;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .marquee-group[data-duplicate="true"] { display: none; }
 }
 
 /* ── Lenis smooth scroll ───────────────────────────────── */
