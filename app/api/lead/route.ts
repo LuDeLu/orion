@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 import { NextResponse } from "next/server"
 import { sendToSheets } from "@/lib/scan-log"
+import { registrarEvento } from "@/lib/analitica"
 
 export const runtime = "nodejs"
 
@@ -28,6 +29,7 @@ export async function POST(req: Request) {
   const cookieStore = await cookies()
   const visitId = cookieStore.get("qr_visit")?.value ?? null
 
+  await registrarEvento("formulario").catch(() => {})
   const ok = await sendToSheets({
     type: "lead",
     visitId,

@@ -102,6 +102,11 @@ export function Footer() {
             {fill(t.footer.copyright, { year: new Date().getFullYear() })}
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
+            {/* Única puerta de entrada al portal: al seguimiento y al presupuesto
+                se llega por QR o por link, pero al panel hay que poder entrar. */}
+            <Link href="/it/entrar" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              {t.footer.clientPortal}
+            </Link>
             <Link href="/privacidad" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
               {t.footer.privacy}
             </Link>

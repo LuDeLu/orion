@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { sendToSheets } from "@/lib/scan-log"
+import { registrarEvento } from "@/lib/analitica"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
@@ -18,6 +19,7 @@ export async function GET(req: NextRequest) {
   const h = req.headers
   const visitId = randomId()
 
+  await registrarEvento("qr", h).catch(() => {})
   await sendToSheets({
     type: "scan",
     slug: "qr",

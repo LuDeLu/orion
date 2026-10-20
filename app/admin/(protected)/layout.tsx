@@ -66,8 +66,8 @@ export default async function ProtectedLayout({ children }: { children: React.Re
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-0.5" aria-label="Navegación principal">
             <NavLink href="/admin">Dashboard</NavLink>
-            <NavLink href="/admin/scans">Scans</NavLink>
-            <NavLink href="/admin/leads">Leads</NavLink>
+            <NavLink href="/admin/crm">CRM</NavLink>
+            <NavLink href="/admin/facturacion">Facturación</NavLink>
           </nav>
 
           {/* Right side */}
@@ -94,8 +94,8 @@ export default async function ProtectedLayout({ children }: { children: React.Re
         {/* Mobile bottom nav */}
         <nav className="md:hidden flex items-center gap-0.5 px-3 border-t overflow-x-auto" style={{ borderColor: "rgba(255,255,255,0.05)" }} aria-label="Navegación móvil">
           <NavLink href="/admin">Dashboard</NavLink>
-          <NavLink href="/admin/scans">Scans</NavLink>
-          <NavLink href="/admin/leads">Leads</NavLink>
+          <NavLink href="/admin/crm">CRM</NavLink>
+          <NavLink href="/admin/facturacion">Facturación</NavLink>
         </nav>
       </header>
 

@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import Script from "next/script"
 import { LenisProvider } from "@/components/providers/lenis-provider"
+import { Analitica } from "@/components/analitica"
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/components/i18n-provider"
 import "./globals.css"
@@ -316,13 +317,14 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
 
-        {/* Canonical URL explícita */}
-        <link rel="canonical" href="https://orionmkt.com.ar" />
-
-        {/* Alternate para idiomas */}
-        <link rel="alternate" hrefLang="es" href="https://orionmkt.com.ar" />
-        <link rel="alternate" hrefLang="es-AR" href="https://orionmkt.com.ar" />
-        <link rel="alternate" hrefLang="x-default" href="https://orionmkt.com.ar" />
+        {/*
+          El canonical y los hreflang NO se declaran acá: al estar fijos en el
+          <head> se emitían en TODAS las páginas apuntando a la home, lo que le
+          decía a Google que cada subpágina (áreas, prensa, etc.) era un
+          duplicado del inicio y frenaba su indexación. Ahora los gestiona la
+          Metadata API de Next por página (alternates.canonical / languages),
+          que para el inicio sigue resolviendo a https://orionmkt.com.ar.
+        */}
 
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="lazyOnload">
@@ -391,6 +393,7 @@ gtag('config', 'AW-18044639379');`}
             <LenisProvider>{children}</LenisProvider>
           </I18nProvider>
         </ThemeProvider>
+        <Analitica />
         <Analytics />
         <SpeedInsights />
       </body>

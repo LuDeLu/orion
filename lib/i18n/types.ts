@@ -267,5 +267,7 @@ export interface Dict {
     copyright: string
     privacy: string
     terms: string
+    /** Portal de clientes del área de IT (/it/entrar) */
+    clientPortal: string
   }
 }

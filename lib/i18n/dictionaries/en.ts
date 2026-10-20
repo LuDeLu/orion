@@ -439,5 +439,6 @@ export const en: Dict = {
     copyright: "© {year} Orion Marketing. All rights reserved.",
     privacy: "Privacy",
     terms: "Terms",
+    clientPortal: "Client portal",
   },
 }

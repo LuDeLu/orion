@@ -13,3 +13,10 @@ __v0_jsx-dev-runtime.ts
 node_modules
 .next/
 .DS_Store
+# Facturación (modo local sin Redis)
+.data/
+
+# Certificados de ARCA: NUNCA al repo (es público). Solo queda el README.
+/arca/*
+!/arca/README.md
+*.key

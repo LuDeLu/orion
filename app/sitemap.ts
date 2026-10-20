@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next"
 import { areas } from "@/lib/areas"
+import { notas } from "@/lib/prensa"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://orionmkt.com.ar"
@@ -19,6 +20,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: "monthly" as const,
       priority: 0.9,
+    })),
+    // Índice de prensa + una entrada por nota.
+    {
+      url: `${baseUrl}/prensa`,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    ...notas.map((nota) => ({
+      url: `${baseUrl}/prensa/${nota.slug}`,
+      lastModified: new Date(nota.dateModified),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
     })),
     ...["/privacidad", "/terminos"].map((path) => ({
       url: `${baseUrl}${path}`,

@@ -45,18 +45,3 @@ export async function sendToSheets(payload: ScanPayload | LeadPayload): Promise<
     return false
   }
 }
-
-export async function readFromSheets(kind: "scans" | "leads"): Promise<Record<string, string>[]> {
-  if (!WEBHOOK_URL || !WEBHOOK_SECRET) return []
-
-  try {
-    const url = `${WEBHOOK_URL}?secret=${encodeURIComponent(WEBHOOK_SECRET)}&kind=${kind}`
-    const res = await fetch(url, { cache: "no-store" })
-    if (!res.ok) return []
-    const data = await res.json()
-    return Array.isArray(data?.rows) ? data.rows : []
-  } catch (err) {
-    console.error("[scan-log] error leyendo sheets", err)
-    return []
-  }
-}
