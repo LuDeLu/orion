@@ -207,6 +207,57 @@ export interface Documento extends DatosComprobante {
   mensajesArca?: string[]
   /** Presupuesto → factura que lo cerró / factura → presupuesto de origen */
   vinculo?: string
+  /** Factura generada desde un abono mensual */
+  abonoId?: string
+  /** Cobro registrado (solo facturas y notas de débito emitidas) */
+  cobro?: Cobro
+}
+
+export interface Cobro {
+  fecha: string // YYYY-MM-DD
+  medio: string
+  /** Lo efectivamente cobrado, en la moneda del comprobante */
+  monto: number
+  nota?: string
+  registrado: string // ISO
+  usuario?: string
+}
+
+// ── Cobranza ─────────────────────────────────────────────────────────────────
+
+type DocCobranza = Pick<Documento, "id" | "clase" | "tipo" | "estado" | "totales" | "puntoVenta" | "numero" | "cobro" | "asociado" | "entorno">
+
+/** Comprobantes que generan deuda del cliente: facturas y notas de débito emitidas. */
+export const esCobrable = (d: Pick<Documento, "clase" | "tipo" | "estado">) =>
+  d.clase === "factura" && d.estado === "emitido" && tipoCbte(d.tipo)?.clase !== "nc"
+
+/** Lo que resta cobrar de un comprobante, descontando las NC que lo ajustan. */
+export function saldoComprobante(d: DocCobranza, todos: DocCobranza[]): number {
+  if (!esCobrable(d)) return 0
+  const nc = todos
+    .filter(
+      (x) =>
+        x.clase === "factura" &&
+        x.estado === "emitido" &&
+        tipoCbte(x.tipo)?.clase === "nc" &&
+        x.asociado?.tipo === d.tipo &&
+        x.asociado.puntoVenta === d.puntoVenta &&
+        x.asociado.numero === d.numero &&
+        x.entorno === d.entorno,
+    )
+    .reduce((s, x) => s + x.totales.total, 0)
+  const cobrado = d.cobro?.monto ?? 0
+  return Math.max(0, Math.round((d.totales.total - nc - cobrado) * 100) / 100)
+}
+
+export type EstadoCobro = "cobrada" | "parcial" | "a_cobrar" | "vencida" | "anulada"
+
+export function estadoCobro(d: DocCobranza & { vencimientoPago?: string }, todos: DocCobranza[], hoy: string): EstadoCobro | null {
+  if (!esCobrable(d)) return null
+  const saldo = saldoComprobante(d, todos)
+  if (saldo <= 0) return d.cobro ? "cobrada" : "anulada"
+  if (d.cobro && d.cobro.monto > 0) return "parcial"
+  return d.vencimientoPago && d.vencimientoPago < hoy ? "vencida" : "a_cobrar"
 }
 
 // ── Formato ──────────────────────────────────────────────────────────────────

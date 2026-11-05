@@ -11,6 +11,7 @@ import { credenciales, ErrorArca } from "./arca"
 import { consultarComprobante, solicitarCae, ultimoAutorizado, type SolicitudCae } from "./arca/wsfe"
 import { calcularTotales } from "./calculo"
 import { borrarDocumento, guardarCliente, guardarDocumento, leerDocumento } from "./documentos"
+import { marcarFacturado } from "./abonos"
 import {
   condicionIva,
   cuitValido,
@@ -120,7 +121,7 @@ const idFactura = (cfg: ConfigFacturacion, tipo: number, pv: number, n: number) 
   `${cfg.entorno === "produccion" ? "F" : "H"}${tipo}-${pv}-${n}`
 
 /** Pide el CAE. Si ARCA rechaza, no se guarda nada y el número no se consume. */
-export async function emitirFactura(datos: DatosComprobante, opciones: { presupuestoId?: string } = {}): Promise<Documento> {
+export async function emitirFactura(datos: DatosComprobante, opciones: { presupuestoId?: string; abonoId?: string } = {}): Promise<Documento> {
   const cfg = await leerConfig()
   const d = normalizar(datos)
   const errores = validarFactura(d, cfg)
@@ -183,6 +184,7 @@ export async function emitirFactura(datos: DatosComprobante, opciones: { presupu
       numero,
       totales,
       vinculo: opciones.presupuestoId,
+      abonoId: opciones.abonoId || undefined,
     }
     // Se guarda antes de llamar: si la respuesta se pierde, queda para verificar
     await guardarDocumento(doc)
@@ -211,6 +213,11 @@ export async function emitirFactura(datos: DatosComprobante, opciones: { presupu
     doc.mensajesArca = resp.observaciones
     await guardarDocumento(doc)
     await guardarCliente(d.receptor)
+
+    if (opciones.abonoId && t.clase === "factura") {
+      const periodo = (d.concepto !== 1 && d.servicioDesde ? d.servicioDesde : d.fecha).slice(0, 7)
+      await marcarFacturado(opciones.abonoId, periodo, doc.id).catch((e) => console.error("[abono]", e))
+    }
 
     if (opciones.presupuestoId) {
       const p = await leerDocumento(opciones.presupuestoId)

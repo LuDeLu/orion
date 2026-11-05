@@ -29,6 +29,8 @@ import {
   type Receptor,
 } from "@/lib/facturacion/modelo"
 import { Aviso, Boton, Campo, Entrada, Etiqueta, Icono, ICONOS, Segmentos, Selector, Tarjeta, tinta } from "./ui"
+import { SelectorCatalogo } from "./editor-catalogo"
+import type { Servicio } from "@/lib/facturacion/catalogo"
 
 export interface Inicial {
   modo: "factura" | "presupuesto"
@@ -36,6 +38,9 @@ export interface Inicial {
   fce?: boolean
   datos?: Partial<DatosComprobante>
   presupuestoId?: string
+  /** Factura del mes de un abono */
+  abonoId?: string
+  abonoNombre?: string
   editarId?: string
   /** El receptor vino de un cliente del CRM sin datos fiscales: completarlo desde ARCA */
   buscarReceptor?: boolean
@@ -64,6 +69,7 @@ interface Props {
   }
   /** Agenda de facturación: datos fiscales + alias */
   clientes: (Receptor & { alias?: string })[]
+  catalogo?: Servicio[]
   facturas: FacturaResumen[]
 }
 
@@ -81,7 +87,7 @@ const receptorVacio: Receptor = { docTipo: 80, docNro: "", nombre: "", condicion
 
 type Busqueda = { estado: "idle" | "buscando" | "ok" | "error"; mensaje?: string; fuente?: "arca" | "agenda" }
 
-export function FormularioComprobante({ inicial, config, clientes, facturas }: Props) {
+export function FormularioComprobante({ inicial, config, clientes, catalogo = [], facturas }: Props) {
   const router = useRouter()
   const hoy = hoyAr()
   const esRI = config.condicionIva === "responsable_inscripto"
@@ -278,7 +284,7 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
       const r = await fetch(esP ? "/api/admin/facturacion/presupuestos" : "/api/admin/facturacion/emitir", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(esP ? { datos: armarDatos(), id: inicial.editarId } : { datos: armarDatos(), presupuestoId: inicial.presupuestoId }),
+        body: JSON.stringify(esP ? { datos: armarDatos(), id: inicial.editarId } : { datos: armarDatos(), presupuestoId: inicial.presupuestoId, abonoId: inicial.abonoId }),
       })
       const j = await r.json()
       if (!r.ok) {
@@ -302,10 +308,16 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
   return (
     <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-4 items-start">
       <div className="space-y-4 min-w-0">
+        {inicial.abonoId && (
+          <Aviso tono="info">
+            Factura mensual del abono <b>{inicial.abonoNombre}</b>. Revisá el período del servicio y los importes antes de emitir: al confirmarla, el abono
+            queda marcado como facturado para ese mes.
+          </Aviso>
+        )}
         {/* Qué se emite */}
         <Tarjeta>
           <div className="flex flex-col gap-4">
-            {!inicial.editarId && !inicial.presupuestoId && (
+            {!inicial.editarId && !inicial.presupuestoId && !inicial.abonoId && (
               <div className="flex flex-wrap items-center gap-3">
                 <Segmentos
                   valor={modo}
@@ -608,9 +620,21 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
                 </button>
               </div>
             ))}
-            <Boton onClick={() => setItems((xs) => [...xs, { ...itemVacio(), iva: xs[xs.length - 1]?.iva ?? 5 }])} className="mt-1">
-              <Icono d={ICONOS.mas} className="w-3.5 h-3.5" /> Agregar ítem
-            </Boton>
+            <div className="flex flex-wrap gap-2 mt-1">
+              <Boton onClick={() => setItems((xs) => [...xs, { ...itemVacio(), iva: xs[xs.length - 1]?.iva ?? 5 }])}>
+                <Icono d={ICONOS.mas} className="w-3.5 h-3.5" /> Agregar ítem
+              </Boton>
+              <SelectorCatalogo
+                servicios={catalogo}
+                onElegir={(s) => {
+                  const item: Item = { descripcion: s.descripcion, cantidad: 1, unidad: s.unidad, precio: s.precio, bonificacion: 0, iva: s.iva }
+                  const vacio = items.length === 1 && !items[0].descripcion && !items[0].precio
+                  // Si es el primer ítem, la moneda del comprobante sigue a la del servicio
+                  if (vacio && s.moneda !== moneda) setMoneda(s.moneda)
+                  setItems((xs) => (vacio ? [item] : [...xs, item]))
+                }}
+              />
+            </div>
           </div>
         </Tarjeta>
 

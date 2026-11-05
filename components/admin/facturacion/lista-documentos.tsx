@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 import { useMemo, useState } from "react"
-import { dinero, fechaAr, formatoCuit, nombreDocumento, numeroCbte, tipoCbte, type Documento } from "@/lib/facturacion/modelo"
-import { Icono, ICONOS, Insignia, Segmentos, Tarjeta, tinta } from "./ui"
+import { dinero, estadoCobro, fechaAr, formatoCuit, nombreDocumento, numeroCbte, tipoCbte, type Documento } from "@/lib/facturacion/modelo"
+import { Icono, ICONOS, Insignia, Segmentos, Tarjeta, TEXTO_COBRO, tinta } from "./ui"
 
-type Filtro = "todos" | "facturas" | "presupuestos"
+type Filtro = "todos" | "facturas" | "a_cobrar" | "presupuestos"
 
 function estadoVisible(d: Documento, hoy: string) {
   if (d.clase === "presupuesto" && d.estado === "vigente" && d.validezDias) {
@@ -24,13 +24,14 @@ export function ListaDocumentos({ docs, hoy }: { docs: Documento[]; hoy: string 
     return docs.filter((d) => {
       if (filtro === "facturas" && d.clase !== "factura") return false
       if (filtro === "presupuestos" && d.clase !== "presupuesto") return false
+      if (filtro === "a_cobrar" && !["a_cobrar", "vencida", "parcial"].includes(estadoCobro(d, docs, hoy) ?? "")) return false
       if (!t) return true
       return [d.receptor.nombre, d.receptor.docNro, nombreDocumento(d), numeroCbte(d.puntoVenta, d.numero), d.cae, ...d.items.map((i) => i.descripcion)]
         .join(" ")
         .toLowerCase()
         .includes(t)
     })
-  }, [docs, filtro, q])
+  }, [docs, filtro, q, hoy])
 
   return (
     <Tarjeta>
@@ -42,6 +43,7 @@ export function ListaDocumentos({ docs, hoy }: { docs: Documento[]; hoy: string 
           opciones={[
             { valor: "todos", etiqueta: `Todos (${docs.length})` },
             { valor: "facturas", etiqueta: "Facturas" },
+            { valor: "a_cobrar", etiqueta: "A cobrar" },
             { valor: "presupuestos", etiqueta: "Presupuestos" },
           ]}
         />
@@ -116,6 +118,10 @@ export function ListaDocumentos({ docs, hoy }: { docs: Documento[]; hoy: string 
                       <div className="flex gap-1 flex-wrap">
                         <Insignia estado={estadoVisible(d, hoy)} />
                         {d.clase === "factura" && d.entorno === "homologacion" && <Insignia estado="homologacion" />}
+                        {(() => {
+                          const ec = estadoCobro(d, docs, hoy)
+                          return ec ? <Insignia estado={TEXTO_COBRO[ec].estado} texto={TEXTO_COBRO[ec].texto} /> : null
+                        })()}
                       </div>
                     </td>
                     <td className="px-4 sm:px-5 py-3">

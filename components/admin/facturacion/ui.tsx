@@ -1,6 +1,7 @@
 // Piezas visuales del módulo de facturación, con el lenguaje del panel admin.
 import Link from "next/link"
 import type { ComponentProps, ReactNode } from "react"
+import type { EstadoCobro } from "@/lib/facturacion/modelo"
 
 export const tinta = {
   suave: "rgba(244,242,238,0.45)",
@@ -128,6 +129,15 @@ const coloresEstado: Record<string, { bg: string; border: string; color: string;
   facturado: { bg: "rgba(224,100,47,0.10)", border: "rgba(224,100,47,0.25)", color: "rgba(244,170,130,0.95)", texto: "Facturado" },
   vencido: { bg: "rgba(255,255,255,0.04)", border: "rgba(255,255,255,0.10)", color: "rgba(244,242,238,0.50)", texto: "Vencido" },
   homologacion: { bg: "rgba(219,172,52,0.10)", border: "rgba(219,172,52,0.28)", color: "rgba(253,224,71,0.90)", texto: "Prueba" },
+}
+
+/** Insignia de cobranza (usa los colores de Insignia) */
+export const TEXTO_COBRO: Record<EstadoCobro, { estado: string; texto: string }> = {
+  cobrada: { estado: "emitido", texto: "Cobrada" },
+  parcial: { estado: "pendiente", texto: "Cobro parcial" },
+  a_cobrar: { estado: "vigente", texto: "A cobrar" },
+  vencida: { estado: "rechazado", texto: "Vencida" },
+  anulada: { estado: "vencido", texto: "Anulada por NC" },
 }
 
 export function Insignia({ estado, texto }: { estado: string; texto?: string }) {

@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { leerDocumento } from "@/lib/facturacion/documentos"
+import { leerDocumento, listarDocumentos } from "@/lib/facturacion/documentos"
 import {
   CONCEPTOS,
   condicionIva,
   dinero,
+  estadoCobro,
+  saldoComprobante,
   fechaAr,
   formatoCuit,
   hoyAr,
@@ -14,6 +16,7 @@ import {
   tipoDoc,
 } from "@/lib/facturacion/modelo"
 import { AccionesDocumento } from "@/components/admin/facturacion/acciones-documento"
+import { PanelCobro } from "@/components/admin/facturacion/panel-cobro"
 import { Aviso, EncabezadoPagina, Insignia, Tarjeta, tinta } from "@/components/admin/facturacion/ui"
 
 export const dynamic = "force-dynamic"
@@ -33,6 +36,9 @@ export default async function DocumentoPage({ params, searchParams }: { params: 
   const venceValidez = esP && doc.validezDias ? new Date(new Date(doc.fecha).getTime() + doc.validezDias * 864e5).toISOString().slice(0, 10) : null
   const vencido = esP && doc.estado === "vigente" && venceValidez && venceValidez < hoyAr()
   const t = tipoCbte(doc.tipo)
+  const hoy = hoyAr()
+  const todos = esP ? [] : await listarDocumentos()
+  const cobro = esP ? null : estadoCobro(doc, todos, hoy)
 
   return (
     <div className="space-y-6">
@@ -81,6 +87,29 @@ export default async function DocumentoPage({ params, searchParams }: { params: 
               puedeAjustar={!esP && doc.estado === "emitido" && t?.clase !== "nc"}
             />
           </Tarjeta>
+
+          {cobro && (
+            <PanelCobro
+              id={doc.id}
+              total={doc.totales.total}
+              saldo={saldoComprobante(doc, todos)}
+              moneda={doc.moneda}
+              hoy={hoy}
+              medioSugerido={doc.condicionVenta}
+              cobro={doc.cobro}
+              estado={cobro}
+            />
+          )}
+
+          {!esP && doc.estado === "emitido" && t?.clase === "factura" && doc.receptor.docTipo !== 99 && (
+            <Link
+              href={doc.abonoId ? "/admin/facturacion/abonos" : `/admin/facturacion/abonos?desde=${encodeURIComponent(doc.id)}`}
+              className="block text-center text-xs underline"
+              style={{ color: tinta.suave }}
+            >
+              {doc.abonoId ? "Factura de un abono · ver abonos" : "¿Se repite todos los meses? Crear abono con esta factura"}
+            </Link>
+          )}
 
           <Tarjeta titulo="Datos">
             <dl className="space-y-2 text-sm">

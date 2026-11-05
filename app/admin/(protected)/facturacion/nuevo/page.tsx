@@ -1,4 +1,7 @@
 import { leerConfig } from "@/lib/facturacion/config"
+import { listarCatalogo } from "@/lib/facturacion/catalogo"
+import { conMes, leerAbono, limitesPeriodo, periodoAFacturar, receptorDeAbono } from "@/lib/facturacion/abonos"
+import { hoyAr } from "@/lib/facturacion/modelo"
 import { estadoCertificado } from "@/lib/facturacion/arca"
 import { buscarCliente, leerClientePorClave, leerDocumento, listarClientes, listarDocumentos, soloReceptor } from "@/lib/facturacion/documentos"
 import { leerCliente } from "@/lib/crm/datos"
@@ -11,7 +14,7 @@ export const runtime = "nodejs"
 
 export const metadata = { title: "Nuevo comprobante · Orion" }
 
-type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: string; presupuesto?: string; editar?: string; cliente?: string; receptor?: string }>
+type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: string; presupuesto?: string; editar?: string; cliente?: string; receptor?: string; abono?: string }>
 
 /**
  * Puntos de entrada:
@@ -22,10 +25,11 @@ type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: strin
  *   ?nc=<id> / ?nd=<id>      nota de crédito / débito sobre una factura
  *   ?cliente=<id CRM>        con los datos de un cliente del CRM
  *   ?receptor=<tipo-número>  con un cliente de la agenda de facturación
+ *   ?abono=<id>              la factura del mes de un abono
  */
 export default async function NuevoPage({ searchParams }: { searchParams: Busqueda }) {
   const sp = await searchParams
-  const [cfg, clientes, docs] = await Promise.all([leerConfig(), listarClientes(), listarDocumentos(400)])
+  const [cfg, clientes, docs, catalogo] = await Promise.all([leerConfig(), listarClientes(), listarDocumentos(400), listarCatalogo()])
   const cert = await estadoCertificado(cfg.entorno)
 
   const origenId = sp.presupuesto || sp.editar || sp.desde || sp.nc || sp.nd
@@ -87,6 +91,33 @@ export default async function NuevoPage({ searchParams }: { searchParams: Busque
     if (c) inicial = { ...inicial, datos: { receptor: soloReceptor(c) } }
   }
 
+  // Factura del mes de un abono: período según el abono (mes en curso o vencido)
+  if (!origen && sp.abono) {
+    const a = await leerAbono(sp.abono)
+    if (a) {
+      const hoy = hoyAr()
+      const periodo = periodoAFacturar(a, hoy)
+      const [desde, hasta] = limitesPeriodo(periodo)
+      const vence = new Date(new Date(`${hoy}T12:00:00Z`).getTime() + a.diasVencimiento * 864e5).toISOString().slice(0, 10)
+      inicial = {
+        modo: "factura",
+        abonoId: a.id,
+        abonoNombre: a.nombre,
+        datos: {
+          receptor: await receptorDeAbono(a),
+          items: a.items.map((i) => ({ ...i, descripcion: conMes(i.descripcion, periodo) })),
+          concepto: 2,
+          servicioDesde: desde,
+          servicioHasta: hasta,
+          moneda: a.moneda,
+          condicionVenta: a.condicionVenta,
+          observaciones: conMes(a.observaciones, periodo),
+          vencimientoPago: vence,
+        },
+      }
+    }
+  }
+
   const facturas = docs
     .filter((d) => d.clase === "factura" && d.estado === "emitido" && d.entorno === cfg.entorno)
     .map((d) => ({ id: d.id, tipo: d.tipo, puntoVenta: d.puntoVenta, numero: d.numero, fecha: d.fecha, cliente: d.receptor.nombre, total: d.totales.total, moneda: d.moneda }))
@@ -115,6 +146,7 @@ export default async function NuevoPage({ searchParams }: { searchParams: Busque
           arcaListo: cert.tieneCertificado && cert.tieneClave,
         }}
         clientes={clientes}
+        catalogo={catalogo}
         facturas={facturas}
       />
     </div>

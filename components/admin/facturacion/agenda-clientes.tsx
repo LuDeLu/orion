@@ -19,7 +19,7 @@ async function pedir<T>(url: string, init?: RequestInit): Promise<T> {
   return j as T
 }
 
-export function AgendaClientes({ inicial }: { inicial: Cliente[] }) {
+export function AgendaClientes({ inicial, editarClave }: { inicial: Cliente[]; editarClave?: string }) {
   const [clientes, setClientes] = useState(inicial)
   const [q, setQ] = useState("")
   const [ficha, setFicha] = useState<Ficha | null>(null)
@@ -30,6 +30,12 @@ export function AgendaClientes({ inicial }: { inicial: Cliente[] }) {
   const [estado, setEstado] = useState<Estado>(null)
   const ultimoCuit = useRef("")
   const formRef = useRef<HTMLDivElement>(null)
+
+  // ?editar=<clave>: abre la ficha directamente (viene de la cuenta corriente)
+  useEffect(() => {
+    const c = editarClave ? inicial.find((x) => clave(x) === editarClave) : undefined
+    if (c) abrir(c)
+  }, [])
 
   const visibles = useMemo(() => {
     const t = q.trim().toLowerCase()
@@ -241,7 +247,9 @@ export function AgendaClientes({ inicial }: { inicial: Cliente[] }) {
             {visibles.map((c) => (
               <li key={clave(c)} className="py-3 flex flex-col sm:flex-row sm:items-center gap-3" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-white truncate">{c.alias || c.nombre}</p>
+                  <a href={`/admin/facturacion/clientes/${encodeURIComponent(clave(c))}`} className="block text-sm font-medium text-white truncate hover:underline">
+                    {c.alias || c.nombre}
+                  </a>
                   <p className="text-xs truncate" style={{ color: tinta.suave }}>
                     {c.alias && <span style={{ color: tinta.media }}>{c.nombre} · </span>}
                     {tipoDoc(c.docTipo)} {[80, 86].includes(c.docTipo) ? formatoCuit(c.docNro) : c.docNro} · {condicionIva(c.condicionIva)?.nombre ?? "—"}

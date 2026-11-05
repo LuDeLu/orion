@@ -1,6 +1,7 @@
 import { conAdmin } from "@/lib/admin-api"
-import { borrarCliente, guardarFichaCliente, listarClientes, type Cliente } from "@/lib/facturacion/documentos"
+import { borrarCliente, guardarFichaCliente, leerClientePorClave, listarClientes, type Cliente } from "@/lib/facturacion/documentos"
 import { ErrorValidacion } from "@/lib/facturacion/emitir"
+import { registrar } from "@/lib/facturacion/actividad"
 import { condicionIva, cuitValido, soloDigitos, TIPOS_DOC } from "@/lib/facturacion/modelo"
 
 export const runtime = "nodejs"
@@ -12,7 +13,7 @@ export async function GET() {
 
 /** Alta o edición de una ficha. Body: { cliente, claveAnterior? } */
 export async function POST(req: Request) {
-  return conAdmin(async () => {
+  return conAdmin(async (sesion) => {
     const body = (await req.json()) as { cliente?: Partial<Cliente>; claveAnterior?: string }
     const c = body.cliente ?? {}
     const docTipo = Number(c.docTipo)
@@ -41,15 +42,23 @@ export async function POST(req: Request) {
       },
       body.claveAnterior,
     )
+    await registrar(
+      sesion.username,
+      body.claveAnterior ? "Editó cliente" : "Agregó cliente",
+      cliente.alias ? `${cliente.alias} (${cliente.nombre})` : cliente.nombre,
+      `/admin/facturacion/clientes/${cliente.docTipo}-${cliente.docNro}`,
+    )
     return { cliente }
   })
 }
 
 export async function DELETE(req: Request) {
-  return conAdmin(async () => {
+  return conAdmin(async (sesion) => {
     const clave = new URL(req.url).searchParams.get("clave")
     if (!clave) throw new ErrorValidacion(["Falta el cliente a borrar"])
+    const previo = await leerClientePorClave(clave)
     await borrarCliente(clave)
+    await registrar(sesion.username, "Borró cliente", previo ? previo.alias || previo.nombre : clave)
     return { ok: true }
   })
 }

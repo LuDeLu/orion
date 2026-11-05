@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { conAdmin } from "@/lib/admin-api"
+import { registrar } from "@/lib/facturacion/actividad"
 import { borrarCertificado, cargarCertificado, certificadoActual, credenciales, estadoCertificado, generarCsr } from "@/lib/facturacion/arca"
 import { consultarPersona, domicilioCompleto, SERVICIO_PADRON } from "@/lib/facturacion/arca/padron"
 import { dummy, puntosDeVenta, ultimoAutorizado } from "@/lib/facturacion/arca/wsfe"
@@ -21,7 +22,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  return conAdmin(async () => {
+  return conAdmin(async (sesion) => {
     const body = await req.json()
     const cfg = await leerConfig()
 
@@ -34,10 +35,12 @@ export async function POST(req: Request) {
 
       case "certificado":
         await cargarCertificado(cfg, String(body.cert ?? ""), body.clave ? String(body.clave) : undefined)
+        await registrar(sesion.username, "Cargó certificado de ARCA", cfg.entorno === "produccion" ? "Producción" : "Homologación", "/admin/facturacion/configuracion")
         return { certificado: await estadoCertificado(cfg.entorno) }
 
       case "borrar":
         await borrarCertificado(cfg.entorno)
+        await registrar(sesion.username, "Quitó certificado de ARCA", cfg.entorno === "produccion" ? "Producción" : "Homologación", "/admin/facturacion/configuracion")
         return { certificado: await estadoCertificado(cfg.entorno) }
 
       // Trae del padrón los datos del emisor y los guarda en la configuración

@@ -1,11 +1,13 @@
 import { leerConfig } from "@/lib/facturacion/config"
 import { listarDocumentos } from "@/lib/facturacion/documentos"
 import { estadoCertificado } from "@/lib/facturacion/arca"
-import { dinero, hoyAr, tipoCbte } from "@/lib/facturacion/modelo"
+import { dinero, estadoCobro, hoyAr, saldoComprobante, tipoCbte } from "@/lib/facturacion/modelo"
 import { StatCard } from "@/components/admin/stat-card"
 import { ListaDocumentos } from "@/components/admin/facturacion/lista-documentos"
 import { Aviso, BotonLink, EncabezadoPagina, ICONOS, Icono } from "@/components/admin/facturacion/ui"
 import Link from "next/link"
+import { AvisoCertificado } from "@/components/admin/facturacion/aviso-certificado"
+import { ExportarCsv } from "@/components/admin/facturacion/exportar"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
@@ -32,6 +34,11 @@ export default async function FacturacionPage() {
   const presupuestos = docs.filter((d) => d.clase === "presupuesto" && d.estado === "vigente")
   const montoPresupuestos = presupuestos.reduce((s, d) => s + d.totales.total * (d.cotizacion || 1), 0)
 
+  // Cobranza: saldo pendiente en pesos y cuántas están vencidas
+  const pendientes = facturas.filter((d) => saldoComprobante(d, facturas) > 0)
+  const aCobrar = pendientes.reduce((s, d) => s + saldoComprobante(d, facturas) * (d.cotizacion || 1), 0)
+  const vencidas = pendientes.filter((d) => estadoCobro(d, facturas, hoy) === "vencida").length
+
   const listo = cert.tieneCertificado && cert.tieneClave && !!cfg.razonSocial
 
   return (
@@ -47,14 +54,7 @@ export default async function FacturacionPage() {
         }
         acciones={
           <>
-            <BotonLink href="/admin/facturacion/configuracion" aria-label="Configuración">
-              <Icono d={ICONOS.engranaje} />
-              <span className="hidden sm:inline">Configuración</span>
-            </BotonLink>
-            <BotonLink href="/admin/facturacion/clientes">
-              <Icono d={ICONOS.personas} />
-              Clientes
-            </BotonLink>
+            <ExportarCsv hoy={hoy} />
             <BotonLink href="/admin/facturacion/nuevo?modo=presupuesto" variante="secundario">
               <Icono d={ICONOS.recibo} />
               Presupuesto
@@ -82,12 +82,7 @@ export default async function FacturacionPage() {
           producción desde Configuración.
         </Aviso>
       )}
-      {cert.certificado && cert.certificado.diasRestantes < 30 && (
-        <Aviso tono={cert.certificado.diasRestantes < 0 ? "error" : "alerta"}>
-          El certificado de ARCA {cert.certificado.diasRestantes < 0 ? "venció" : `vence en ${cert.certificado.diasRestantes} días`}.
-          Renovalo desde Configuración para no quedarte sin facturar.
-        </Aviso>
-      )}
+      <AvisoCertificado />
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
         <StatCard label="Facturado este mes" value={corto(delMes)} hint={plural(facturas.filter((d) => d.fecha.startsWith(mes)).length, "comprobante")} accent="orange" />
@@ -98,7 +93,12 @@ export default async function FacturacionPage() {
           accent="gold"
         />
         <StatCard label="Presupuestos vigentes" value={presupuestos.length} hint={`${dinero(montoPresupuestos)} en total`} accent="sky" />
-        <StatCard label="Comprobantes emitidos" value={facturas.length} hint={cfg.entorno === "produccion" ? "En producción" : "En homologación"} accent="emerald" />
+        <StatCard
+          label="A cobrar"
+          value={corto(aCobrar)}
+          hint={pendientes.length ? `${plural(pendientes.length, "factura")}${vencidas ? ` · ${vencidas} vencida${vencidas === 1 ? "" : "s"}` : ""}` : "Todo cobrado"}
+          accent="emerald"
+        />
       </section>
 
       <ListaDocumentos docs={docs} hoy={hoy} />

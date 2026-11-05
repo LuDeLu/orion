@@ -7,6 +7,7 @@ import { DistributionList } from "@/components/admin/distribution-list"
 import { GraficoVisitas } from "@/components/admin/estadisticas/grafico-visitas"
 import { EnVivo } from "@/components/admin/estadisticas/en-vivo"
 import { NoMedir } from "@/components/admin/estadisticas/no-medir"
+import { AvisoCertificado } from "@/components/admin/facturacion/aviso-certificado"
 
 export const dynamic = "force-dynamic"
 export const runtime = "nodejs"
@@ -97,6 +98,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
 
   return (
     <div className="space-y-6 sm:space-y-7">
+      <AvisoCertificado />
       <div className="flex items-end justify-between gap-3 flex-wrap">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.35em] mb-1" style={{ color: "rgba(219,172,52,0.70)" }}>Estadísticas del sitio</p>
