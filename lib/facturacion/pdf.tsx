@@ -102,7 +102,7 @@ const condicionEmisor = (cfg: ConfigFacturacion) =>
     ? "IVA Responsable Inscripto"
     : cfg.condicionIva === "exento"
       ? "IVA Sujeto Exento"
-      : `Responsable Monotributo${cfg.categoriaMonotributo ? ` (cat. ${cfg.categoriaMonotributo})` : ""}`
+      : "Responsable Monotributo" // sin la categoría: no es obligatoria en el comprobante
 
 function Campo({ etiqueta, valor, ancho }: { etiqueta: string; valor?: string; ancho?: string }) {
   if (!valor) return null
