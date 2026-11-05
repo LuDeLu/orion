@@ -99,7 +99,15 @@ export async function POST(req: Request) {
           const p = await consultarPersona(await credenciales(SERVICIO_PADRON, cfg), cfg.cuit)
           pasos.push({ nombre: "Padrón (autocompletar CUIT)", ok: true, detalle: `${p.nombre} · ${p.condicionIvaNombre}` })
         } catch (e) {
-          pasos.push({ nombre: "Padrón (autocompletar CUIT)", ok: false, detalle: mensaje(e) })
+          // El padrón de homologación es un juego de datos de prueba: si responde "no existe",
+          // la autorización funciona y simplemente tu CUIT real no está cargado ahí.
+          if (cfg.entorno === "homologacion" && (e as { codigo?: string }).codigo === "NO_EXISTE")
+            pasos.push({
+              nombre: "Padrón (autocompletar CUIT)",
+              ok: true,
+              detalle: "Autorizado. El padrón de homologación tiene datos de prueba y tu CUIT no figura; en producción sí.",
+            })
+          else pasos.push({ nombre: "Padrón (autocompletar CUIT)", ok: false, detalle: mensaje(e) })
         }
         return { pasos }
       }

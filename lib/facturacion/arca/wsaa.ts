@@ -57,7 +57,11 @@ export async function loginCms(entorno: Entorno, servicio: string, certPem: stri
       )
     if (/no autorizado|not authorized|notAuthorized/i.test(msg))
       throw new ErrorArca(
-        `El certificado no está autorizado para el servicio "${servicio}". Asocialo en ARCA → Administrador de Relaciones de Clave Fiscal.`,
+        `El certificado no está autorizado para el servicio "${servicio}". ${
+          entorno === "produccion"
+            ? "Asocialo en ARCA → Administrador de Relaciones de Clave Fiscal."
+            : "Autorizalo en ARCA → WSASS → Crear autorización a servicio."
+        }`,
         "NO_AUTORIZADO",
       )
     if (/untrusted|AC de confianza/i.test(msg))
