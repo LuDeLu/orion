@@ -51,6 +51,16 @@ export async function consultarPersona(cred: Credenciales, cuit: string): Promis
   const nombre = g.razonSocial
     ? String(g.razonSocial)
     : [g.apellido ?? ec?.apellido, g.nombre ?? ec?.nombre].filter(Boolean).join(" ") || String(ec?.razonSocial ?? "")
+  // Sin nombre no hay nada útil para autocompletar: mejor avisar por qué que devolver datos vacíos.
+  if (!nombre.trim()) {
+    const errores = [...lista(ec?.error), ...lista(p.errorRegimenGeneral?.error), ...lista(p.errorMonotributo?.error)]
+      .map(String)
+      .filter(Boolean)
+    throw new ErrorArca(
+      `ARCA tiene el CUIT ${cuit} pero no devolvió nombre ni domicilio${errores.length ? `: ${errores.join(" · ")}` : ""}. Completá los datos a mano.`,
+      "SIN_DATOS",
+    )
+  }
   const dom = g.domicilioFiscal ?? {}
 
   const impuestosRG = lista(p.datosRegimenGeneral?.impuesto).map((i: any) => Number(i.idImpuesto))

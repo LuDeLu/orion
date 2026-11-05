@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server"
 import { conAdmin } from "@/lib/admin-api"
 import { borrarCertificado, cargarCertificado, certificadoActual, credenciales, estadoCertificado, generarCsr } from "@/lib/facturacion/arca"
 import { consultarPersona, domicilioCompleto, SERVICIO_PADRON } from "@/lib/facturacion/arca/padron"
@@ -41,7 +42,19 @@ export async function POST(req: Request) {
 
       // Trae del padrón los datos del emisor y los guarda en la configuración
       case "autocompletar": {
-        const p = await consultarPersona(await credenciales(SERVICIO_PADRON, cfg), cfg.cuit)
+        let p: Awaited<ReturnType<typeof consultarPersona>>
+        try {
+          p = await consultarPersona(await credenciales(SERVICIO_PADRON, cfg), cfg.cuit)
+        } catch (e) {
+          // "No existe" no es una falla de ARCA (no es un 502): el CUIT no está en ese padrón.
+          // En homologación es lo normal, porque solo tiene CUITs de prueba.
+          if ((e as { codigo?: string }).codigo !== "NO_EXISTE") throw e
+          const error =
+            cfg.entorno === "homologacion"
+              ? "El padrón de homologación solo tiene CUITs de prueba y el tuyo no figura. Completá los datos a mano; en producción el autocompletado sí los trae."
+              : (e as Error).message
+          return NextResponse.json({ error, codigo: "NO_EXISTE" }, { status: 404 })
+        }
         const config = await guardarConfig({
           razonSocial: p.nombre,
           domicilio: domicilioCompleto(p),
