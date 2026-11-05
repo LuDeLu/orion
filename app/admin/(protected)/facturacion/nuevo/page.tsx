@@ -1,6 +1,6 @@
 import { leerConfig } from "@/lib/facturacion/config"
 import { estadoCertificado } from "@/lib/facturacion/arca"
-import { buscarCliente, leerDocumento, listarClientes, listarDocumentos } from "@/lib/facturacion/documentos"
+import { buscarCliente, leerClientePorClave, leerDocumento, listarClientes, listarDocumentos, soloReceptor } from "@/lib/facturacion/documentos"
 import { leerCliente } from "@/lib/crm/datos"
 import { tipoCbte, type Documento } from "@/lib/facturacion/modelo"
 import { FormularioComprobante, type Inicial } from "@/components/admin/facturacion/formulario"
@@ -11,7 +11,7 @@ export const runtime = "nodejs"
 
 export const metadata = { title: "Nuevo comprobante · Orion" }
 
-type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: string; presupuesto?: string; editar?: string; cliente?: string }>
+type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: string; presupuesto?: string; editar?: string; cliente?: string; receptor?: string }>
 
 /**
  * Puntos de entrada:
@@ -21,6 +21,7 @@ type Busqueda = Promise<{ modo?: string; desde?: string; nc?: string; nd?: strin
  *   ?desde=<id>              duplicar cualquier documento
  *   ?nc=<id> / ?nd=<id>      nota de crédito / débito sobre una factura
  *   ?cliente=<id CRM>        con los datos de un cliente del CRM
+ *   ?receptor=<tipo-número>  con un cliente de la agenda de facturación
  */
 export default async function NuevoPage({ searchParams }: { searchParams: Busqueda }) {
   const sp = await searchParams
@@ -67,7 +68,7 @@ export default async function NuevoPage({ searchParams }: { searchParams: Busque
         ...inicial,
         buscarReceptor: !agenda && c.cuit.length === 11,
         datos: {
-          receptor: agenda ?? {
+          receptor: agenda ? soloReceptor(agenda) : {
             docTipo: c.cuit.length === 11 ? 80 : 99,
             docNro: c.cuit,
             nombre: c.cuit ? c.nombre : "Consumidor Final",
@@ -78,6 +79,12 @@ export default async function NuevoPage({ searchParams }: { searchParams: Busque
         },
       }
     }
+  }
+
+  // Desde la agenda de clientes de facturación
+  if (!origen && !sp.cliente && sp.receptor) {
+    const c = await leerClientePorClave(sp.receptor)
+    if (c) inicial = { ...inicial, datos: { receptor: soloReceptor(c) } }
   }
 
   const facturas = docs
@@ -107,7 +114,7 @@ export default async function NuevoPage({ searchParams }: { searchParams: Busque
           tieneCbu: !!cfg.cbu,
           arcaListo: cert.tieneCertificado && cert.tieneClave,
         }}
-        clientes={clientes.slice(0, 50)}
+        clientes={clientes}
         facturas={facturas}
       />
     </div>

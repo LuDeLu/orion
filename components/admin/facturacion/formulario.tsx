@@ -62,7 +62,8 @@ interface Props {
     tieneCbu: boolean
     arcaListo: boolean
   }
-  clientes: Receptor[]
+  /** Agenda de facturación: datos fiscales + alias */
+  clientes: (Receptor & { alias?: string })[]
   facturas: FacturaResumen[]
 }
 
@@ -175,9 +176,23 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
 
   function elegirCliente(c: Receptor) {
     ultimaBusqueda.current = soloDigitos(c.docNro)
-    setReceptor({ ...receptorVacio, ...c })
+    // Solo los datos fiscales: el alias no viaja al comprobante
+    const { docTipo, docNro, nombre, condicionIva, domicilio, email } = c
+    setReceptor({ ...receptorVacio, docTipo, docNro, nombre, condicionIva, domicilio, email })
     setBusqueda({ estado: "ok", fuente: "agenda" })
+    setQAgenda("")
   }
+
+  const [qAgenda, setQAgenda] = useState("")
+  const coincidencias = useMemo(() => {
+    const t = qAgenda.trim().toLowerCase()
+    if (!t) return []
+    const td = soloDigitos(t)
+    return clientes
+      .filter((c) => [c.alias, c.nombre].join(" ").toLowerCase().includes(t) || (td.length >= 3 && soloDigitos(c.docNro).includes(td)))
+      .slice(0, 6)
+  }, [clientes, qAgenda])
+  const aliasActual = receptor.docNro ? clientes.find((c) => soloDigitos(c.docNro) === soloDigitos(receptor.docNro))?.alias : undefined
 
   function elegirAsociado(id: string) {
     const f = facturas.find((x) => x.id === id)
@@ -365,22 +380,62 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
             ) : null
           }
         >
-          {clientes.length > 0 && !receptor.nombre && (
+          {clientes.length > 0 && (
             <div className="mb-4">
-              <Etiqueta>Clientes recientes</Etiqueta>
-              <div className="flex flex-wrap gap-1.5">
-                {clientes.slice(0, 8).map((c) => (
-                  <button
-                    key={`${c.docTipo}-${c.docNro}`}
-                    type="button"
-                    onClick={() => elegirCliente(c)}
-                    className="rounded-full px-3 py-1 text-xs transition-colors hover:text-white"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", color: tinta.media }}
-                  >
-                    {c.nombre}
-                  </button>
-                ))}
+              <Etiqueta ayuda={<a href="/admin/facturacion/clientes" className="underline hover:text-white">administrar clientes</a>}>Tu agenda</Etiqueta>
+              <div className="relative">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: tinta.tenue }}>
+                  <Icono d={ICONOS.buscar} className="w-3.5 h-3.5" />
+                </span>
+                <input
+                  value={qAgenda}
+                  onChange={(e) => setQAgenda(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && coincidencias[0]) {
+                      e.preventDefault()
+                      elegirCliente(coincidencias[0])
+                    }
+                  }}
+                  placeholder="Buscar cliente por alias, razón social o CUIT…"
+                  aria-label="Buscar cliente en la agenda"
+                  className="input-orion w-full rounded-lg pl-9 pr-3 py-2 text-sm"
+                />
               </div>
+              {qAgenda.trim() && (
+                <ul className="mt-1.5 rounded-lg overflow-hidden" style={{ background: "rgba(22,19,47,0.95)", border: "1px solid rgba(255,255,255,0.09)" }}>
+                  {coincidencias.length === 0 ? (
+                    <li className="px-3 py-2 text-xs" style={{ color: tinta.suave }}>Ningún cliente coincide. Cargá el CUIT abajo y se completa desde ARCA.</li>
+                  ) : (
+                    coincidencias.map((c) => (
+                      <li key={`${c.docTipo}-${c.docNro}`}>
+                        <button type="button" onClick={() => elegirCliente(c)} className="w-full text-left px-3 py-2 hover:bg-white/5 transition-colors">
+                          <span className="block text-sm text-white truncate">{c.alias || c.nombre}</span>
+                          <span className="block text-xs truncate" style={{ color: tinta.suave }}>
+                            {c.alias ? `${c.nombre} · ` : ""}
+                            {c.docNro}
+                          </span>
+                        </button>
+                      </li>
+                    ))
+                  )}
+                </ul>
+              )}
+              {!qAgenda.trim() && !receptor.nombre && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {clientes.slice(0, 8).map((c) => (
+                    <button
+                      key={`${c.docTipo}-${c.docNro}`}
+                      type="button"
+                      onClick={() => elegirCliente(c)}
+                      title={c.alias ? c.nombre : undefined}
+                      className="rounded-full px-3 py-1 text-xs transition-colors hover:text-white"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.09)", color: tinta.media }}
+                    >
+                      {c.alias || c.nombre}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -435,7 +490,7 @@ export function FormularioComprobante({ inicial, config, clientes, facturas }: P
 
           {receptor.docTipo !== 99 && (
             <div className="grid sm:grid-cols-2 gap-3 mt-3">
-              <Campo etiqueta="Nombre o razón social" className="sm:col-span-2">
+              <Campo etiqueta="Nombre o razón social" ayuda={aliasActual ? `alias: ${aliasActual}` : undefined} className="sm:col-span-2">
                 <Entrada value={receptor.nombre} onChange={(e) => setReceptor((r) => ({ ...r, nombre: e.target.value }))} />
               </Campo>
               <Campo etiqueta="Condición frente al IVA">

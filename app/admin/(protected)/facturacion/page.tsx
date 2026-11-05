@@ -51,6 +51,10 @@ export default async function FacturacionPage() {
               <Icono d={ICONOS.engranaje} />
               <span className="hidden sm:inline">Configuración</span>
             </BotonLink>
+            <BotonLink href="/admin/facturacion/clientes">
+              <Icono d={ICONOS.personas} />
+              Clientes
+            </BotonLink>
             <BotonLink href="/admin/facturacion/nuevo?modo=presupuesto" variante="secundario">
               <Icono d={ICONOS.recibo} />
               Presupuesto

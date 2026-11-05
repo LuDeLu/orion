@@ -1,7 +1,7 @@
 import { conAdmin } from "@/lib/admin-api"
 import { credenciales } from "@/lib/facturacion/arca"
 import { consultarPersona, domicilioCompleto, SERVICIO_PADRON } from "@/lib/facturacion/arca/padron"
-import { buscarCliente } from "@/lib/facturacion/documentos"
+import { buscarCliente, soloReceptor } from "@/lib/facturacion/documentos"
 import { ErrorValidacion } from "@/lib/facturacion/emitir"
 import { cuitValido, soloDigitos } from "@/lib/facturacion/modelo"
 
@@ -11,13 +11,15 @@ export const dynamic = "force-dynamic"
 /**
  * Autocompleta un cliente: primero la agenda propia, después el padrón de ARCA.
  * Si ARCA no responde pero el cliente ya existe, devuelve la agenda con un aviso.
+ * `cliente` trae solo datos fiscales; el alias de la agenda va aparte.
  */
 export async function GET(req: Request) {
   return conAdmin(async () => {
     const doc = soloDigitos(new URL(req.url).searchParams.get("doc") ?? "")
     const guardado = await buscarCliente(doc)
+    const agenda = guardado ? { fuente: "agenda", cliente: soloReceptor(guardado), alias: guardado.alias ?? "" } : null
     if (doc.length !== 11) {
-      if (guardado) return { fuente: "agenda", cliente: guardado }
+      if (agenda) return agenda
       throw new ErrorValidacion(["Sin datos guardados para ese documento"])
     }
     if (!cuitValido(doc)) throw new ErrorValidacion(["El CUIT no es válido (revisá el dígito verificador)"])
@@ -33,10 +35,11 @@ export async function GET(req: Request) {
           domicilio: domicilioCompleto(p),
           email: guardado?.email ?? "",
         },
+        alias: guardado?.alias ?? "",
         persona: p,
       }
     } catch (e) {
-      if (guardado) return { fuente: "agenda", cliente: guardado, aviso: (e as Error).message }
+      if (agenda) return { ...agenda, aviso: (e as Error).message }
       throw e
     }
   })
