@@ -302,6 +302,17 @@ input[type="date"] { color-scheme: dark; }
 :root[data-theme="light"] { color-scheme: light; }
 :root[data-theme="light"] input[type="date"] { color-scheme: light; }
 
+/* La lista desplegable de un <select> la dibuja el navegador: sin esto hereda el texto
+   claro del input sobre fondo blanco y las opciones no se leen. */
+select.input-orion { color-scheme: dark; }
+select.input-orion option,
+select.input-orion optgroup { background-color: #16132f; color: #f4f2ee; }
+select.input-orion option:disabled { color: rgba(244,242,238,0.4); }
+:root[data-theme="light"] select.input-orion { color-scheme: light; }
+:root[data-theme="light"] select.input-orion option,
+:root[data-theme="light"] select.input-orion optgroup { background-color: #ffffff; color: #14122e; }
+:root[data-theme="light"] select.input-orion option:disabled { color: rgba(20,18,46,0.4); }
+
 /* El input glass está escrito para fondo oscuro; sobre papel se invierte. */
 :root[data-theme="light"] .input-orion {
   background: rgba(255,255,255,0.75);
