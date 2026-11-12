@@ -35,15 +35,15 @@ export const metadata: Metadata = {
   },
   description:
     "Somos una agencia de marketing digital en Argentina enfocada en PyMEs y Startups. Branding, redes sociales, Google Ads, Meta Ads y diseño web con estrategia y resultados medibles. Tu negocio, nuestro universo.",
-  metadataBase: new URL("https://orionmkt.com.ar"),
+  metadataBase: new URL("https://www.orionmkt.com.ar"),
   alternates: {
-    canonical: "https://orionmkt.com.ar",
+    canonical: "https://www.orionmkt.com.ar",
     languages: {
-      "es-AR": "https://orionmkt.com.ar",
-      "es-UY": "https://orionmkt.com.ar",
-      "es-CL": "https://orionmkt.com.ar",
-      "es-MX": "https://orionmkt.com.ar",
-      es: "https://orionmkt.com.ar",
+      "es-AR": "https://www.orionmkt.com.ar",
+      "es-UY": "https://www.orionmkt.com.ar",
+      "es-CL": "https://www.orionmkt.com.ar",
+      "es-MX": "https://www.orionmkt.com.ar",
+      es: "https://www.orionmkt.com.ar",
     },
   },
   generator: "Next.js",
@@ -178,8 +178,8 @@ export const metadata: Metadata = {
     "agencia marketing recomendada",
   ],
   authors: [
-    { name: "Orion Marketing", url: "https://orionmkt.com.ar" },
-    { name: "Orion MKT", url: "https://orionmkt.com.ar" },
+    { name: "Orion Marketing", url: "https://www.orionmkt.com.ar" },
+    { name: "Orion MKT", url: "https://www.orionmkt.com.ar" },
   ],
   creator: "Orion Marketing",
   publisher: "Orion Marketing",
@@ -194,13 +194,13 @@ export const metadata: Metadata = {
     title: "Orion Marketing | Agencia de Marketing Digital en Argentina",
     description:
       "Agencia de marketing digital para PyMEs y Startups: branding, redes sociales, Google Ads, Meta Ads y diseño web. Tu negocio, nuestro universo.",
-    url: "https://orionmkt.com.ar",
+    url: "https://www.orionmkt.com.ar",
     siteName: "Orion Marketing",
     locale: "es_AR",
     type: "website",
     images: [
       {
-        url: "https://orionmkt.com.ar/og-image-share.png",
+        url: "https://www.orionmkt.com.ar/og-image-share.png",
         width: 1200,
         height: 630,
         alt: "Orion Marketing - Agencia de Marketing Digital",
@@ -217,7 +217,7 @@ export const metadata: Metadata = {
     description:
       "Branding, redes sociales, ads y diseño web para PyMEs y Startups. Tu negocio, nuestro universo.",
     images: {
-      url: "https://orionmkt.com.ar/og-image-share.png",
+      url: "https://www.orionmkt.com.ar/og-image-share.png",
       width: 1200,
       height: 630,
       alt: "Orion Marketing - Agencia de Marketing Digital",
@@ -323,7 +323,7 @@ export default function RootLayout({
           decía a Google que cada subpágina (áreas, prensa, etc.) era un
           duplicado del inicio y frenaba su indexación. Ahora los gestiona la
           Metadata API de Next por página (alternates.canonical / languages),
-          que para el inicio sigue resolviendo a https://orionmkt.com.ar.
+          que para el inicio sigue resolviendo a https://www.orionmkt.com.ar.
         */}
 
         {/* Meta Pixel */}

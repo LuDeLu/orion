@@ -4,7 +4,7 @@ import { PrensaArticle } from "@/components/prensa-article"
 import { PrensaStructuredData } from "@/components/prensa-structured-data"
 import { getNota, notasSlugs } from "@/lib/prensa"
 
-const BASE = "https://orionmkt.com.ar"
+const BASE = "https://www.orionmkt.com.ar"
 
 export function generateStaticParams() {
   return notasSlugs.map((slug) => ({ slug }))
@@ -23,11 +23,13 @@ export async function generateMetadata({
   const imageUrl = `${BASE}${nota.hero.src}`
 
   return {
-    title: nota.metaTitle,
+    // absolute: sin el sufijo "| Orion Marketing", para que el título no se corte en Google.
+    title: { absolute: nota.metaTitle },
     description: nota.metaDescription,
     keywords: nota.keywords,
     authors: [{ name: "Elbio Stoler" }],
-    alternates: { canonical: url },
+    alternates: { canonical: url, languages: { "es-AR": url } },
+    robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
     openGraph: {
       title: nota.metaTitle,
       description: nota.metaDescription,

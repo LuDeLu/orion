@@ -1,6 +1,6 @@
 import { areasBySlug, type AreaSlug } from "@/lib/areas"
 
-const BASE = "https://orionmkt.com.ar"
+const BASE = "https://www.orionmkt.com.ar"
 
 export function AreaStructuredData({ slug }: { slug: AreaSlug }) {
   const area = areasBySlug[slug]

@@ -9,15 +9,15 @@ export const metadata: Metadata = {
   title: area.seo.title,
   description: area.seo.description,
   keywords: area.seo.keywords,
-  alternates: { canonical: `https://orionmkt.com.ar${area.href}` },
+  alternates: { canonical: `https://www.orionmkt.com.ar${area.href}` },
   openGraph: {
     title: `${area.seo.title} | Orion Marketing`,
     description: area.seo.description,
-    url: `https://orionmkt.com.ar${area.href}`,
+    url: `https://www.orionmkt.com.ar${area.href}`,
     siteName: "Orion Marketing",
     locale: "es_AR",
     type: "website",
-    images: [{ url: "https://orionmkt.com.ar/og-image-share.png", width: 1200, height: 630 }],
+    images: [{ url: "https://www.orionmkt.com.ar/og-image-share.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",

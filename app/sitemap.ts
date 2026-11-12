@@ -3,7 +3,7 @@ import { areas } from "@/lib/areas"
 import { notas } from "@/lib/prensa"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://orionmkt.com.ar"
+  const baseUrl = "https://www.orionmkt.com.ar"
   const currentDate = new Date()
 
   return [

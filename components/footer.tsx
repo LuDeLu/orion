@@ -107,6 +107,9 @@ export function Footer() {
             <Link href="/it/entrar" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
               {t.footer.clientPortal}
             </Link>
+            <Link href="/prensa" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
+              Prensa
+            </Link>
             <Link href="/privacidad" className="hover:text-foreground transition-colors duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]">
               {t.footer.privacy}
             </Link>

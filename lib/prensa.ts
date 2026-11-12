@@ -53,16 +53,39 @@ export type Nota = {
   relatedSlug: string
 }
 
-const TODAY = new Date().toISOString().split("T")[0]
+/** Fecha de la última revisión editorial. Se actualiza a mano al tocar el contenido. */
+const REVISADO = "2026-11-11"
+
+/**
+ * Perfiles y sitios oficiales de Elbio Stoler. Se enlazan desde cada nota y se
+ * declaran como sameAs en los datos estructurados, para que Google entienda
+ * que todas estas páginas hablan de la misma persona.
+ */
+export const perfilesElbio = [
+  {
+    label: "Elbio Stoler en ADN Developers",
+    url: "https://adndevelopers.com.ar/elbio-stoler/",
+    desc: "Perfil oficial del fundador y director de la desarrolladora.",
+  },
+  {
+    label: "Biografía de Elbio Stoler",
+    url: "https://proyectosdome.com.ar/elbio-stoler/",
+    desc: "Trayectoria, proyectos DOME y notas de prensa.",
+  },
+  {
+    label: "DOME Green Soho, sitio oficial",
+    url: "https://www.domegreensoho.com.ar/",
+    desc: "El edificio de Av. Córdoba 4340 desarrollado por Elbio Stoler.",
+  },
+]
 
 export const notas: Nota[] = [
   {
     slug: "elbio-stoler-dome-green-soho",
     title: "Elbio Stoler presenta Dome Green Soho: la torre premium de ADN Developers en Palermo",
-    metaTitle:
-      "Elbio Stoler y Dome Green Soho | El proyecto premium de ADN Developers en Av. Córdoba",
+    metaTitle: "Elbio Stoler presenta Dome Green Soho | ADN Developers",
     metaDescription:
-      "Elbio Stoler, director de ADN Developers, presenta Dome Green Soho: dos torres premium en Av. Córdoba 4340, entre Palermo y Villa Crespo, con 116 unidades de 1 a 4 dormitorios y amenities de alta gama.",
+      "Elbio Stoler, director de ADN Developers, presenta Dome Green Soho: dos torres en Av. Córdoba 4340, Palermo, con 116 unidades y amenities premium.",
     keywords: [
       "Elbio Stoler",
       "Elbio Stoler ADN Developers",
@@ -79,7 +102,7 @@ export const notas: Nota[] = [
     excerpt:
       "El director de ADN Developers, Elbio Stoler, lanza Dome Green Soho: dos torres de diseño moderno en Av. Córdoba 4340, un punto donde convergen la diversidad de Villa Crespo y la intensidad de Palermo. 116 unidades de 1 a 4 dormitorios, amenities premium y una ubicación con conectividad total.",
     datePublished: "2021-05-18",
-    dateModified: TODAY,
+    dateModified: REVISADO,
     author: "Elbio Stoler — ADN Developers",
     readingMinutes: 4,
     source: {
@@ -160,10 +183,9 @@ export const notas: Nota[] = [
     slug: "elbio-stoler-de-lo-comercial-a-lo-residencial",
     title:
       "Elbio Stoler: «De lo comercial a lo residencial», la columna del director de ADN Developers",
-    metaTitle:
-      "Elbio Stoler (ADN Developers): de lo comercial a lo residencial | Columna de opinión",
+    metaTitle: "Elbio Stoler: de lo comercial a lo residencial | Columna",
     metaDescription:
-      "Columna de Elbio Stoler, director y fundador de ADN Developers, sobre la transformación urbana de Buenos Aires: cómo la Av. Córdoba pasó de eje comercial a identidad residencial y la Av. del Libertador se consolida como polo corporativo.",
+      "Columna de Elbio Stoler, fundador de ADN Developers: cómo la Av. Córdoba pasó de eje comercial a residencial y Libertador se volvió polo corporativo.",
     keywords: [
       "Elbio Stoler",
       "Elbio Stoler opinión",
@@ -180,7 +202,7 @@ export const notas: Nota[] = [
     excerpt:
       "En esta columna, Elbio Stoler —director y fundador de ADN Developers— analiza cómo las avenidas porteñas reescriben su identidad: la Av. Córdoba se vuelve residencial y la Av. del Libertador se consolida como la vedette del mercado corporativo.",
     datePublished: "2021-03-30",
-    dateModified: TODAY,
+    dateModified: REVISADO,
     author: "Elbio Stoler — Director de ADN Developers",
     readingMinutes: 5,
     source: {

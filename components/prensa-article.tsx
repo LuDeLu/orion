@@ -3,7 +3,7 @@ import Image from "next/image"
 import { ArrowLeft, ArrowRight, CalendarDays, Clock, ExternalLink, Quote } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { getNota, type Nota } from "@/lib/prensa"
+import { getNota, perfilesElbio, type Nota } from "@/lib/prensa"
 
 function formatFecha(iso: string) {
   return new Date(iso + "T12:00:00").toLocaleDateString("es-AR", {
@@ -171,6 +171,28 @@ export function PrensaArticle({ nota }: { nota: Nota }) {
             </div>
           </div>
         )}
+
+        {/* Perfiles oficiales: enlaces a los sitios donde vive la información de Elbio Stoler */}
+        <aside className="max-w-3xl mx-auto mt-14" aria-labelledby="mas-sobre-elbio">
+          <h2 id="mas-sobre-elbio" className="text-xl md:text-2xl font-display font-bold text-foreground mb-5">
+            Más sobre Elbio Stoler
+          </h2>
+          <ul className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {perfilesElbio.map((p) => (
+              <li key={p.url}>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/40"
+                >
+                  <span className="font-display font-bold text-foreground leading-snug">{p.label}</span>
+                  <span className="mt-2 text-sm text-foreground/65 leading-relaxed">{p.desc}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </aside>
 
         {/* Fuente + tags */}
         <div className="max-w-3xl mx-auto mt-14 border-t border-border pt-6">

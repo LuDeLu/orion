@@ -3,23 +3,23 @@ export function StructuredData() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "@id": "https://orionmkt.com.ar/#organization",
+    "@id": "https://www.orionmkt.com.ar/#organization",
     name: "Orion Marketing",
     alternateName: ["Orion MKT", "OrionMKT", "Orion Marketing Digital", "Orion Marketing Argentina"],
     legalName: "Orion Marketing - Agencia de Marketing Digital",
-    url: "https://orionmkt.com.ar",
+    url: "https://www.orionmkt.com.ar",
     logo: {
       "@type": "ImageObject",
-      "@id": "https://orionmkt.com.ar/#logo",
-      url: "https://orionmkt.com.ar/logo.png",
-      contentUrl: "https://orionmkt.com.ar/logo.png",
+      "@id": "https://www.orionmkt.com.ar/#logo",
+      url: "https://www.orionmkt.com.ar/logo.png",
+      contentUrl: "https://www.orionmkt.com.ar/logo.png",
       width: 512,
       height: 512,
       caption: "Orion Marketing Logo",
     },
     image: {
       "@type": "ImageObject",
-      url: "https://orionmkt.com.ar/og-image.png",
+      url: "https://www.orionmkt.com.ar/og-image.png",
       width: 1200,
       height: 630,
     },
@@ -31,7 +31,7 @@ export function StructuredData() {
       "@type": "Brand",
       name: "Orion Marketing",
       alternateName: "Orion MKT",
-      logo: "https://orionmkt.com.ar/logo.png",
+      logo: "https://www.orionmkt.com.ar/logo.png",
     },
     address: {
       "@type": "PostalAddress",
@@ -128,13 +128,13 @@ export function StructuredData() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://orionmkt.com.ar/#service",
+    "@id": "https://www.orionmkt.com.ar/#service",
     serviceType: "Marketing Digital",
     name: "Servicios de Marketing Digital - Orion Marketing",
     description: "Servicios profesionales de marketing digital de Orion Marketing para empresas en Argentina",
     provider: {
       "@type": "Organization",
-      "@id": "https://orionmkt.com.ar/#organization",
+      "@id": "https://www.orionmkt.com.ar/#organization",
       name: "Orion Marketing",
     },
     brand: {
@@ -310,12 +310,12 @@ export function StructuredData() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
-    "@id": "https://orionmkt.com.ar/#localbusiness",
+    "@id": "https://www.orionmkt.com.ar/#localbusiness",
     name: "Orion Marketing",
     alternateName: ["Orion MKT", "Orion Marketing Digital", "Orion Marketing Argentina"],
     description: "Agencia de marketing digital líder en Argentina para PyMEs y Startups",
-    image: "https://orionmkt.com.ar/logo.png",
-    url: "https://orionmkt.com.ar",
+    image: "https://www.orionmkt.com.ar/logo.png",
+    url: "https://www.orionmkt.com.ar",
     telephone: "+54-9-11-5656-6083",
     email: "hola@orionmkt.com.ar",
     priceRange: "$$",
@@ -375,32 +375,32 @@ export function StructuredData() {
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://orionmkt.com.ar/#website",
-    url: "https://orionmkt.com.ar",
+    "@id": "https://www.orionmkt.com.ar/#website",
+    url: "https://www.orionmkt.com.ar",
     name: "Orion Marketing",
     alternateName: ["Orion MKT", "OrionMKT"],
     description: "Orion Marketing - Agencia de Marketing Digital líder en Argentina para PyMEs y Startups",
     publisher: {
-      "@id": "https://orionmkt.com.ar/#organization",
+      "@id": "https://www.orionmkt.com.ar/#organization",
     },
     potentialAction: [
       {
         "@type": "SearchAction",
         target: {
           "@type": "EntryPoint",
-          urlTemplate: "https://orionmkt.com.ar/?s={search_term_string}",
+          urlTemplate: "https://www.orionmkt.com.ar/?s={search_term_string}",
         },
         "query-input": "required name=search_term_string",
       },
       {
         "@type": "ContactAction",
-        target: "https://orionmkt.com.ar/#contacto",
+        target: "https://www.orionmkt.com.ar/#contacto",
       },
     ],
     inLanguage: "es-AR",
     copyrightYear: 2024,
     copyrightHolder: {
-      "@id": "https://orionmkt.com.ar/#organization",
+      "@id": "https://www.orionmkt.com.ar/#organization",
     },
   }
 
@@ -412,31 +412,31 @@ export function StructuredData() {
         "@type": "ListItem",
         position: 1,
         name: "Orion Marketing - Inicio",
-        item: "https://orionmkt.com.ar",
+        item: "https://www.orionmkt.com.ar",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Servicios de Marketing Digital",
-        item: "https://orionmkt.com.ar/#servicios",
+        item: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Sobre Orion Marketing",
-        item: "https://orionmkt.com.ar/#nosotros",
+        item: "https://www.orionmkt.com.ar/#nosotros",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Casos de Éxito",
-        item: "https://orionmkt.com.ar/#casos",
+        item: "https://www.orionmkt.com.ar/#casos",
       },
       {
         "@type": "ListItem",
         position: 5,
         name: "Contacto",
-        item: "https://orionmkt.com.ar/#contacto",
+        item: "https://www.orionmkt.com.ar/#contacto",
       },
     ],
   }
@@ -515,20 +515,20 @@ export function StructuredData() {
   const webPageSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "@id": "https://orionmkt.com.ar/#webpage",
-    url: "https://orionmkt.com.ar",
+    "@id": "https://www.orionmkt.com.ar/#webpage",
+    url: "https://www.orionmkt.com.ar",
     name: "Orion Marketing | Agencia de Marketing Digital Argentina",
     description:
       "Orion Marketing es la agencia de marketing digital líder en Argentina para PyMEs y Startups. Branding, Social Media, Ads, Web.",
     isPartOf: {
-      "@id": "https://orionmkt.com.ar/#website",
+      "@id": "https://www.orionmkt.com.ar/#website",
     },
     about: {
-      "@id": "https://orionmkt.com.ar/#organization",
+      "@id": "https://www.orionmkt.com.ar/#organization",
     },
     primaryImageOfPage: {
       "@type": "ImageObject",
-      url: "https://orionmkt.com.ar/og-image.png",
+      url: "https://www.orionmkt.com.ar/og-image.png",
     },
     datePublished: "2020-01-01",
     dateModified: new Date().toISOString().split("T")[0],
@@ -536,7 +536,7 @@ export function StructuredData() {
     potentialAction: [
       {
         "@type": "ReadAction",
-        target: ["https://orionmkt.com.ar"],
+        target: ["https://www.orionmkt.com.ar"],
       },
     ],
     speakable: {
@@ -548,31 +548,31 @@ export function StructuredData() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "@id": "https://orionmkt.com.ar/#article",
+    "@id": "https://www.orionmkt.com.ar/#article",
     headline: "Orion Marketing - Agencia de Marketing Digital para PyMEs y Startups en Argentina",
     alternativeHeadline: "Orion MKT - Tu negocio, nuestro universo",
     description:
       "Descubrí cómo Orion Marketing transforma negocios con estrategias de marketing digital innovadoras, medibles y efectivas. Branding, redes sociales, publicidad digital y más.",
-    image: "https://orionmkt.com.ar/og-image.png",
+    image: "https://www.orionmkt.com.ar/og-image.png",
     author: {
       "@type": "Organization",
       name: "Orion Marketing",
-      url: "https://orionmkt.com.ar",
+      url: "https://www.orionmkt.com.ar",
     },
     publisher: {
       "@type": "Organization",
-      "@id": "https://orionmkt.com.ar/#organization",
+      "@id": "https://www.orionmkt.com.ar/#organization",
       name: "Orion Marketing",
       logo: {
         "@type": "ImageObject",
-        url: "https://orionmkt.com.ar/logo.png",
+        url: "https://www.orionmkt.com.ar/logo.png",
       },
     },
     datePublished: "2020-01-01",
     dateModified: new Date().toISOString().split("T")[0],
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://orionmkt.com.ar",
+      "@id": "https://www.orionmkt.com.ar",
     },
     keywords: "orion marketing, orion mkt, marketing digital argentina, agencia marketing, pymes, startups",
   }
@@ -588,37 +588,37 @@ export function StructuredData() {
         "@type": "ListItem",
         position: 1,
         name: "Branding y Diseño de Identidad por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Social Media Marketing por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Paid Media por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Desarrollo Web y E-commerce por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 5,
         name: "Estrategia Digital por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
       {
         "@type": "ListItem",
         position: 6,
         name: "Diseño Creativo por Orion Marketing",
-        url: "https://orionmkt.com.ar/#servicios",
+        url: "https://www.orionmkt.com.ar/#servicios",
       },
     ],
   }
