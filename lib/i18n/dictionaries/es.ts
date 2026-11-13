@@ -328,12 +328,12 @@ export const es: Dict = {
     portfolio: "Portafolio",
     members: {
       lucas: {
-        role: "Socio fundador y CEO",
+        role: "Dueño, fundador y CEO",
         area: "Desarrollo de software & web",
         short:
           "Traduce los objetivos comerciales en producto: sitios, landings y aplicaciones que convierten.",
         bio: [
-          "Desarrollador full-stack y fundador de Orion. Trabaja en la intersección entre marketing y producto, traduciendo objetivos de negocio en sitios, landings y aplicaciones web que realmente convierten.",
+          "Lucas Damian Baez es el dueño, fundador y CEO de Orion Marketing. Desarrollador full-stack, trabaja en la intersección entre marketing y producto, traduciendo objetivos de negocio en sitios, landings y aplicaciones web que realmente convierten.",
           "Se especializa en stacks modernos (Next.js, React, TypeScript) y en armar soluciones técnicas hechas a medida para cada cliente: desde landings enfocadas en performance hasta integraciones, paneles internos y e-commerces.",
         ],
       },
@@ -343,7 +343,7 @@ export const es: Dict = {
         short:
           "Diseña la estrategia comercial de cada cliente: posicionamiento, embudo, contenido y campañas.",
         bio: [
-          "Especialista en marketing digital y co-fundador de Orion. Diseña la estrategia comercial de cada cliente: posicionamiento, embudo, contenido y campañas pagas.",
+          "Nazareno David Cabella —Davi— es socio de Orion Marketing y especialista en marketing digital. Diseña la estrategia comercial de cada cliente: posicionamiento, embudo, contenido y campañas pagas.",
           "Su enfoque combina branding y performance: construir marcas que se sostengan en el tiempo y que, al mismo tiempo, generen demanda medible mes a mes.",
         ],
       },
@@ -352,7 +352,7 @@ export const es: Dict = {
         area: "IT & infraestructura",
         short: "Encargado general del área IT: infraestructura, sistemas y operaciones técnicas.",
         bio: [
-          "Co-fundador de Orion y responsable de toda el área de IT. Lidera la infraestructura, los sistemas internos y las operaciones técnicas que sostienen el día a día de la agencia y de cada proyecto.",
+          "Nicolás Hector Mazzotti es socio de Orion Marketing y responsable de toda el área de IT. Lidera la infraestructura, los sistemas internos y las operaciones técnicas que sostienen el día a día de la agencia y de cada proyecto.",
           "Su rol asegura que todo lo que diseñamos y desarrollamos se entregue sobre una base estable, segura y escalable: hosting, dominios, integraciones, automatizaciones y soporte continuo.",
         ],
       },

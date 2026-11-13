@@ -267,7 +267,7 @@ export const areasEn: AreaTexts = {
     teaser: "Websites, apps and custom systems that solve the actual problem.",
     chips: ["Web", "E-commerce", "Apps", "Systems", "Integrations", "Dashboards"],
     owner: {
-      role: "Founding partner & CEO",
+      role: "Owner, founder & CEO",
       title: "Head of Technology",
       area: "Software & web development",
     },

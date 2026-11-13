@@ -428,7 +428,7 @@ const software: Area = {
   icon: Code2,
   owner: {
     name: "Lucas Baez",
-    role: "Socio fundador y CEO",
+    role: "Dueño, fundador y CEO",
     title: "Director de Tecnología",
     initials: "LB",
     area: "Desarrollo de software & web",

@@ -345,12 +345,12 @@ export const en: Dict = {
     portfolio: "Portfolio",
     members: {
       lucas: {
-        role: "Founding partner & CEO",
+        role: "Owner, founder & CEO",
         area: "Software & web development",
         short:
           "Turns commercial goals into product: sites, landing pages and applications that convert.",
         bio: [
-          "Full-stack developer and founder of Orion. He works at the intersection of marketing and product, translating business goals into websites, landing pages and web applications that actually convert.",
+          "Lucas Damian Baez is the owner, founder and CEO of Orion Marketing. A full-stack developer, he works at the intersection of marketing and product, translating business goals into websites, landing pages and web applications that actually convert.",
           "He specialises in modern stacks (Next.js, React, TypeScript) and in building technical solutions tailored to each client: from performance-focused landing pages to integrations, internal dashboards and e-commerce.",
         ],
       },

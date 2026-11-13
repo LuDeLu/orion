@@ -21,6 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.9,
     })),
+    // Dueño y socios: la página que define quién está detrás de la agencia.
+    {
+      url: `${baseUrl}/equipo`,
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    },
     // Índice de prensa + una entrada por nota.
     {
       url: `${baseUrl}/prensa`,

@@ -9,7 +9,7 @@ import { fill } from "@/lib/i18n"
 const companyLinks = [
   { key: "casos", href: "/#casos" },
   { key: "nosotros", href: "/#nosotros" },
-  { key: "equipo", href: "/#equipo" },
+  { key: "equipo", href: "/equipo" },
   { key: "contacto", href: "/#contacto" },
 ] as const
 

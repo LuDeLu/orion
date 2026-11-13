@@ -1,3 +1,11 @@
+import {
+  faqTitularidad,
+  fraseTitularidad,
+  personRef,
+  personSchema,
+  propietario,
+  socios,
+} from "@/lib/socios"
 
 export function StructuredData() {
   const organizationSchema = {
@@ -24,8 +32,20 @@ export function StructuredData() {
       height: 630,
     },
     description:
-      "Orion Marketing es la agencia de marketing digital líder en Argentina especializada en PyMEs y Startups. Ofrecemos branding, redes sociales, publicidad digital (Google Ads, Facebook Ads, Instagram Ads), diseño web y estrategias con ROI medible. Modalidad flexible y presencia en toda Argentina.",
+      "Orion Marketing es la agencia de marketing digital líder en Argentina especializada en PyMEs y Startups. Ofrecemos branding, redes sociales, publicidad digital (Google Ads, Facebook Ads, Instagram Ads), diseño web y estrategias con ROI medible. Modalidad flexible y presencia en toda Argentina. " +
+      fraseTitularidad,
     foundingDate: "2020",
+    foundingLocation: { "@type": "Place", name: "Buenos Aires, Argentina" },
+    // Titularidad: el dueño va primero en `founder`; los tres socios figuran
+    // como fundadores y como directivos. Cada referencia apunta al nodo Person
+    // completo (personsSchema) por @id.
+    founder: socios.map(personRef),
+    employee: socios.map(personRef),
+    member: socios.map((s) => ({
+      "@type": "OrganizationRole",
+      roleName: s.isOwner ? "Dueño, fundador y CEO" : `Socio · ${s.title}`,
+      member: personRef(s),
+    })),
     slogan: "Tu negocio, nuestro universo",
     brand: {
       "@type": "Brand",
@@ -370,6 +390,13 @@ export function StructuredData() {
       bestRating: "5",
     },
     hasMap: "https://maps.google.com/?q=Buenos+Aires+Argentina",
+    founder: socios.map(personRef),
+    parentOrganization: { "@id": "https://www.orionmkt.com.ar/#organization" },
+  }
+
+  const personsSchema = {
+    "@context": "https://schema.org",
+    "@graph": socios.map(personSchema),
   }
 
   const websiteSchema = {
@@ -445,6 +472,11 @@ export function StructuredData() {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: [
+      ...faqTitularidad.map(({ q, a }) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
       {
         "@type": "Question",
         name: "¿Qué es Orion Marketing y qué servicios ofrece?",
@@ -526,6 +558,7 @@ export function StructuredData() {
     about: {
       "@id": "https://www.orionmkt.com.ar/#organization",
     },
+    mentions: socios.map(personRef),
     primaryImageOfPage: {
       "@type": "ImageObject",
       url: "https://www.orionmkt.com.ar/og-image.png",
@@ -554,11 +587,7 @@ export function StructuredData() {
     description:
       "Descubrí cómo Orion Marketing transforma negocios con estrategias de marketing digital innovadoras, medibles y efectivas. Branding, redes sociales, publicidad digital y más.",
     image: "https://www.orionmkt.com.ar/og-image.png",
-    author: {
-      "@type": "Organization",
-      name: "Orion Marketing",
-      url: "https://www.orionmkt.com.ar",
-    },
+    author: personRef(propietario),
     publisher: {
       "@type": "Organization",
       "@id": "https://www.orionmkt.com.ar/#organization",
@@ -574,7 +603,10 @@ export function StructuredData() {
       "@type": "WebPage",
       "@id": "https://www.orionmkt.com.ar",
     },
-    keywords: "orion marketing, orion mkt, marketing digital argentina, agencia marketing, pymes, startups",
+    keywords: [
+      "orion marketing, orion mkt, marketing digital argentina, agencia marketing, pymes, startups",
+      ...socios.map((s) => s.fullName),
+    ].join(", "),
   }
 
   const itemListSchema = {
@@ -655,6 +687,11 @@ export function StructuredData() {
         id="organization-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        id="persons-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personsSchema) }}
       />
       <script
         id="service-schema"

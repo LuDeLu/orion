@@ -8,6 +8,7 @@ import { LenisProvider } from "@/components/providers/lenis-provider"
 import { Analitica } from "@/components/analitica"
 import { ThemeProvider } from "@/components/theme-provider"
 import { I18nProvider } from "@/components/i18n-provider"
+import { propietario, socios } from "@/lib/socios"
 import "./globals.css"
 
 const _inter = Inter({
@@ -60,6 +61,12 @@ export const metadata: Metadata = {
     "orion marketing buenos aires",
     "orionmkt.com.ar",
     "orion mkt argentina",
+
+    // Titularidad: dueño y socios, por nombre completo y por nombre corto
+    ...socios.flatMap((s) => [s.fullName, ...s.aliases, `${s.fullName} Orion Marketing`]),
+    "dueño de orion marketing",
+    "fundador de orion marketing",
+    "socios de orion marketing",
 
     // Core keywords - Argentina
     "agencia marketing digital argentina",
@@ -177,11 +184,12 @@ export const metadata: Metadata = {
     "agencia marketing digital confiable",
     "agencia marketing recomendada",
   ],
-  authors: [
-    { name: "Orion Marketing", url: "https://www.orionmkt.com.ar" },
-    { name: "Orion MKT", url: "https://www.orionmkt.com.ar" },
-  ],
-  creator: "Orion Marketing",
+  // El dueño va primero; después los socios.
+  authors: socios.map((s) => ({
+    name: s.fullName,
+    url: `https://www.orionmkt.com.ar/equipo#${s.slug}`,
+  })),
+  creator: propietario.fullName,
   publisher: "Orion Marketing",
   category: "Marketing Digital",
   classification: "Business Services, Marketing Agency, Digital Marketing",
@@ -236,10 +244,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "tu-codigo-de-verificacion-google",
-    yandex: "tu-codigo-yandex",
-  },
   appleWebApp: {
     capable: true,
     title: "Orion Marketing",
@@ -282,7 +286,11 @@ export const metadata: Metadata = {
     "business:contact_data:country_name": "Argentina",
     // DC metadata
     "DC.title": "Orion Marketing - Agencia de Marketing Digital Argentina",
-    "DC.creator": "Orion Marketing",
+    "DC.creator": propietario.fullName,
+    "DC.contributor": socios
+      .filter((s) => !s.isOwner)
+      .map((s) => s.fullName)
+      .join("; "),
     "DC.subject": "Marketing Digital, Publicidad, Branding, Social Media",
     "DC.description": "Agencia de marketing digital en Argentina enfocada en PyMEs y Startups",
     "DC.publisher": "Orion Marketing",

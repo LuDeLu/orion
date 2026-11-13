@@ -267,7 +267,7 @@ export const areasPt: AreaTexts = {
     teaser: "Sites, apps e sistemas sob medida que resolvem o problema real.",
     chips: ["Web", "E-commerce", "Apps", "Sistemas", "Integrações", "Dashboards"],
     owner: {
-      role: "Sócio fundador e CEO",
+      role: "Dono, fundador e CEO",
       title: "Diretor de Tecnologia",
       area: "Desenvolvimento de software & web",
     },
