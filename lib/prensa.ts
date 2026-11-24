@@ -79,6 +79,58 @@ export const perfilesElbio = [
   },
 ]
 
+/**
+ * sameAs de la entidad Elbio Stoler. Es la misma lista en todos los sitios
+ * oficiales (ADN, proyectosdome, DOME Green Soho, OrionMKT) para que Google
+ * reconozca que hablan de la misma persona.
+ */
+export const sameAsElbio = [
+  "https://adndevelopers.com.ar/elbio-stoler/",
+  "https://proyectosdome.com.ar/elbio-stoler/",
+  "https://www.domegreensoho.com.ar/elbio-stoler/",
+  "https://ar.linkedin.com/in/elbio-stoler-32a45918a",
+]
+
+export const fotoElbio = {
+  "@type": "ImageObject",
+  url: "https://proyectosdome.com.ar/assets/img/elbio-stoler.jpg",
+  caption: "Elbio Stoler, fundador y director de ADN Developers",
+}
+
+/** Notas originales en medios, con enlace a la fuente. */
+export const mediosElbio = [
+  {
+    medio: "La Nación",
+    fecha: "23/10/2025",
+    titulo: "Elbio Stoler: el desarrollador que convirtió cada crisis en una oportunidad",
+    url: "https://www.lanacion.com.ar/propiedades/elbio-stoler-el-desarrollador-que-convirtio-cada-crisis-en-una-oportunidad-nid23102025/",
+  },
+  {
+    medio: "Clarín ARQ",
+    fecha: "24/10/2017",
+    titulo: "Consejos para concretar desarrollos inmobiliarios",
+    url: "https://www.clarin.com/arq/arquitectura/consejos-concretar-desarrollos-inmobiliarios_0_BJiOHCsab.html",
+  },
+  {
+    medio: "Perfil",
+    fecha: "04/10/2022",
+    titulo: "Inversión en Real Estate, la opinión de un especialista",
+    url: "https://noticias.perfil.com/noticias/empresas-y-protagonistas/inversion-en-real-estate-la-opinion-de-un-especialista.phtml",
+  },
+  {
+    medio: "Perfil",
+    fecha: "22/11/2020",
+    titulo: "ADN Developers: nuevos proyectos de viviendas y oficinas",
+    url: "https://noticias.perfil.com/noticias/empresas-y-protagonistas/adn-developers-nuevos-proyectos-de-viviendas-y-oficinas.phtml",
+  },
+  {
+    medio: "Arquimaster",
+    fecha: "31/05/2021",
+    titulo: "ADN Developers comercializa Dome Cabello y Lafinur",
+    url: "https://www.arquimaster.com.ar/web/adn-developers-comercializa-dome-cabello-y-lafinur/",
+  },
+]
+
 export const notas: Nota[] = [
   {
     slug: "elbio-stoler-dome-green-soho",

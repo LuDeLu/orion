@@ -1,4 +1,4 @@
-import { perfilesElbio, type Nota } from "@/lib/prensa"
+import { fotoElbio, sameAsElbio, type Nota } from "@/lib/prensa"
 
 const BASE = "https://www.orionmkt.com.ar"
 
@@ -19,7 +19,8 @@ export function PrensaStructuredData({ nota }: { nota: Nota }) {
     name: "Elbio Stoler",
     alternateName: ["Elbio Leandro Stoler", "Elvio Stoler"],
     url: "https://adndevelopers.com.ar/elbio-stoler/",
-    sameAs: perfilesElbio.map((p) => p.url),
+    sameAs: sameAsElbio,
+    image: fotoElbio,
     jobTitle: "Director y fundador de ADN Developers",
     worksFor: {
       "@type": "Organization",

@@ -4,7 +4,7 @@ import Image from "next/image"
 import { ArrowRight, ArrowLeft } from "lucide-react"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { notas, perfilesElbio } from "@/lib/prensa"
+import { fotoElbio, mediosElbio, notas, perfilesElbio, sameAsElbio } from "@/lib/prensa"
 
 const BASE = "https://www.orionmkt.com.ar"
 
@@ -52,7 +52,8 @@ const indexSchema = {
       alternateName: ["Elbio Leandro Stoler", "Elvio Stoler"],
       jobTitle: "Fundador y director de ADN Developers",
       url: "https://adndevelopers.com.ar/elbio-stoler/",
-      sameAs: perfilesElbio.map((p) => p.url),
+      sameAs: sameAsElbio,
+      image: fotoElbio,
       worksFor: { "@type": "Organization", name: "ADN Developers", url: "https://adndevelopers.com.ar" },
     },
     {
@@ -126,6 +127,52 @@ export default function PrensaIndex() {
               </Link>
             ))}
           </div>
+
+          {/* Quién es: contexto para quien llega buscando su nombre */}
+          <section className="mt-16 max-w-3xl" aria-labelledby="quien-es-elbio">
+            <h2 id="quien-es-elbio" className="text-xl md:text-2xl font-display font-bold text-foreground mb-4">
+              Quién es Elbio Stoler
+            </h2>
+            <div className="space-y-4 text-foreground/75 leading-relaxed">
+              <p>
+                Elbio Stoler es un desarrollador inmobiliario argentino, fundador y director de ADN
+                Developers y creador de la marca de edificios DOME. Empezó muy joven como empleado de
+                una inmobiliaria, donde aprendió el negocio desde la venta, y en 2005 armó su primer
+                edificio en Barrio Norte: el dueño del terreno aportó el lote a cambio de unidades y el
+                resto se vendió en pozo para financiar la obra.
+              </p>
+              <p>
+                Con ese esquema, ADN Developers creció hasta superar los 40 desarrollos y los
+                280.000 m² construidos en Buenos Aires. Entre sus proyectos están DOME Green Soho, en
+                Av. Córdoba 4340, y DOME Business Plaza, sobre Av. del Libertador, donde hoy funcionan
+                las oficinas de la empresa.
+              </p>
+            </div>
+          </section>
+
+          {/* Notas originales en medios */}
+          <section className="mt-16" aria-labelledby="elbio-en-medios">
+            <h2 id="elbio-en-medios" className="text-xl md:text-2xl font-display font-bold text-foreground mb-5">
+              Elbio Stoler en los medios
+            </h2>
+            <ul className="divide-y divide-border rounded-2xl border border-border bg-card">
+              {mediosElbio.map((m) => (
+                <li key={m.url}>
+                  <a
+                    href={m.url}
+                    target="_blank"
+                    rel="noopener"
+                    className="flex flex-col gap-1 p-5 transition-colors hover:bg-foreground/[0.03] sm:flex-row sm:items-baseline sm:gap-4"
+                  >
+                    <span className="shrink-0 text-xs font-semibold uppercase tracking-wide text-primary sm:w-40">
+                      {m.medio} · {m.fecha}
+                    </span>
+                    <span className="font-display font-bold text-foreground leading-snug">{m.titulo}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
 
           {/* Perfiles oficiales: enlaces a los sitios donde vive la información de Elbio Stoler */}
           <aside className="mt-16" aria-labelledby="mas-sobre-elbio">
