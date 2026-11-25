@@ -12,8 +12,8 @@ import {
   fraseTitularidad,
   listar,
   personRef,
-  personSchema,
   propietario,
+  socioUrl,
   socios,
 } from "@/lib/socios"
 
@@ -27,10 +27,13 @@ import {
  */
 
 const otros = socios.filter((s) => !s.isOwner)
-const title = `${propietario.fullName}, dueño de Orion Marketing, y sus socios`
-const description = `${propietario.fullName} es el dueño, fundador y CEO de Orion Marketing. Socios: ${listar(
-  otros.map((s) => s.fullName),
-)}. Conocé quién dirige cada área.`
+// Título neutro a propósito: cada socio tiene su propia página (/equipo/<slug>)
+// con su nombre en el título. Si acá encabezara el dueño, Google mostraría su
+// nombre también cuando alguien busca a los otros socios.
+const title = "Dueño y socios de Orion Marketing"
+const description = `Quién dirige Orion Marketing: ${listar(
+  socios.map((s) => `${s.fullName} (${s.title})`),
+)}. Dueño: ${propietario.fullName}; socios: ${listar(otros.map((s) => s.fullName))}.`
 
 export const metadata: Metadata = {
   title: { absolute: `${title} | Equipo` },
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
     "quién es el dueño de Orion Marketing",
     "equipo Orion Marketing",
   ],
-  authors: socios.map((s) => ({ name: s.fullName, url: `${EQUIPO_URL}#${s.slug}` })),
+  authors: socios.map((s) => ({ name: s.fullName, url: socioUrl(s) })),
   alternates: { canonical: EQUIPO_URL, languages: { "es-AR": EQUIPO_URL } },
   robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   openGraph: {
@@ -54,9 +57,7 @@ export const metadata: Metadata = {
     url: EQUIPO_URL,
     siteName: "Orion Marketing",
     locale: "es_AR",
-    type: "profile",
-    firstName: propietario.givenName,
-    lastName: propietario.familyName,
+    type: "website",
     images: [{ url: `${BASE_URL}/og-image-share.png`, width: 1200, height: 630 }],
   },
   twitter: { card: "summary_large_image", title, description },
@@ -75,7 +76,6 @@ const schema = {
       isPartOf: { "@id": `${BASE_URL}/#website` },
       about: { "@id": ORG_ID },
       mainEntity: { "@id": `${EQUIPO_URL}#socios` },
-      author: personRef(propietario),
       speakable: {
         "@type": "SpeakableSpecification",
         cssSelector: ["#titularidad", ".socio-resumen"],
@@ -100,7 +100,6 @@ const schema = {
         item: personRef(s),
       })),
     },
-    ...socios.map(personSchema),
     {
       "@type": "FAQPage",
       "@id": `${EQUIPO_URL}#faq`,
@@ -167,7 +166,9 @@ export default function EquipoPage() {
                         {s.isOwner ? "Dueño y propietario" : "Socio"}
                       </p>
                       <h2 className="mt-1 text-2xl md:text-3xl font-display font-extrabold text-foreground leading-tight">
-                        {s.fullName}
+                        <Link href={`/equipo/${s.slug}`} className="hover:underline">
+                          {s.fullName}
+                        </Link>
                       </h2>
                       <p className="mt-1 font-semibold" style={{ color: area.accent.hex }}>
                         {s.role} · {s.title}
@@ -196,6 +197,13 @@ export default function EquipoPage() {
                   </ul>
 
                   <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-5 text-sm font-semibold">
+                    <Link
+                      href={`/equipo/${s.slug}`}
+                      className="inline-flex items-center gap-1.5 text-primary hover:underline"
+                    >
+                      Perfil de {s.fullName}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
                     <Link
                       href={area.href}
                       className="inline-flex items-center gap-1.5 text-primary hover:underline"

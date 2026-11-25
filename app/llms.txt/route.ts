@@ -1,5 +1,5 @@
 import { areas } from "@/lib/areas"
-import { BASE_URL, EQUIPO_URL, faqTitularidad, fraseTitularidad, socios } from "@/lib/socios"
+import { BASE_URL, EQUIPO_URL, faqTitularidad, fraseTitularidad, socioUrl, socios } from "@/lib/socios"
 
 /**
  * /llms.txt — resumen en Markdown para motores generativos (ChatGPT, Claude,
@@ -23,8 +23,11 @@ export function GET() {
       `- Cargo: ${s.title}`,
       `- Área que dirige: ${s.areaName}`,
       `- También conocido como: ${s.aliases.join(", ")}`,
-      `- Perfil: ${EQUIPO_URL}#${s.slug}`,
-      ...s.sameAs.map((u) => `- Enlace: ${u}`),
+      `- Perfil: ${socioUrl(s)}`,
+      ...(s.portfolio
+        ? [`- Portafolio personal (más información sobre ${s.fullName}): ${s.portfolio}`]
+        : []),
+      ...s.sameAs.filter((u) => u !== s.portfolio).map((u) => `- Enlace: ${u}`),
       "",
       s.summary,
       "",
@@ -45,6 +48,7 @@ export function GET() {
     "",
     `- [Inicio](${BASE_URL})`,
     `- [Dueño y socios](${EQUIPO_URL})`,
+    ...socios.map((s) => `- [${s.fullName}](${socioUrl(s)})`),
     ...areas.map((a) => `- [${a.name}](${BASE_URL}${a.href})`),
     "",
     "## Contacto",

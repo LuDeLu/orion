@@ -44,6 +44,13 @@ export type Socio = {
   knowsAbout: string[]
   /** Perfiles externos verificables de la persona */
   sameAs: string[]
+  /** Portafolio personal, con más información sobre la persona */
+  portfolio?: string
+  /**
+   * Título de su página de perfil (el que muestra Google al buscar su nombre):
+   * nombre completo primero y después los cargos que cumple.
+   */
+  seoTitle: string
 }
 
 export const socios: Socio[] = [
@@ -80,7 +87,11 @@ export const socios: Socio[] = [
       "Arquitectura de software",
       "Dirección de agencias digitales",
     ],
-    sameAs: ["https://ludelu.dev/"],
+    // Portafolio personal: se declara como sameAs para que buscadores e IA
+    // unan la entidad "Lucas Damian Baez" con ese sitio.
+    sameAs: ["https://lucas.orionmkt.com.ar/"],
+    portfolio: "https://lucas.orionmkt.com.ar/",
+    seoTitle: "Lucas Damian Baez, dueño, fundador y CEO de Orion Marketing",
   },
   {
     slug: "nicolas-hector-mazzotti",
@@ -115,6 +126,7 @@ export const socios: Socio[] = [
       "Soporte técnico para empresas",
     ],
     sameAs: [],
+    seoTitle: "Nicolás Hector Mazzotti, socio fundador y director de IT | Orion Marketing",
   },
   {
     slug: "nazareno-david-cabella",
@@ -149,6 +161,7 @@ export const socios: Socio[] = [
       "Analítica y KPIs",
     ],
     sameAs: ["https://www.linkedin.com/in/davi-cabella/"],
+    seoTitle: "Nazareno David Cabella, socio fundador y director de marketing | Orion Marketing",
   },
 ]
 
@@ -158,8 +171,34 @@ export const sociosPorArea = Object.fromEntries(socios.map((s) => [s.areaSlug, s
   Socio
 >
 
-export const socioId = (s: Socio) => `${EQUIPO_URL}#${s.slug}`
-export const socioUrl = (s: Socio) => `${EQUIPO_URL}#${s.slug}`
+/**
+ * Cada socio tiene su propia página (/equipo/<slug>). Si los tres compartieran
+ * una sola URL, Google mostraría el mismo resultado —con el título del dueño—
+ * para cualquiera de los tres nombres.
+ */
+export const socioUrl = (s: Socio) => `${EQUIPO_URL}/${s.slug}`
+export const socioId = (s: Socio) => `${socioUrl(s)}#person`
+export const getSocio = (slug: string) => socios.find((s) => s.slug === slug)
+
+/** Preguntas propias de cada socio, para su página de perfil. */
+export function faqSocio(s: Socio) {
+  const area = s.areaName
+  return [
+    { q: `¿Quién es ${s.fullName}?`, a: faqTitularidad.find((f) => f.q === `¿Quién es ${s.fullName}?`)!.a },
+    {
+      q: `¿Qué hace ${s.fullName} en Orion Marketing?`,
+      a: `${s.fullName} es ${s.isOwner ? "el dueño, fundador y CEO" : "socio"} de Orion Marketing y ${s.title.toLowerCase()}. Dirige en persona el área de ${area}.`,
+    },
+    {
+      q: `¿En qué se especializa ${s.fullName}?`,
+      a: `${s.fullName} se especializa en ${listar(s.knowsAbout.map((k) => k.toLowerCase()))}.`,
+    },
+    {
+      q: `¿Cómo contactar a ${s.fullName}?`,
+      a: `A través de Orion Marketing: hola@orionmkt.com.ar o WhatsApp +54 9 11 5656-6083. Las consultas de ${area} las atiende directamente ${s.givenName}.`,
+    },
+  ]
+}
 
 /** "A, B y C" */
 export function listar(nombres: string[]): string {
@@ -193,7 +232,7 @@ export function personSchema(s: Socio) {
     familyName: s.familyName,
     alternateName: s.aliases,
     url: socioUrl(s),
-    mainEntityOfPage: EQUIPO_URL,
+    mainEntityOfPage: socioUrl(s),
     jobTitle: s.jobTitle,
     description: s.summary,
     worksFor: { "@type": "Organization", "@id": ORG_ID, name: "Orion Marketing", url: BASE_URL },
@@ -211,6 +250,16 @@ export function personSchema(s: Socio) {
       address: { "@type": "PostalAddress", addressLocality: "Buenos Aires", addressCountry: "AR" },
     },
     ...(s.sameAs.length ? { sameAs: s.sameAs } : {}),
+    ...(s.portfolio
+      ? {
+          subjectOf: {
+            "@type": "WebSite",
+            name: `Portafolio de ${s.fullName}`,
+            url: s.portfolio,
+            about: { "@id": socioId(s) },
+          },
+        }
+      : {}),
   }
 }
 
@@ -234,7 +283,9 @@ export const faqTitularidad = [
   },
   ...socios.map((s) => ({
     q: `¿Quién es ${s.fullName}?`,
-    a: s.summary,
+    a: s.portfolio
+      ? `${s.summary} Más información sobre ${s.fullName} en su portafolio personal: ${s.portfolio}`
+      : s.summary,
   })),
   {
     q: "¿Con quién voy a hablar si contrato a Orion Marketing?",

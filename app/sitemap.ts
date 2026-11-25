@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 import { areas } from "@/lib/areas"
 import { notas } from "@/lib/prensa"
+import { socioUrl, socios } from "@/lib/socios"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.orionmkt.com.ar"
@@ -28,6 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.9,
     },
+    // Un perfil por socio, para que cada nombre tenga su propio resultado.
+    ...socios.map((s) => ({
+      url: socioUrl(s),
+      lastModified: currentDate,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     // Índice de prensa + una entrada por nota.
     {
       url: `${baseUrl}/prensa`,
