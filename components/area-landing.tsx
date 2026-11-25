@@ -165,7 +165,7 @@ function AreaHero({ area }: { area: Area }) {
               <p className="text-xs uppercase tracking-[0.25em] text-foreground/65 mb-3">
                 {owner.label}
               </p>
-              <OwnerIdentity area={area} size="md" showTitle />
+              <OwnerIdentity area={area} size="md" showTitle linkProfile />
               <OwnerDirectLine area={area} className="mt-4" />
 
               <div className="h-px w-full my-6" style={{ background: `linear-gradient(90deg, rgba(${rgb},0.4), transparent)` }} />

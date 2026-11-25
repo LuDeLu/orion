@@ -1,8 +1,10 @@
 "use client"
 
+import Link from "next/link"
 import type { Area } from "@/lib/areas"
 import { useT } from "@/components/i18n-provider"
 import { fill } from "@/lib/i18n"
+import { sociosPorArea } from "@/lib/socios"
 
 /**
  * Señales de "esta área la maneja un dueño".
@@ -24,13 +26,20 @@ export function OwnerIdentity({
   area,
   size = "sm",
   showTitle = false,
+  linkProfile = false,
 }: {
   area: Area
   size?: "sm" | "md"
   showTitle?: boolean
+  /**
+   * Enlaza el nombre al perfil del socio (/equipo/<slug>). Solo donde la
+   * ficha no está ya dentro de otro enlace: un <a> dentro de otro es inválido.
+   */
+  linkProfile?: boolean
 }) {
   const rgb = area.accent.rgb
   const md = size === "md"
+  const socio = sociosPorArea[area.slug]
 
   return (
     <div className="flex items-center gap-3 min-w-0">
@@ -49,7 +58,17 @@ export function OwnerIdentity({
         <p
           className={`${md ? "" : "text-sm"} font-bold text-foreground leading-tight truncate`}
         >
-          {area.owner.name}
+          {linkProfile && socio ? (
+            <Link
+              href={`/equipo/${socio.slug}`}
+              title={`Perfil de ${socio.fullName}`}
+              className="hover:underline underline-offset-4"
+            >
+              {area.owner.name}
+            </Link>
+          ) : (
+            area.owner.name
+          )}
         </p>
         <p
           className={`${md ? "text-sm mt-0.5" : "text-xs mt-px"} font-semibold leading-snug`}

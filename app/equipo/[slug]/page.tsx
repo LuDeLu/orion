@@ -32,6 +32,10 @@ export function generateStaticParams() {
 
 export const dynamicParams = false
 
+/** Fechas del ProfilePage (Google las usa para saber qué tan vigente es). */
+const PERFILES_CREADOS = "2026-11-25"
+const PERFILES_ACTUALIZADOS = "2026-11-25"
+
 const tituloSocio = (s: Socio) => s.seoTitle
 
 export async function generateMetadata({
@@ -62,7 +66,7 @@ export async function generateMetadata({
       type: "profile",
       firstName: s.givenName,
       lastName: s.familyName,
-      images: [{ url: `${BASE_URL}/og-image-share.png`, width: 1200, height: 630 }],
+      // La imagen la genera opengraph-image.tsx: una por socio, con su nombre y cargos.
     },
     twitter: { card: "summary_large_image", title, description: s.summary },
   }
@@ -91,6 +95,9 @@ export default async function SocioPage({ params }: { params: Promise<{ slug: st
         isPartOf: { "@id": `${BASE_URL}/#website` },
         about: { "@id": socioId(s) },
         mainEntity: { "@id": socioId(s) },
+        dateCreated: PERFILES_CREADOS,
+        dateModified: PERFILES_ACTUALIZADOS,
+        primaryImageOfPage: { "@type": "ImageObject", url: `${url}/opengraph-image`, width: 1200, height: 630 },
         speakable: { "@type": "SpeakableSpecification", cssSelector: [".socio-resumen"] },
       },
       personSchema(s),

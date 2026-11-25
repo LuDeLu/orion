@@ -18,6 +18,13 @@ import {
 import Link from "next/link"
 import type { AreaSlug } from "@/lib/areas"
 import { useAreas } from "@/hooks/use-areas"
+import { socios } from "@/lib/socios"
+
+/** Perfil indexable de cada miembro (/equipo/<slug>), por id de `team`. */
+const perfilHref = (memberId: string) => {
+  const s = socios.find((x) => x.teamId === memberId)
+  return s ? `/equipo/${s.slug}` : "/equipo"
+}
 import { useT } from "@/components/i18n-provider"
 
 type Member = {
@@ -482,6 +489,15 @@ function MemberModal({ member, onClose }: { member: Member; onClose: () => void 
               </Link>
             </div>
 
+            <Link
+              href={perfilHref(member.id)}
+              onClick={onClose}
+              className={`inline-flex items-center gap-1.5 text-sm font-semibold ${member.accent.iconColor} hover:underline underline-offset-4`}
+            >
+              Ver perfil completo de {member.name}
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+
             {member.contact && (
               <a
                 href={member.contact.href}
@@ -550,6 +566,24 @@ export function Team() {
             />
           ))}
         </div>
+
+        {/* Las tarjetas abren un modal (botones, no enlaces): estos enlaces
+            reales son los que siguen Google y los motores de IA hasta el
+            perfil de cada socio, con su nombre completo como texto. */}
+        <p className="mt-10 text-center text-sm text-foreground/60">
+          Perfiles:{" "}
+          {socios.map((s, i) => (
+            <span key={s.slug}>
+              {i > 0 && " · "}
+              <Link
+                href={`/equipo/${s.slug}`}
+                className="text-foreground/80 hover:text-foreground underline underline-offset-4"
+              >
+                {s.fullName}
+              </Link>
+            </span>
+          ))}
+        </p>
       </div>
 
       {/* El modal va por portal al <body>: la sección vive dentro de un
