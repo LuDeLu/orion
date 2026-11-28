@@ -61,7 +61,7 @@ export const socios: Socio[] = [
     givenName: "Lucas",
     additionalName: "Damian",
     familyName: "Baez",
-    aliases: ["Lucas Baez", "Lucas D. Baez"],
+    aliases: ["Lucas Baez", "Lucas D. Baez", "LuDeLu"],
     initials: "LB",
     isOwner: true,
     role: "Dueño, fundador y CEO",
@@ -89,8 +89,14 @@ export const socios: Socio[] = [
     ],
     // Portafolio personal: se declara como sameAs para que buscadores e IA
     // unan la entidad "Lucas Damian Baez" con ese sitio.
-    sameAs: ["https://lucas.orionmkt.com.ar/"],
-    portfolio: "https://lucas.orionmkt.com.ar/",
+    sameAs: [
+      "https://lucasbaez.com.ar/",
+      "https://www.linkedin.com/in/ludelu/",
+      "https://github.com/LuDeLu",
+      "https://x.com/TheLuDelu",
+      "https://www.instagram.com/lu.de_lu/",
+    ],
+    portfolio: "https://lucasbaez.com.ar/",
     seoTitle: "Lucas Damian Baez, dueño, fundador y CEO de Orion Marketing",
   },
   {

@@ -99,8 +99,8 @@ const team: Member[] = [
     ],
     showcase: {
       type: "portfolio",
-      url: "https://lucas.orionmkt.com.ar/",
-      title: "lucas.orionmkt.com.ar",
+      url: "https://lucasbaez.com.ar/",
+      title: "lucasbaez.com.ar",
       subtitle: "Proyectos, casos y stack técnico",
     },
   },
